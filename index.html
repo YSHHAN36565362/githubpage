@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Yoshi Han | Portfolio</title>
+<title id="doc-title">Han Yoonsu | Portfolio</title>
+<meta name="description" content="Han Yoonsu — Data Science / System Engineer portfolio. KoBERT paper classifier &amp; K-Move vocabulary app." />
 <link rel="stylesheet" href="style.css" />
 
-<!-- * 애니메이션을 위한 animejs 불러오기 설정입니다. -->
+<!-- 애니메이션을 위한 animejs 불러오기 설정 -->
 <script type="importmap">
   {
     "imports": {
@@ -17,166 +18,150 @@
 </head>
 <body>
 
-<div class="full-container scroll-container scroll-y">
-  <div class="scroll-content grid square-grid">
+<!-- 좌상단 고정 언어 전환 버튼: 日本語 / 한국어 / English -->
+<div class="lang-switch" role="group" aria-label="Language / 言語 / 언어">
+  <button type="button" data-lang="ja" aria-pressed="true" lang="ja">日本語</button>
+  <button type="button" data-lang="ko" aria-pressed="false" lang="ko">한국어</button>
+  <button type="button" data-lang="en" aria-pressed="false" lang="en">English</button>
+</div>
 
-    <!-- 첫 번째 화면 영역: 헤더 (메인 타이틀) -->
+<div class="full-container scroll-container scroll-y">
+  <div class="scroll-content">
+
+    <!-- Hero -->
     <div class="scroll-section padded">
       <header class="hero">
         <div class="hero-inner">
-          <h1>YSHHAN36565362</h1>
-          <p class="subtitle">Data Science / Full-Stack Developer Portfolio</p>
+          <h1 id="hero-name">ハン・ユンス</h1>
+          <p class="role" id="hero-role">システムエンジニア志望 ・ 2027年卒業予定</p>
+          <p class="quote" id="hero-quote">「誰かの困りごとを、自分の工夫や技術で少しだけ軽くすること。」</p>
           <nav>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
+            <a href="#about" id="nav-about">About</a>
+            <a href="#projects" id="nav-projects">Projects</a>
+            <a href="#contact" id="nav-contact">Contact</a>
           </nav>
         </div>
       </header>
     </div>
 
-    <!-- * 여기부터 프로젝트 영역이 시작됩니다. 기존에 3개가 가로로 나열되던 구조를 지우고, 한 화면에 하나씩 나오도록 수정했습니다. -->
-    
-    <!-- * 날짜가 가장 오래된(2025.10) 첫 번째 프로젝트를 위한 화면 칸입니다. -->
+    <!-- About -->
+    <div class="scroll-section padded" id="about">
+      <main>
+        <section>
+          <h2 id="about-heading">About</h2>
+          <div class="about-bio" id="about-bio">
+            <p>...</p>
+          </div>
+
+          <div class="about-grid">
+            <div class="info-card">
+              <h3 id="about-edu-title">学歴・現在</h3>
+              <ul id="about-edu-list">
+                <li>...</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3 id="about-skills-title">スキル</h3>
+              <div class="skill-cat">
+                <span class="cat-label" id="skill-cat-lang">言語</span>
+                <span class="cat-values">Python, JavaScript, HTML/CSS</span>
+              </div>
+              <div class="skill-cat">
+                <span class="cat-label" id="skill-cat-ai">AI・ML</span>
+                <span class="cat-values">PyTorch, Transformers (KoBERT), Scikit-learn, YOLO, VGG16</span>
+              </div>
+              <div class="skill-cat">
+                <span class="cat-label" id="skill-cat-data">データ分析</span>
+                <span class="cat-values">Pandas, Matplotlib, Seaborn</span>
+              </div>
+              <div class="skill-cat">
+                <span class="cat-label" id="skill-cat-tool">ツール</span>
+                <span class="cat-values">Git, Streamlit, GitHub REST API, Google Analytics (GA4)</span>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <h3 id="about-awards-title">受賞・資格</h3>
+              <ul id="about-awards-list">
+                <li>...</li>
+              </ul>
+            </div>
+
+            <div class="info-card">
+              <h3 id="about-contact-title">Contact</h3>
+              <ul>
+                <li><span id="about-contact-email-label">Email</span>: <a href="mailto:hys2231@naver.com">hys2231@naver.com</a></li>
+                <li><span id="about-contact-github-label">GitHub</span>: <a href="https://github.com/YSHHAN36565362" target="_blank" rel="noopener">github.com/YSHHAN36565362</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Project 01: 논문 분류 -->
     <div class="scroll-section padded" id="projects">
-      <div class="large centered row" style="text-align: center; margin-bottom: 20px;">
-        <!-- * 요청하신 'no.1 project' 라벨을 추가했습니다. -->
-        <div class="label" style="color: var(--accent2); font-size: 1.2rem; font-weight: 600; letter-spacing: 2px;">no.1 project</div>
-      </div>
-      <!-- * 카드가 화면 전체를 차지하지 않도록 최대 너비(max-width)를 주고 중앙에 배치(margin: 0 auto)했습니다. -->
-      <article class="card" data-tags="Python,PyTorch,Transformers" style="max-width: 600px; margin: 0 auto; width: 100%;">
-        <h3>学術論文 研究分野自動分類モデル</h3>
-        <p class="period">2025.10 – 2025.11</p>
-        <p class="desc">
-          論文タイトル・要旨のみで5つの研究分野(農学・社会福祉学・社会学・
-          電子情報通信工学・工学一般)を自動分類するKoBERTベースの
-          テキスト分類モデル。
-        </p>
+      <div class="project-label" id="p1-label">no.1 project</div>
+      <article class="card" data-tags="Python,PyTorch,Transformers">
+        <h3 id="p1-title">学術論文 研究分野自動分類モデル</h3>
+        <p class="period" id="p1-period">2025.10 – 2025.11</p>
+        <p class="desc" id="p1-desc">...</p>
         <ul class="stack">
-          <li>Python</li><li>PyTorch</li><li>Transformers(KoBERT)</li>
+          <li>Python</li><li>PyTorch</li><li>Transformers (KoBERT)</li>
         </ul>
-        <ul class="achievements">
-          <li>Accuracy 96.9%</li>
-          <li>Macro F1 0.956</li>
-          <li>学内データサイエンス学術祭 2位</li>
+        <ul class="achievements" id="p1-achievements">
+          <li>...</li>
         </ul>
         <div class="links">
-          <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier" target="_blank" rel="noopener">GitHub →</a>
+          <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier" target="_blank" rel="noopener" id="p1-link-github">GitHub →</a>
         </div>
       </article>
     </div>
 
-    <!-- ** 두 번째 프로젝트(2025.11) 화면 칸입니다. 스크롤을 내리면 이 칸이 나타납니다. -->
+    <!-- Project 02: 단어장 앱 -->
     <div class="scroll-section padded">
-      <div class="large centered row" style="text-align: center; margin-bottom: 20px;">
-        <!-- ** 'no.2 project' 라벨을 추가했습니다. -->
-        <div class="label" style="color: var(--accent2); font-size: 1.2rem; font-weight: 600; letter-spacing: 2px;">no.2 project</div>
-      </div>
-      <article class="card" data-tags="Python,Tkinter,GeoJSON" style="max-width: 600px; margin: 0 auto; width: 100%;">
-        <h3>全国採用・求職トレンドダッシュボード</h3>
-        <p class="period">2025.11 – 2025.12</p>
-        <p class="desc">
-          全国17市道の4カ年分(2022〜2025年)の求人・求職データとGeoJSON
-          地図を組み合わせ、地域別・職種別・学歴別の採用トレンドと需給
-          ギャップを一画面で分析するTkinterデスクトップダッシュボード。
-        </p>
+      <div class="project-label" id="p2-label">no.2 project</div>
+      <article class="card" data-tags="Python,Streamlit,GitHub API">
+        <h3 id="p2-title">KMOVE単語アプリ — 忘却曲線ベースの暗記Webアプリ</h3>
+        <p class="period" id="p2-period">2026</p>
+        <p class="desc" id="p2-desc">...</p>
         <ul class="stack">
-          <li>Python</li><li>Tkinter</li><li>Matplotlib</li><li>Pandas</li><li>NumPy</li><li>GeoJSON</li>
+          <li>Python</li><li>Streamlit</li><li>GitHub Contents API</li><li>requests</li><li>HMAC</li>
         </ul>
-        <ul class="achievements">
-          <li>4カ年分の求人/求職データ統合パイプライン構築</li>
-          <li>全国地図ズームイン可視化実装</li>
-          <li>地域・職種・学歴の3重フィルター分析画面構成</li>
-          <li>学歴別の需給ギャップ定量比較</li>
+        <ul class="achievements" id="p2-achievements">
+          <li>...</li>
         </ul>
+        <p class="note" id="p2-note">...</p>
         <div class="links">
-          <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/job-market-trend-dashboard-korea" target="_blank" rel="noopener">GitHub →</a>
+          <a href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener" id="p2-link-github">GitHub →</a>
+          <a href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener" id="p2-link-demo">Live Demo →</a>
         </div>
       </article>
     </div>
 
-    <!-- *** 세 번째 프로젝트(2026.05) 화면 칸입니다. -->
-    <div class="scroll-section padded">
-      <div class="large centered row" style="text-align: center; margin-bottom: 20px;">
-        <!-- *** 'no.3 project' 라벨을 추가했습니다. -->
-        <div class="label" style="color: var(--accent2); font-size: 1.2rem; font-weight: 600; letter-spacing: 2px;">no.3 project</div>
-      </div>
-      <article class="card" data-tags="Python,Streamlit,XGBoost" style="max-width: 600px; margin: 0 auto; width: 100%;">
-        <h3>ソウルSafeCity — 犯罪リスク分析システム</h3>
-        <p class="period">2026.05 – 2026.06</p>
-        <p class="desc">
-          ソウル市の犯罪・CCTV・人口データを統合し、区別リスクを可視化する
-          とともに、CCTV追加設置をシミュレーションするキャップストーン
-          ダッシュボード。データパイプラインおよびダッシュボード全体を
-          設計・実装。
-        </p>
-        <ul class="stack">
-          <li>Python</li><li>Streamlit</li><li>Pandas</li><li>Plotly</li><li>Folium</li><li>XGBoost</li>
-        </ul>
-        <ul class="achievements">
-          <li>ソウル25区の犯罪・CCTV・人口データ統合パイプライン構築</li>
-          <li>MLベースのCCTV優先順位モデル 精度85.7%</li>
-          <li>リアルタイムCCTV設置シミュレーター実装</li>
-        </ul>
-        <div class="links">
-          <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2026-1/seoulcrime202601" target="_blank" rel="noopener">GitHub →</a>
-          <a href="https://seoulcrime202601.streamlit.app/" target="_blank" rel="noopener">Live Demo →</a>
-        </div>
-      </article>
-    </div>
-
-    <!-- **** 네 번째 프로젝트(2026.07) 화면 칸입니다. 가장 최신 프로젝트입니다. -->
-    <div class="scroll-section padded">
-      <div class="large centered row" style="text-align: center; margin-bottom: 20px;">
-        <!-- **** 'no.4 project' 라벨을 추가했습니다. -->
-        <div class="label" style="color: var(--accent2); font-size: 1.2rem; font-weight: 600; letter-spacing: 2px;">no.4 project</div>
-      </div>
-      <article class="card" data-tags="Python,Streamlit,GitHub API" style="max-width: 600px; margin: 0 auto; width: 100%;">
-        <h3>KMOVE単語アプリ — 語彙・資格試験暗記Webアプリ</h3>
-        <p class="period">2026.07</p>
-        <p class="desc">
-          KMOVE研修生の日本語語彙暗記の困難を解決するために企画し、
-          情報処理技士の概念・用語学習まで拡張したStreamlitベースの
-          暗記Webアプリ。
-        </p>
-        <ul class="stack">
-          <li>Python</li><li>Streamlit</li><li>GitHub REST API</li><li>requests</li><li>HMAC</li>
-        </ul>
-        <ul class="achievements">
-          <li>忘却曲線再出題ロジック実装</li>
-          <li>GitHub Contents API活用 DB不要のサーバーレス構造</li>
-          <li>大分類・小分類のカテゴリ構造で資料分離管理</li>
-          <li>セッション維持ピング・キーボードショートカットでUX改善</li>
-        </ul>
-        <div class="links">
-          <a href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener">GitHub →</a>
-          <a href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener">Live Demo →</a>
-        </div>
-      </article>
-    </div>
-
-    <!-- 기술 스택, 연락처 및 하단 푸터 화면 칸입니다. -->
+    <!-- 기술 스택 요약 + Contact + Footer -->
     <div class="scroll-section padded">
       <main style="padding: 0;">
-        <section id="skills" class="skills" style="margin-top: 0;">
-          <h2>主要技術スタック</h2>
+        <section class="skills">
+          <h2 id="skills-title">主要技術スタック</h2>
           <div class="skill-tags">
             <span>Python</span><span>PyTorch</span><span>Transformers / KoBERT</span>
-            <span>Streamlit</span><span>Tkinter</span><span>Pandas</span><span>NumPy</span>
-            <span>Plotly</span><span>Folium</span><span>XGBoost</span>
-            <span>GeoJSON</span><span>GitHub REST API</span><span>SQL</span>
+            <span>Streamlit</span><span>Pandas</span><span>NumPy</span>
+            <span>GitHub REST API</span><span>Git</span>
             <span>JavaScript</span><span>HTML/CSS</span>
           </div>
         </section>
 
         <section id="contact" class="contact">
-          <h2>Contact</h2>
+          <h2 id="contact-title">Contact</h2>
           <p>GitHub: <a href="https://github.com/YSHHAN36565362" target="_blank" rel="noopener">github.com/YSHHAN36565362</a></p>
+          <p>Email: <a href="mailto:hys2231@naver.com">hys2231@naver.com</a></p>
         </section>
       </main>
-      
+
       <footer>
-        <p>&copy; <span id="year"></span> YSHHAN36565362. All rights reserved.</p>
+        <p><span id="footer-name">Han Yoonsu</span> &middot; <span id="year"></span> &middot; <span id="footer-rights">All rights reserved.</span></p>
       </footer>
     </div>
 
