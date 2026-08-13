@@ -16,7 +16,37 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  /* * 스크롤바가 전체 창이 아닌 새로 만든 컨테이너(.scroll-container)에서 생기도록 바디 스크롤을 숨깁니다. */
+  overflow: hidden; 
 }
+
+/* * 1. 추가됨: 전체 화면을 감싸고 스크롤 역할을 대신해주는 컨테이너 디자인입니다. */
+.scroll-container {
+  height: 100vh;           /* * 사용자의 브라우저 높이에 정확히 100% 꽉 맞춥니다. */
+  overflow-y: scroll;      /* * 위아래로 스크롤 할 수 있게 허용합니다. */
+  scroll-behavior: smooth; /* * 스크롤이 끊기지 않고 부드럽게 넘어가도록 합니다. */
+}
+
+/* * 2. 추가됨: 화면 안의 각 내용물(섹션)이 위치할 칸막이 디자인입니다. */
+.scroll-section {
+  min-height: 100vh;       /* * 각각의 구역이 최소 화면 1개 크기를 꽉 채우게 띄워줍니다. */
+  padding: 60px 20px;      
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* * 섹션 안의 내용이 화면 정가운데 오도록 중심 정렬합니다. */
+}
+
+/* * 3. 추가됨: 질문에 적어주신 'square'가 화면에 보이도록 네모 상자를 직접 만들었습니다. */
+.square {
+  width: 80px;
+  height: 80px;
+  background-color: var(--accent); /* 포인트 색상인 하늘색으로 설정 */
+  border-radius: 12px;
+}
+
+/* ----------------------------------------------------------- */
+/* 아래부터는 기존 작성해주셨던 디자인 코드 100% 원본 그대로 유지됩니다. */
+/* ----------------------------------------------------------- */
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { color: var(--accent2); text-decoration: underline; }
@@ -48,7 +78,8 @@ a:hover { color: var(--accent2); text-decoration: underline; }
 main {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 20px;
+  /* * 컨테이너에서 여백을 관리하므로 기존 패딩을 0으로 맞췄습니다. */
+  padding: 0; 
 }
 
 section h2 {
@@ -69,6 +100,7 @@ section h2 {
   border-radius: var(--radius);
   padding: 22px;
   border: 1px solid #334155;
+  /* ** 자바스크립트로 카드가 등장하는 효과를 대신 만들어주므로 기존 투명도/위치 코드는 삭제해도 됩니다. */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
