@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yoshi Han | Portfolio</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>YSHHAN36565362</h1>
+    <p class="subtitle">Data Science / Full-Stack Developer Portfolio</p>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="projects" class="projects">
+    <h2>プロジェクト</h2>
+
+    <div class="card-grid">
+
+      <article class="card" data-tags="Python,PyTorch,Transformers">
+        <h3>学術論文 研究分野自動分類モデル</h3>
+        <p class="period">2025.10 – 2025.11</p>
+        <p class="desc">
+          論文タイトル・要旨のみで5つの研究分野(農学・社会福祉学・社会学・
+          電子情報通信工学・工学一般)を自動分類するKoBERTベースの
+          テキスト分類モデル。
+        </p>
+        <ul class="stack">
+          <li>Python</li><li>PyTorch</li><li>Transformers(KoBERT)</li>
+        </ul>
+        <ul class="achievements">
+          <li>Accuracy 96.9%</li>
+          <li>Macro F1 0.956</li>
+          <li>学内データサイエンス学術祭 2位</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="Python,Streamlit,XGBoost">
+        <h3>ソウルSafeCity — 犯罪リスク分析システム</h3>
+        <p class="period">2026.05 – 2026.06</p>
+        <p class="desc">
+          ソウル市の犯罪・CCTV・人口データを統合し、区別リスクを可視化する
+          とともに、CCTV追加設置をシミュレーションするキャップストーン
+          ダッシュボード。データパイプラインおよびダッシュボード全体を
+          設計・実装。
+        </p>
+        <ul class="stack">
+          <li>Python</li><li>Streamlit</li><li>Pandas</li><li>Plotly</li><li>Folium</li><li>XGBoost</li>
+        </ul>
+        <ul class="achievements">
+          <li>ソウル25区の犯罪・CCTV・人口データ統合パイプライン構築</li>
+          <li>MLベースのCCTV優先順位モデル 精度85.7%</li>
+          <li>リアルタイムCCTV設置シミュレーター実装</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2026-1/seoulcrime202601" target="_blank" rel="noopener">GitHub →</a>
+          <a href="https://seoulcrime202601.streamlit.app/" target="_blank" rel="noopener">Live Demo →</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="Python,Tkinter,GeoJSON">
+        <h3>全国採用・求職トレンドダッシュボード</h3>
+        <p class="period">2025.11 – 2025.12</p>
+        <p class="desc">
+          全国17市道の4カ年分(2022〜2025年)の求人・求職データとGeoJSON
+          地図を組み合わせ、地域別・職種別・学歴別の採用トレンドと需給
+          ギャップを一画面で分析するTkinterデスクトップダッシュボード。
+        </p>
+        <ul class="stack">
+          <li>Python</li><li>Tkinter</li><li>Matplotlib</li><li>Pandas</li><li>NumPy</li><li>GeoJSON</li>
+        </ul>
+        <ul class="achievements">
+          <li>4カ年分の求人/求職データ統合パイプライン構築</li>
+          <li>全国地図ズームイン可視化実装</li>
+          <li>地域・職種・学歴の3重フィルター分析画面構成</li>
+          <li>学歴別の需給ギャップ定量比較</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/job-market-trend-dashboard-korea" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card" data-tags="Python,Streamlit,GitHub API">
+        <h3>KMOVE単語アプリ — 語彙・資格試験暗記Webアプリ</h3>
+        <p class="period">2026.07</p>
+        <p class="desc">
+          KMOVE研修生の日本語語彙暗記の困難を解決するために企画し、
+          情報処理技士の概念・用語学習まで拡張したStreamlitベースの
+          暗記Webアプリ。
+        </p>
+        <ul class="stack">
+          <li>Python</li><li>Streamlit</li><li>GitHub REST API</li><li>requests</li><li>HMAC</li>
+        </ul>
+        <ul class="achievements">
+          <li>忘却曲線再出題ロジック実装</li>
+          <li>GitHub Contents API活用 DB不要のサーバーレス構造</li>
+          <li>大分類・小分類のカテゴリ構造で資料分離管理</li>
+          <li>セッション維持ピング・キーボードショートカットでUX改善</li>
+        </ul>
+        <div class="links">
+          <a href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener">GitHub →</a>
+          <a href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener">Live Demo →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>主要技術スタック</h2>
+    <div class="skill-tags">
+      <span>Python</span><span>PyTorch</span><span>Transformers / KoBERT</span>
+      <span>Streamlit</span><span>Tkinter</span><span>Pandas</span><span>NumPy</span>
+      <span>Plotly</span><span>Folium</span><span>XGBoost</span>
+      <span>GeoJSON</span><span>GitHub REST API</span><span>SQL</span>
+      <span>JavaScript</span><span>HTML/CSS</span>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>GitHub: <a href="https://github.com/YSHHAN36565362" target="_blank" rel="noopener">github.com/YSHHAN36565362</a></p>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> YSHHAN36565362. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
