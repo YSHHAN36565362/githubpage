@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Han Yoonsu | Portfolio</title>
-<meta name="description" content="Han Yoonsu — Data Science × System Engineer. KoBERT paper classifier &amp; K-Move vocabulary app." />
+<title>ハンヨンス | Portfolio</title>
+<meta name="description" content="ハンヨンス（韓倫洙）のポートフォリオ。データサイエンス専攻・システムエンジニア志望。KoBERT論文分類モデルと単語暗記Webアプリ。" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232c98f0'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='14' font-weight='bold' fill='%23fff' text-anchor='middle'%3EHY%3C/text%3E%3C/svg%3E" />
 
@@ -14,13 +14,12 @@
 
 <!-- ?v= 는 캐시 무효화용입니다. style.css / script.js 를 고칠 때마다 숫자를 올리세요.
      (GitHub Pages 가 예전 CSS 를 계속 내려주는 문제를 막습니다.) -->
-<link rel="stylesheet" href="style.css?v=4" />
+<link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- 모바일 햄버거 버튼 -->
 <button type="button" class="nav-toggle js-nav-toggle" aria-label="Menu" aria-expanded="false">
   <span class="nav-toggle-bar"></span>
 </button>
@@ -34,9 +33,10 @@
     <div class="aside-inner">
 
       <div class="author">
-        <div class="author-img" aria-hidden="true"><span>HY</span></div>
-        <h1 class="site-logo" id="side-name">ハン・ユンス</h1>
-        <span class="position" id="side-position">Data Science &times; System Engineer</span>
+        <div class="author-img" role="img" aria-label="Profile photo"></div>
+        <h1 class="site-logo" id="side-name">ハンヨンス</h1>
+        <span class="site-sub" id="side-sub">韓倫洙 / Younsu Han</span>
+        <span class="position" id="side-position">System Engineer 志望</span>
       </div>
 
       <div class="lang-switch" role="group" aria-label="Language / 言語 / 언어">
@@ -47,12 +47,12 @@
 
       <nav id="site-nav" aria-label="Section">
         <ul>
-          <li class="active"><a href="#home"     data-nav="home"     id="nav-home">Home</a></li>
-          <li><a href="#about"    data-nav="about"    id="nav-about">About</a></li>
-          <li><a href="#skills"   data-nav="skills"   id="nav-skills">Skills</a></li>
-          <li><a href="#work"     data-nav="work"     id="nav-work">Work</a></li>
-          <li><a href="#history"  data-nav="history"  id="nav-history">History</a></li>
-          <li><a href="#contact"  data-nav="contact"  id="nav-contact">Contact</a></li>
+          <li class="active"><a href="#home"    data-nav="home"    id="nav-home">Home</a></li>
+          <li><a href="#about"   data-nav="about"   id="nav-about">About</a></li>
+          <li><a href="#skills"  data-nav="skills"  id="nav-skills">Skills</a></li>
+          <li><a href="#works"   data-nav="works"   id="nav-works">Works</a></li>
+          <li><a href="#career"  data-nav="career"  id="nav-career">Career</a></li>
+          <li><a href="#contact" data-nav="contact" id="nav-contact">Contact</a></li>
         </ul>
       </nav>
 
@@ -68,14 +68,14 @@
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM5 5h5V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5h-2v5H5V5z"/></svg>
           </a></li>
         </ul>
-        <p class="copyright"><small>&copy; <span id="year">2026</span> <span id="footer-name">Han Yoonsu</span></small></p>
+        <p class="copyright"><small>&copy; <span id="year">2026</span> <span id="footer-name">Younsu Han</span></small></p>
       </div>
 
     </div>
   </aside>
 
   <!-- ============================================================== -->
-  <!-- 메인 콘텐츠                                                     -->
+  <!-- 메인                                                            -->
   <!-- ============================================================== -->
   <main id="main">
 
@@ -83,13 +83,13 @@
     <section id="home" class="hero" data-section="home">
       <div class="hero-deco" aria-hidden="true"><span class="deco-circle"></span><span class="deco-dot"></span></div>
       <div class="hero-inner reveal">
-        <span class="heading-meta" id="hero-eyebrow">Hello, I'm</span>
-        <h1 id="hero-name">ハン・ユンス</h1>
+        <span class="heading-meta" id="hero-eyebrow">Portfolio</span>
+        <h1 id="hero-name">ハンヨンス</h1>
         <h2 id="hero-role">誰かの困りごとを、自分の工夫や技術で少しだけ軽くする。</h2>
-        <p class="hero-desc" id="hero-desc">システムエンジニア志望 ・ 2027年卒業予定</p>
+        <p class="hero-desc" id="hero-desc">データサイエンス専攻 ・ システムエンジニア志望 ・ 2027年2月卒業見込み</p>
         <p class="hero-cta">
-          <a href="#work" class="btn btn-primary" id="hero-cta-work">プロジェクトを見る</a>
-          <a href="#contact" class="btn btn-outline" id="hero-cta-contact">連絡する</a>
+          <a href="#works" class="btn btn-primary" id="hero-cta-works">制作物を見る</a>
+          <a href="#contact" class="btn btn-outline" id="hero-cta-contact">お問い合わせ</a>
         </p>
       </div>
     </section>
@@ -97,12 +97,24 @@
     <!-- ------------------------------------------------ About -->
     <section id="about" class="section" data-section="about">
       <div class="heading-block reveal">
-        <span class="heading-meta" id="about-meta">About Me</span>
+        <span class="heading-meta" id="about-meta">About</span>
         <h2 class="section-heading" id="about-heading">自己紹介</h2>
       </div>
 
-      <div class="about-copy reveal" id="about-bio">
-        <p>人が動きやすいように場を整える役割にやりがいを感じています。</p>
+      <div class="about-layout">
+        <div class="about-copy reveal" id="about-bio">
+          <p>—</p>
+        </div>
+
+        <dl class="profile-list reveal">
+          <div><dt id="pf-1-k">氏名</dt><dd id="pf-1-v">韓倫洙（ハンヨンス / Younsu Han）</dd></div>
+          <div><dt id="pf-2-k">生年月日</dt><dd id="pf-2-v">2001年7月21日</dd></div>
+          <div><dt id="pf-3-k">学歴</dt><dd id="pf-3-v">江南大学 データサイエンス学科（2027年2月 卒業見込み）</dd></div>
+          <div><dt id="pf-4-k">語学</dt><dd id="pf-4-v">日本語 JLPT N3（2026.01）／ 英語 中級</dd></div>
+          <div><dt id="pf-5-k">資格</dt><dd id="pf-5-v">普通自動車免許（AT限定）</dd></div>
+          <div><dt id="pf-6-k">趣味</dt><dd id="pf-6-v">音楽鑑賞、写真撮影</dd></div>
+          <div><dt id="pf-7-k">希望勤務地</dt><dd id="pf-7-v">日本</dd></div>
+        </dl>
       </div>
 
       <div class="trait-grid">
@@ -110,42 +122,40 @@
           <span class="trait-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M12 2 3 7v10l9 5 9-5V7l-9-5zm0 2.3 6.5 3.6L12 11.5 5.5 7.9 12 4.3zM5 9.6l6 3.3v6.6l-6-3.3V9.6zm14 6.6-6 3.3v-6.6l6-3.3v6.6z"/></svg>
           </span>
-          <h3 id="trait-1">課題から出発する</h3>
-          <p id="trait-1-desc">身近な困りごとを起点に、必要な技術をその都度学んで形にします。</p>
+          <h3 id="trait-1">身近な困りごとから作る</h3>
+          <p id="trait-1-desc">—</p>
         </div>
         <div class="trait color-2 reveal">
           <span class="trait-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M20 6h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM10 4h4v2h-4V4zm10 15H4V8h16v11z"/></svg>
           </span>
           <h3 id="trait-2">まず報告、それから対処</h3>
-          <p id="trait-2-desc">想定外の場面ほど一人で抱えず、早く共有することを徹底します。</p>
+          <p id="trait-2-desc">—</p>
         </div>
         <div class="trait color-5 reveal">
           <span class="trait-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M3 13h2v7H3v-7zm4-5h2v12H7V8zm4-5h2v17h-2V3zm4 8h2v9h-2v-9zm4-4h2v13h-2V7z"/></svg>
           </span>
-          <h3 id="trait-3">データで判断する</h3>
-          <p id="trait-3-desc">条件を変えて結果を記録し、比べたうえで選び直します。</p>
+          <h3 id="trait-3">比べてから選び直す</h3>
+          <p id="trait-3-desc">—</p>
         </div>
         <div class="trait color-4 reveal">
           <span class="trait-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-2h2v2zm1.07-7.75-.9.92C12.45 10.9 12 11.5 12 13h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26A2 2 0 1 0 10 7H8a4 4 0 1 1 6.07 3.25z"/></svg>
           </span>
-          <h3 id="trait-4">使う人に先に聞く</h3>
-          <p id="trait-4-desc">「いつ・どこで・何で使うか」を作り始める前に必ず確認します。</p>
+          <h3 id="trait-4">作る前に使う人へ聞く</h3>
+          <p id="trait-4-desc">—</p>
         </div>
       </div>
     </section>
 
     <!-- ------------------------------------------------ Counters -->
-    <!-- data-section="about" 은 내비게이션용입니다. 이 띠에는 대응하는 메뉴가 없어서,
-         값을 비워두면 이 구간을 지나는 동안 직전 메뉴가 활성인 채로 남습니다. -->
     <div class="counters" id="counters" data-section="about">
       <div class="counters-overlay" aria-hidden="true"></div>
       <div class="counters-inner">
         <div class="counter-item reveal">
           <span class="counter js-counter" data-to="96.9" data-decimals="1" data-suffix="%">96.9%</span>
-          <span class="counter-label" id="counter-1">Val Accuracy</span>
+          <span class="counter-label" id="counter-1">検証 Accuracy</span>
         </div>
         <div class="counter-item reveal">
           <span class="counter js-counter" data-to="0.956" data-decimals="3">0.956</span>
@@ -156,8 +166,8 @@
           <span class="counter-label" id="counter-3">学内学術祭</span>
         </div>
         <div class="counter-item reveal">
-          <span class="counter js-counter" data-to="5" data-decimals="0">5</span>
-          <span class="counter-label" id="counter-4">学習モード</span>
+          <span class="counter js-counter" data-to="12" data-decimals="0" data-suffix="年">12年</span>
+          <span class="counter-label" id="counter-4">無遅刻・無欠席</span>
         </div>
       </div>
     </div>
@@ -165,59 +175,72 @@
     <!-- ------------------------------------------------ Skills -->
     <section id="skills" class="section" data-section="skills">
       <div class="heading-block reveal">
-        <span class="heading-meta" id="skills-meta">My Specialty</span>
-        <h2 class="section-heading" id="skills-heading">スキル</h2>
+        <span class="heading-meta" id="skills-meta">Skills</span>
+        <h2 class="section-heading" id="skills-heading">技術スタック</h2>
       </div>
+
+      <p class="section-lead reveal" id="skills-lead">—</p>
 
       <div class="skills-grid">
-        <div class="progress-wrap color-1 reveal" style="--pct:85%">
+        <div class="progress-wrap color-1 reveal" style="--pct:78%">
+          <h3>Java</h3>
+          <div class="progress"><div class="progress-bar"><span class="lv-dev">開発・使用</span></div></div>
+        </div>
+        <div class="progress-wrap color-2 reveal" style="--pct:78%">
+          <h3>JavaScript</h3>
+          <div class="progress"><div class="progress-bar"><span class="lv-dev">開発・使用</span></div></div>
+        </div>
+        <div class="progress-wrap color-3 reveal" style="--pct:78%">
+          <h3>HTML / CSS</h3>
+          <div class="progress"><div class="progress-bar"><span class="lv-dev">開発・使用</span></div></div>
+        </div>
+        <div class="progress-wrap color-4 reveal" style="--pct:78%">
+          <h3>MySQL</h3>
+          <div class="progress"><div class="progress-bar"><span class="lv-dev">開発・使用</span></div></div>
+        </div>
+        <div class="progress-wrap color-5 reveal" style="--pct:52%">
           <h3>Python</h3>
-          <div class="progress"><div class="progress-bar"><span>85%</span></div></div>
+          <div class="progress"><div class="progress-bar"><span class="lv-use">使用</span></div></div>
         </div>
-        <div class="progress-wrap color-2 reveal" style="--pct:70%">
-          <h3>PyTorch / Transformers</h3>
-          <div class="progress"><div class="progress-bar"><span>70%</span></div></div>
-        </div>
-        <div class="progress-wrap color-3 reveal" style="--pct:80%">
-          <h3>Pandas / <span id="skill-analysis">データ分析</span></h3>
-          <div class="progress"><div class="progress-bar"><span>80%</span></div></div>
-        </div>
-        <div class="progress-wrap color-4 reveal" style="--pct:75%">
-          <h3>Streamlit / Web</h3>
-          <div class="progress"><div class="progress-bar"><span>75%</span></div></div>
-        </div>
-        <div class="progress-wrap color-5 reveal" style="--pct:70%">
-          <h3>Git / GitHub API</h3>
-          <div class="progress"><div class="progress-bar"><span>70%</span></div></div>
-        </div>
-        <div class="progress-wrap color-6 reveal" style="--pct:60%">
-          <h3>SQL</h3>
-          <div class="progress"><div class="progress-bar"><span>60%</span></div></div>
+        <div class="progress-wrap color-6 reveal" style="--pct:52%">
+          <h3>JSP</h3>
+          <div class="progress"><div class="progress-bar"><span class="lv-use">使用</span></div></div>
         </div>
       </div>
 
-      <div class="tag-row reveal">
-        <span>Python</span><span>PyTorch</span><span>Transformers / KoBERT</span>
-        <span>Scikit-learn</span><span>Pandas</span><span>NumPy</span>
-        <span>Matplotlib</span><span>Streamlit</span><span>GitHub REST API</span>
-        <span>Git</span><span>JavaScript</span><span>HTML / CSS</span>
+      <div class="skill-cats reveal">
+        <div class="skill-cat">
+          <h4 id="sc-1">言語</h4>
+          <div class="tag-row"><span>Java</span><span>Python</span><span>JavaScript</span><span>R</span></div>
+        </div>
+        <div class="skill-cat">
+          <h4 id="sc-2">Web</h4>
+          <div class="tag-row"><span>HTML / CSS</span><span>JSP</span><span>Streamlit</span></div>
+        </div>
+        <div class="skill-cat">
+          <h4 id="sc-3">AI / データ</h4>
+          <div class="tag-row"><span>PyTorch</span><span>Transformers (KoBERT)</span><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span></div>
+        </div>
+        <div class="skill-cat">
+          <h4 id="sc-4">DB / ツール</h4>
+          <div class="tag-row"><span>MySQL</span><span>Git / GitHub</span><span>Eclipse</span><span>Visual Studio</span><span>Windows</span></div>
+        </div>
       </div>
     </section>
 
-    <!-- ------------------------------------------------ Work -->
-    <section id="work" class="section" data-section="work">
+    <!-- ------------------------------------------------ Works -->
+    <section id="works" class="section" data-section="works">
       <div class="heading-block reveal">
-        <span class="heading-meta" id="work-meta">My Work</span>
-        <h2 class="section-heading" id="work-heading">プロジェクト</h2>
+        <span class="heading-meta" id="works-meta">Works</span>
+        <h2 class="section-heading" id="works-heading">制作物</h2>
       </div>
 
       <div class="work-grid">
-
         <article class="project reveal" style="background-image:url(images/project-kobert.jpg)">
           <div class="project-desc">
             <div class="project-con">
               <span class="project-no">01</span>
-              <h3 id="p1-title">学術論文 研究分野自動分類モデル</h3>
+              <h3 id="p1-title">学術論文 研究分野 自動分類モデル</h3>
               <span class="project-period" id="p1-period">2025.10 – 2025.11</span>
               <p id="p1-tag">KoBERT ・ PyTorch ・ Accuracy 96.9%</p>
               <span class="project-links">
@@ -231,9 +254,9 @@
           <div class="project-desc">
             <div class="project-con">
               <span class="project-no">02</span>
-              <h3 id="p2-title">KMOVE単語アプリ</h3>
-              <span class="project-period" id="p2-period">2026</span>
-              <p id="p2-tag">Streamlit ・ GitHub Contents API ・ 忘却曲線</p>
+              <h3 id="p2-title">単語暗記Webアプリ</h3>
+              <span class="project-period" id="p2-period">2026.07 – 現在</span>
+              <p id="p2-tag">Streamlit ・ 生成AI API ・ GitHub Contents API</p>
               <span class="project-links">
                 <a href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener" id="p2-link">GitHub</a>
                 <a href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener" id="p2-link-demo">Live Demo</a>
@@ -241,37 +264,64 @@
             </div>
           </div>
         </article>
-
       </div>
 
-      <!-- 프로젝트 상세 -->
-      <div class="detail reveal">
+      <!-- 프로젝트 상세 01 -->
+      <article class="detail reveal">
         <span class="detail-no">01</span>
         <div class="detail-body">
-          <h3 id="d1-title">学術論文 研究分野自動分類モデル</h3>
-          <p class="detail-meta" id="d1-meta">2025.10 – 2025.11 ・ 2人チーム（リーダー）</p>
-          <p id="d1-desc">論文タイトルと要旨だけで5つの研究分野を自動分類するKoBERTベースのモデル。</p>
-          <ul id="d1-list"><li>—</li></ul>
-        </div>
-      </div>
+          <h3 id="d1-title">学術論文 研究分野 自動分類モデル</h3>
+          <p class="detail-meta" id="d1-meta">2025.10 – 2025.11</p>
+          <p id="d1-desc">—</p>
 
-      <div class="detail reveal">
+          <dl class="spec">
+            <div><dt id="d1-k-role">担当</dt><dd id="d1-v-role">—</dd></div>
+            <div><dt id="d1-k-tech">使用技術</dt><dd id="d1-v-tech">Python / PyTorch / Transformers（KoBERT）</dd></div>
+          </dl>
+
+          <h4 class="detail-sub" id="d1-h-work">課題と工夫</h4>
+          <ul id="d1-list"><li>—</li></ul>
+
+          <h4 class="detail-sub" id="d1-h-result">成果</h4>
+          <ul id="d1-result"><li>—</li></ul>
+
+          <p class="detail-links">
+            <a class="link-arrow" href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier" target="_blank" rel="noopener" id="d1-link">GitHub</a>
+          </p>
+        </div>
+      </article>
+
+      <!-- 프로젝트 상세 02 -->
+      <article class="detail reveal">
         <span class="detail-no">02</span>
         <div class="detail-body">
-          <h3 id="d2-title">KMOVE単語アプリ — 忘却曲線ベースの暗記Webアプリ</h3>
-          <p class="detail-meta" id="d2-meta">2026 ・ 個人プロジェクト（実利用中）</p>
-          <p id="d2-desc">K-Move研修の同期が漢字暗記に苦労している姿を見て作ったStreamlitアプリ。</p>
+          <h3 id="d2-title">単語暗記Webアプリ（K-Move研修生向け学習ツール）</h3>
+          <p class="detail-meta" id="d2-meta">2026.07 – 現在（公開中・改善継続）</p>
+          <p id="d2-desc">—</p>
+
+          <dl class="spec">
+            <div><dt id="d2-k-role">担当</dt><dd id="d2-v-role">—</dd></div>
+            <div><dt id="d2-k-tech">使用技術</dt><dd id="d2-v-tech">Python / Streamlit / 生成AI API / GitHub Contents API / Git</dd></div>
+          </dl>
+
+          <h4 class="detail-sub" id="d2-h-work">課題と工夫</h4>
           <ul id="d2-list"><li>—</li></ul>
+
           <p class="detail-note" id="d2-note">—</p>
+
+          <p class="detail-links">
+            <a class="link-arrow" href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener" id="d2-link">GitHub</a>
+            <a class="link-arrow" href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener" id="d2-link-demo">Live Demo</a>
+          </p>
         </div>
-      </div>
+      </article>
     </section>
 
-    <!-- ------------------------------------------------ History -->
-    <section id="history" class="section" data-section="history">
+    <!-- ------------------------------------------------ Career -->
+    <section id="career" class="section" data-section="career">
       <div class="heading-block reveal">
-        <span class="heading-meta" id="history-meta">Education &amp; Experience</span>
-        <h2 class="section-heading" id="history-heading">これまで</h2>
+        <span class="heading-meta" id="career-meta">Career</span>
+        <h2 class="section-heading" id="career-heading">経歴</h2>
       </div>
 
       <div class="timeline">
@@ -280,9 +330,20 @@
             <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
           </div>
           <div class="timeline-label">
-            <h3 id="t1-title">江南大学校 入学</h3>
+            <h3 id="t1-title">江南大学 入学</h3>
             <span id="t1-date">2020.03</span>
-            <p id="t1-desc">人工知能融合工学部 データサイエンス専攻</p>
+            <p id="t1-desc">—</p>
+          </div>
+        </article>
+
+        <article class="timeline-entry reveal">
+          <div class="timeline-icon color-3" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M20 6h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM10 4h4v2h-4V4z"/></svg>
+          </div>
+          <div class="timeline-label">
+            <h3 id="t2-title">アルバイト・社会経験</h3>
+            <span id="t2-date">2020.11 – 2022.04</span>
+            <p id="t2-desc">—</p>
           </div>
         </article>
 
@@ -291,9 +352,9 @@
             <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
           </div>
           <div class="timeline-label">
-            <h3 id="t2-title">空軍 服務</h3>
-            <span id="t2-date">2022.05 – 2024.02</span>
-            <p id="t2-desc">24時間5交代勤務。後半は班長として数名の隊員をまとめました。</p>
+            <h3 id="t3-title">空軍 服務（兵長）</h3>
+            <span id="t3-date">2022.05 – 2024.02</span>
+            <p id="t3-desc">—</p>
           </div>
         </article>
 
@@ -302,31 +363,42 @@
             <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
           </div>
           <div class="timeline-label">
-            <h3 id="t3-title">学内データサイエンス学術祭 2位</h3>
-            <span id="t3-date">2025.11</span>
-            <p id="t3-desc">KoBERTによる論文分野分類モデルで優秀賞。同月にGoogle Analytics（GA4）修了。</p>
+            <h3 id="t4-title">学内データサイエンス学術祭 2位</h3>
+            <span id="t4-date">2025.11</span>
+            <p id="t4-desc">—</p>
+          </div>
+        </article>
+
+        <article class="timeline-entry reveal">
+          <div class="timeline-icon color-4" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1 15-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+          </div>
+          <div class="timeline-label">
+            <h3 id="t5-title">JLPT N3 合格</h3>
+            <span id="t5-date">2026.01</span>
+            <p id="t5-desc">—</p>
           </div>
         </article>
 
         <article class="timeline-entry reveal">
           <div class="timeline-icon color-5" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M20 6h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM10 4h4v2h-4V4z"/></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
           </div>
           <div class="timeline-label">
-            <h3 id="t4-title">K-Move 日本Java専門家育成課程</h3>
-            <span id="t4-date">2026</span>
-            <p id="t4-desc">受講中。同期の困りごとをきっかけに単語アプリを開発し、現在も改善を続けています。</p>
+            <h3 id="t6-title">K-Move 日本Java開発者養成課程</h3>
+            <span id="t6-date">2026.07 – 2027.02</span>
+            <p id="t6-desc">—</p>
           </div>
         </article>
 
         <article class="timeline-entry reveal">
-          <div class="timeline-icon color-3" aria-hidden="true">
+          <div class="timeline-icon color-1" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zm0 13-6-3.27v-2.36L12 14l6-3.63v2.36L12 16z"/></svg>
           </div>
           <div class="timeline-label">
-            <h3 id="t5-title">卒業予定</h3>
-            <span id="t5-date">2027.02</span>
-            <p id="t5-desc">データの視点を強みに持つシステムエンジニアを目指しています。</p>
+            <h3 id="t7-title">江南大学 卒業見込み</h3>
+            <span id="t7-date">2027.02</span>
+            <p id="t7-desc">—</p>
           </div>
         </article>
 
@@ -339,9 +411,11 @@
     <!-- ------------------------------------------------ Contact -->
     <section id="contact" class="section section-last" data-section="contact">
       <div class="heading-block reveal">
-        <span class="heading-meta" id="contact-meta">Get in Touch</span>
+        <span class="heading-meta" id="contact-meta">Contact</span>
         <h2 class="section-heading" id="contact-heading">お問い合わせ</h2>
       </div>
+
+      <p class="section-lead reveal" id="contact-lead">—</p>
 
       <div class="contact-grid">
         <div class="feature reveal">
@@ -369,8 +443,8 @@
             <svg viewBox="0 0 24 24" width="34" height="34"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
           </div>
           <div class="feature-text">
-            <h3 id="feature-3-label">Location</h3>
-            <p id="feature-3-value">韓国・ソウル（日本就業希望）</p>
+            <h3 id="feature-3-label">希望勤務地</h3>
+            <p id="feature-3-value">日本</p>
           </div>
         </div>
       </div>
@@ -383,7 +457,10 @@
   </main>
 </div>
 
-<!-- 외부 라이브러리는 사용하지 않습니다. 자세한 이유는 DESIGN.md 참고. -->
-<script src="script.js?v=4"></script>
+<!-- anime.js v4.5.0 — CDN 이 아니라 저장소에 직접 포함(vendored)했습니다.
+     외부 CDN 을 쓰다가 페이지 전체가 죽은 적이 있어서입니다. (DESIGN.md 7절)
+     이 파일이 없어도 사이트는 100% 동작합니다. 애니메이션 연출만 빠집니다. -->
+<script src="anime.min.js?v=5"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

@@ -98,29 +98,33 @@ a:hover { color: var(--black); }
 
 #main { min-width: 0; padding: 0 2.5em; }
 
-/* --- 저자 블록 --- */
+/* --- 저자 블록 (원형 프로필 사진) --- */
 .author-img {
   width: 150px; height: 150px;
-  margin: 0 auto 26px;
+  margin: 0 auto 24px;
   border-radius: 50%;
-  background: var(--primary);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 0 8px rgba(44,152,240,.12);
-}
-.author-img span {
-  font-family: var(--font-heading);
-  font-size: 44px; font-weight: 700; color: #fff; letter-spacing: 2px;
+  background-image: url(images/profile.jpg);
+  background-size: cover;
+  background-position: center 22%;   /* 얼굴이 원 중앙에 오도록 */
+  background-repeat: no-repeat;
+  background-color: var(--gray);
+  box-shadow: 0 0 0 6px #fff, 0 0 0 8px rgba(44,152,240,.35);
 }
 
 .site-logo {
   font-family: var(--font-heading);
   font-size: 22px; font-weight: 700; color: var(--black);
-  margin-bottom: .4em; line-height: 1.3;
+  margin-bottom: 2px; line-height: 1.3;
+}
+.site-sub {
+  display: block;
+  font-size: 12px; color: var(--dim); margin-bottom: .8em; line-height: 1.5;
 }
 .position {
   display: block;
   font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--dim); margin-bottom: 2em; line-height: 1.7;
+  color: var(--primary); font-weight: 600;
+  margin-bottom: 2em; line-height: 1.7;
 }
 
 /* --- 언어 전환 --- */
@@ -228,7 +232,10 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
   font-family: var(--font-heading);
   font-size: 60px; font-weight: 700; line-height: 1.25;
   margin-bottom: 22px;
+  padding-bottom: .06em;          /* 디센더가 잘리지 않도록 */
 }
+/* anime.js splitText 가 생성하는 글자 span (data-char) */
+.hero h1 span[data-char] { display: inline-block; will-change: transform, opacity; }
 .hero h2 {
   font-family: var(--font-primary);
   font-size: 18px; font-weight: 300; line-height: 1.7;
@@ -272,10 +279,32 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 .btn-outline:hover { background: var(--black); border-color: var(--black); color: #fff; }
 
 /* ==================================================================
-   About — 강점 4 카드
+   About — 소개문 + 프로필 표 + 강점 4 카드
    ================================================================== */
-.about-copy { max-width: 62ch; margin-bottom: 4em; }
+.section-lead {
+  max-width: 64ch; margin-bottom: 3em;
+  font-size: 14px; color: var(--meta);
+}
+
+.about-layout {
+  display: grid; grid-template-columns: 1.15fr .85fr; gap: 46px;
+  align-items: start; margin-bottom: 4.5em;
+}
 .about-copy p { margin-bottom: 1.4em; }
+.about-copy p:last-child { margin-bottom: 0; }
+
+/* 일본 포트폴리오에서 흔한 프로필 표 */
+.profile-list { margin: 0; background: var(--gray); padding: 1.6em 1.8em; }
+.profile-list > div {
+  display: grid; grid-template-columns: 84px 1fr; gap: 12px;
+  padding: 9px 0; border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.profile-list > div:last-child { border-bottom: none; }
+.profile-list dt {
+  font-size: 11px; letter-spacing: 1px; color: var(--meta);
+  font-weight: 600; padding-top: 3px;
+}
+.profile-list dd { margin: 0; font-size: 13.5px; line-height: 1.7; }
 
 .trait-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 30px;
@@ -356,17 +385,32 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 }
 .progress-bar span {
   position: absolute; top: -26px; right: 0;
-  font-size: 12px; font-weight: 600; color: var(--primary);
+  font-size: 11px; font-weight: 700; letter-spacing: .5px;
+  white-space: nowrap;                /* 「開発・使用」 처럼 긴 라벨이 접히지 않도록 */
+  color: var(--primary);
 }
 /* JS 가 살아 있을 때만 0에서 시작해 채워집니다 (죽으면 그냥 최종 폭으로 표시) */
 body.reveal-ready .progress-wrap:not(.is-visible) .progress-bar { width: 0; }
 
+/* anime.js 가 로드된 경우에는 anime 가 폭을 직접 제어하므로
+   CSS transition 을 꺼서 두 애니메이션이 겹치지 않게 합니다. */
+body.anime-on .progress-bar { transition: none; }
+
 .color-1 .progress-bar { background: var(--c1); } .color-1 .progress-bar span { color: var(--c1); }
 .color-2 .progress-bar { background: var(--c2); } .color-2 .progress-bar span { color: var(--c2); }
-.color-3 .progress-bar { background: var(--c3); } .color-3 .progress-bar span { color: var(--c3); }
+.color-3 .progress-bar { background: var(--c3); } .color-3 .progress-bar span { color: #a97b00; } /* 노란색은 흰 배경에서 대비가 낮아 라벨만 어둡게 */
 .color-4 .progress-bar { background: var(--c4); } .color-4 .progress-bar span { color: var(--c4); }
 .color-5 .progress-bar { background: var(--c5); } .color-5 .progress-bar span { color: var(--c5); }
 .color-6 .progress-bar { background: var(--c6); } .color-6 .progress-bar span { color: var(--c6); }
+
+.skill-cats {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px 40px;
+}
+.skill-cats h4 {
+  font-family: var(--font-primary);
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--meta); margin: 0 0 12px;
+}
 
 .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag-row span {
@@ -439,6 +483,26 @@ body.reveal-ready .progress-wrap:not(.is-visible) .progress-bar { width: 0; }
   margin-bottom: 1.2em;
 }
 .detail-body > p { max-width: 64ch; }
+
+/* 担当 / 使用技術 */
+.spec { margin: 0 0 1.8em; }
+.spec > div {
+  display: grid; grid-template-columns: 88px 1fr; gap: 14px;
+  padding: 8px 0; border-bottom: 1px solid var(--gray-line);
+  max-width: 64ch;
+}
+.spec dt {
+  font-size: 11px; letter-spacing: 1px; font-weight: 700; color: var(--meta);
+  padding-top: 3px;
+}
+.spec dd { margin: 0; font-size: 14px; }
+
+.detail-sub {
+  font-family: var(--font-primary);
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--primary); margin: 0 0 12px;
+}
+.detail-links { display: flex; gap: 20px; flex-wrap: wrap; margin: 1.6em 0 0; }
 .detail-body ul { margin: 0 0 1.5em; }
 .detail-body li {
   position: relative; padding-left: 18px; margin-bottom: 8px;
@@ -525,6 +589,8 @@ body.reveal-ready .progress-wrap:not(.is-visible) .progress-bar { width: 0; }
   body { font-size: 16px; }
   .heading-block { max-width: 100%; }
   .hero h1 { font-size: 44px; }
+  .about-layout { grid-template-columns: 1fr; gap: 30px; }
+  .skill-cats { grid-template-columns: 1fr; }
   .trait-grid, .skills-grid, .work-grid { grid-template-columns: 1fr; }
   .work-grid { gap: 20px; }
   .counters-inner { grid-template-columns: repeat(2, 1fr); gap: 34px 20px; }
@@ -573,6 +639,9 @@ body.reveal-ready .progress-wrap:not(.is-visible) .progress-bar { width: 0; }
 
   .detail { grid-template-columns: 1fr; gap: 6px; }
   .detail-no { font-size: 20px; }
+  .profile-list { padding: 1.2em 1.3em; }
+  .profile-list > div { grid-template-columns: 76px 1fr; gap: 10px; }
+  .spec > div { grid-template-columns: 76px 1fr; gap: 10px; }
 
   .feature { grid-template-columns: 64px 1fr; gap: 16px; }
   .feature-icon { width: 64px; height: 64px; }
