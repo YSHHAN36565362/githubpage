@@ -1,634 +1,557 @@
 /* ==================================================================
    script.js — 한윤수 포트폴리오
 
-   설계 원칙 (이전 버전에서 텍스트가 "..." 로 남고 언어 버튼이 죽었던
-   사고를 다시 만들지 않기 위한 규칙):
-
+   ★ 절대 규칙 (2026-08-13 실제 사고에서 나온 것) ★
    1) 이 파일은 <script type="module"> 이 아니라 **일반 script** 입니다.
-      import map / esm.sh CDN 에 의존하면, 그 CDN 하나만 막혀도
-      파일 전체가 실행되지 않아 페이지가 통째로 죽습니다. (이전 원인)
-   2) anime.js 는 저장소에 직접 포함(anime.min.js)했고, **없어도 됩니다.**
-      모든 애니메이션은 "자연 상태(보이는 상태)로 도착"하도록만 만들어서,
-      애니메이션이 아예 실행되지 않아도 화면은 정상입니다.
-   3) 언어 전환·본문 렌더링은 외부 의존성이 0 입니다.
+      import map / 외부 CDN 에 의존하면 그 CDN 하나만 막혀도 파일 전체가
+      실행되지 않아 페이지가 통째로 죽습니다. (본문이 "..." 로 남았던 원인)
+   2) 외부 라이브러리를 아예 쓰지 않습니다. jQuery, anime.js, waypoints 모두
+      없습니다. 필요한 동작은 IntersectionObserver 로 직접 구현했습니다.
+   3) 모든 연출은 "자연 상태(보이는 상태)로 도착"만 합니다.
+      스크립트가 실행되지 않아도 화면은 정상입니다.
    ================================================================== */
 
 (function () {
   "use strict";
 
-  // ==================================================================
-  // 1. 다국어 콘텐츠 (일본어 / 한국어 / 영어)
-  // ==================================================================
+  /* ================================================================
+     1. 다국어 콘텐츠
+        ※ 문구를 고칠 때는 ja / ko / en 세 곳을 모두 고쳐야 합니다.
+     ================================================================ */
   var translations = {
+
     ja: {
-      meta: { title: "ハン・ユンス | Portfolio" },
-      nav: { about: "自己紹介", projects: "プロジェクト", contact: "お問い合わせ" },
+      title: "ハン・ユンス | Portfolio",
+      side: { name: "ハン・ユンス", position: "Data Science × System Engineer" },
+      nav: { home: "Home", about: "About", skills: "Skills", work: "Work", history: "History", contact: "Contact" },
       hero: {
-        eyebrow: "Data Science × System Engineer",
+        eyebrow: "Hello, I'm",
         name: "ハン・ユンス",
-        role: "システムエンジニア志望 ・ 2027年卒業予定",
-        quote: "「誰かの困りごとを、自分の工夫や技術で少しだけ軽くすること。」",
-        ctaProjects: "プロジェクトを見る",
+        role: "誰かの困りごとを、自分の工夫や技術で少しだけ軽くする。",
+        desc: "システムエンジニア志望 ・ 2027年卒業予定",
+        ctaWork: "プロジェクトを見る",
         ctaContact: "連絡する",
       },
       about: {
+        meta: "About Me",
         heading: "自己紹介",
-        tagline: "誰かの困りごとを、自分の工夫や技術で少しだけ軽くする人。",
-        chips: ["データ分析", "AI・ML", "Webアプリ開発"],
         bio: [
-          "人が動きやすいように場を整える役割にやりがいを感じています。K-Move日本Java専門家育成課程で、漢字暗記に苦労する研修生の声をきっかけに、単語帳アプリをゼロから開発しました。",
-          "早く役に立ちたいという気持ちが先に立ち、使う人の状況を確認する前に作り始めてしまうのが自分の課題です。今は、作り始める前に「いつ・どこで・何で使うか」を必ず確認するようにしています。",
+          "人の前に立って引っ張るよりも、周りが動きやすくなるように場を整える役割にやりがいを感じてきました。目立つ成果よりも、誰かに「これがあって助かった」と言ってもらえる瞬間のほうが手応えがあります。",
+          "K-Move日本Java専門家育成課程で、漢字暗記に苦労する研修生の声をきっかけに単語帳アプリをゼロから開発しました。触ったことのない仕組みも、必要になった時点で調べながら一つずつ組み込んでいます。",
+          "はじめから完成形を設計できたわけではありません。まず形にしてみて、使う人の声を聞きながら直していく。この進め方を大切にしています。",
         ],
-        eduTitle: "学歴・現在",
-        eduList: [
-          "江南大学校 人工知能融合工学部 データサイエンス専攻（2020.03 – 2027.02 卒業見込み）",
-          "K-Move 日本Java専門家育成課程 受講中（2026）",
+        traits: [
+          { t: "課題から出発する", d: "身近な困りごとを起点に、必要な技術をその都度学んで形にします。" },
+          { t: "まず報告、それから対処", d: "想定外の場面ほど一人で抱え込まず、早く共有することを徹底します。" },
+          { t: "データで判断する", d: "手法に固執せず、条件を変えて結果を記録し、比べたうえで選び直します。" },
+          { t: "使う人に先に聞く", d: "「いつ・どこで・何で使うか」を作り始める前に必ず確認します。" },
         ],
-        skillsTitle: "スキル",
-        skillCats: { lang: "言語", ai: "AI・ML", data: "データ分析", tool: "ツール" },
-        awardsTitle: "受賞・資格",
-        awardsList: [
-          "学内データサイエンスモデリングコンテスト 優秀賞（2位）— KoBERTによる論文分野分類モデル（2025.11）",
-          "Google Analytics（GA4）修了（2025.11）",
-        ],
-        contactEmailLabel: "メール",
-        contactGithubLabel: "GitHub",
       },
-      projectsHeading: "プロジェクト",
-      p1: {
-        title: "学術論文 研究分野自動分類モデル",
-        period: "2025.10 – 2025.11",
-        desc: "論文タイトルと要旨だけで5つの研究分野（農学・社会福祉学・社会学・電子情報通信工学・工学一般）を自動分類するKoBERTベースのテキスト分類モデル。2人チームのリーダーとして、手法を比較しながら選び直す進め方を主導しました。",
-        stats: [
-          { value: "96.9%", label: "Val Accuracy" },
-          { value: "0.956", label: "Macro F1" },
-          { value: "2位", label: "学内学術祭" },
-        ],
-        achievements: [
-          "title + [SEP] + abstract 入力によるマルチクラス分類",
-          "クラス不均衡補正（重み付き損失）＋ Macro-F1基準のEarly Stopping",
-          "系列長384/512の二重学習をsoft-voteアンサンブル",
-        ],
-        linkGithub: "コードを見る",
+      counters: ["Val Accuracy", "Macro F1", "学内学術祭", "学習モード"],
+      skills: { meta: "My Specialty", heading: "スキル", analysis: "データ分析" },
+      work: {
+        meta: "My Work",
+        heading: "プロジェクト",
+        p1: {
+          title: "学術論文 研究分野自動分類モデル",
+          period: "2025.10 – 2025.11",
+          tag: "KoBERT ・ PyTorch ・ Accuracy 96.9%",
+          link: "GitHub",
+        },
+        p2: {
+          title: "KMOVE単語アプリ",
+          period: "2026",
+          tag: "Streamlit ・ GitHub API ・ 忘却曲線",
+          link: "GitHub",
+          demo: "Live Demo",
+        },
+        d1: {
+          title: "学術論文 研究分野自動分類モデル",
+          meta: "2025.10 – 2025.11 ・ 2人チーム（リーダー）",
+          desc: "論文タイトルと要旨だけで5つの研究分野（農学・社会福祉学・社会学・電子情報通信工学・工学一般）を自動分類するKoBERTベースのテキスト分類モデルです。当初の手法では文脈を捉えられず精度が伸びなかったため、条件を変えながら結果を記録して比べ、選び直す進め方に切り替えることを提案しました。",
+          list: [
+            "title + [SEP] + abstract を入力とするマルチクラス分類",
+            "クラス不均衡の補正（重み付き損失）と Macro-F1 基準の Early Stopping",
+            "系列長 384 / 512 の二重学習を soft-vote でアンサンブル",
+            "Validation Accuracy 0.9691 / Macro-F1 0.9562 を達成",
+            "学内データサイエンス学術祭 2位（優秀賞）",
+          ],
+        },
+        d2: {
+          title: "KMOVE単語アプリ — 忘却曲線ベースの暗記Webアプリ",
+          meta: "2026 ・ 個人プロジェクト（現在も公開・改善中）",
+          desc: "K-Move研修の同期が漢字暗記に苦労している姿を見て制作したStreamlitアプリです。個人用の学習ツールにDBサーバーを立てるのは過剰だと考え、GitHubリポジトリをそのままデータ層として使い、単語帳の追加から進捗保存までサーバーなしで処理しています。",
+          list: [
+            "自己評価4段階に応じて再出題位置が変わる「忘却曲線キュー」",
+            "位置は固定値ではなく区間からランダムに選び、順番の暗記を防止",
+            "GitHub Contents API をデータ層に採用したサーバーレス構成",
+            "学習・練習・試験・単語帳追加・文章暗記の5モード",
+            "キーボードショートカット、90秒セッション keep-alive、フォント調整",
+          ],
+          note: "使ってくれた研修生から「文字が小さい」「ボタンの位置が毎回変わる」という声をもらい、フォント調整機能と固定アクションバーを追加しました。自分はノートPCで開発・確認していましたが、多くの研修生は移動中にスマートフォンで使っていたのです。作る前に使う人の環境を確かめる大切さを学んだプロジェクトです。",
+        },
       },
-      p2: {
-        title: "KMOVE単語アプリ — 忘却曲線ベースの暗記Webアプリ",
-        period: "2026",
-        desc: "K-Move研修の同期が漢字暗記に苦労している姿を見て作ったStreamlitアプリ。GitHubリポジトリをそのままデータベースとして使い、専用サーバーなしで単語帳の追加・進捗保存まで処理します。",
-        stats: [
-          { value: "5", label: "学習モード" },
-          { value: "4段階", label: "自己評価" },
-          { value: "¥0", label: "サーバー費用" },
+      history: {
+        meta: "Education & Experience",
+        heading: "これまで",
+        items: [
+          { t: "江南大学校 入学", d: "2020.03", p: "人工知能融合工学部 データサイエンス専攻" },
+          { t: "空軍 服務", d: "2022.05 – 2024.02", p: "24時間を五つに分けた交代勤務。後半は班長として数名の隊員をまとめ、「まず報告、それから対処」の順序を徹底しました。" },
+          { t: "学内データサイエンス学術祭 2位", d: "2025.11", p: "KoBERTによる論文分野分類モデルで優秀賞。同月にGoogle Analytics（GA4）修了。" },
+          { t: "K-Move 日本Java専門家育成課程", d: "2026", p: "受講中。同期の困りごとをきっかけに単語アプリを開発し、現在も改善を続けています。" },
+          { t: "卒業予定", d: "2027.02", p: "データの視点を強みに持つシステムエンジニアを目指しています。" },
         ],
-        achievements: [
-          "自己評価4段階に応じて再出題位置が変わる「忘却曲線キュー」",
-          "GitHub Contents APIをデータ層に採用（サーバーレス構成）",
-          "キーボードショートカット、90秒セッションkeep-alive、フォント調整などUX改善",
-        ],
-        note: "実際に使ってくれた研修生から「文字が小さい」「ボタンの位置が毎回変わる」という声をもらい、フォント調整機能と固定アクションバーを追加しました。作る前に使う人の環境を確認する大切さを学んだプロジェクトです。",
-        linkGithub: "コードを見る",
-        linkDemo: "デモを見る",
       },
-      skillsSection: { title: "主要技術スタック" },
       contact: {
-        title: "Contact",
-        lead: "ご連絡はこちらからお願いいたします。",
+        meta: "Get in Touch",
+        heading: "お問い合わせ",
+        f1: "Email", f2: "GitHub", f3: "Location",
+        f3v: "韓国・ソウル（日本就業希望）",
+        btn: "メールを送る",
       },
-      footer: { name: "ハン・ユンス", rights: "All rights reserved." },
+      footerName: "ハン・ユンス",
     },
 
     ko: {
-      meta: { title: "한윤수 | Portfolio" },
-      nav: { about: "소개", projects: "프로젝트", contact: "연락처" },
+      title: "한윤수 | Portfolio",
+      side: { name: "한윤수", position: "Data Science × System Engineer" },
+      nav: { home: "홈", about: "소개", skills: "기술", work: "프로젝트", history: "이력", contact: "연락처" },
       hero: {
-        eyebrow: "Data Science × System Engineer",
+        eyebrow: "Hello, I'm",
         name: "한윤수",
-        role: "시스템엔지니어 지망 · 2027년 졸업예정",
-        quote: "“누군가의 어려움을, 나의 궁리나 기술로 조금이나마 가볍게 하는 것.”",
-        ctaProjects: "프로젝트 보기",
+        role: "누군가의 어려움을, 나의 궁리와 기술로 조금이나마 가볍게.",
+        desc: "시스템엔지니어 지망 · 2027년 졸업예정",
+        ctaWork: "프로젝트 보기",
         ctaContact: "연락하기",
       },
       about: {
+        meta: "About Me",
         heading: "소개",
-        tagline: "누군가의 어려움을 궁리와 기술로 조금 가볍게 만드는 사람.",
-        chips: ["데이터 분석", "AI · ML", "웹 앱 개발"],
         bio: [
-          "주위가 움직이기 쉽도록 자리를 정돈하는 역할에 보람을 느낍니다. K-Move 일본 Java 전문가 육성과정에서 한자 암기에 어려움을 겪는 연수생들의 목소리를 계기로, 단어장 앱을 처음부터 직접 개발했습니다.",
-          "빨리 도움이 되고 싶은 마음이 앞서 사용자의 상황을 확인하기 전에 만들기 시작하는 것이 저의 과제입니다. 지금은 만들기 전에 “언제·어디서·무엇으로 쓰는지”를 반드시 먼저 확인합니다.",
+          "사람들 앞에 서서 이끄는 것보다, 주위가 움직이기 쉽도록 자리를 정돈하는 역할에 보람을 느껴 왔습니다. 눈에 띄는 성과보다 누군가에게 “이게 있어서 도움이 됐다”는 말을 듣는 순간이 더 큰 손맛으로 남습니다.",
+          "K-Move 일본 Java 전문가 육성과정에서 한자 암기에 어려움을 겪는 연수생들의 목소리를 계기로 단어장 앱을 처음부터 직접 개발했습니다. 다뤄본 적 없는 구조도 필요해진 시점에 찾아보며 하나씩 넣었습니다.",
+          "처음부터 완성형을 설계할 수 있었던 것은 아닙니다. 우선 형태를 만들어 보고, 쓰는 사람의 목소리를 들으며 고쳐 나간다. 이 방식을 소중히 여깁니다.",
         ],
-        eduTitle: "학력 · 현재",
-        eduList: [
-          "강남대학교 인공지능융합공학부 데이터사이언스전공 (2020.03 ~ 2027.02 졸업예정)",
-          "K-Move 일본 Java 전문가 육성과정 수강 중 (2026)",
+        traits: [
+          { t: "문제에서 출발한다", d: "가까운 곳의 불편을 기점으로, 필요한 기술을 그때그때 익혀 형태로 만듭니다." },
+          { t: "먼저 보고, 그다음 조치", d: "예상치 못한 상황일수록 혼자 끌어안지 않고 빨리 공유합니다." },
+          { t: "데이터로 판단한다", d: "방법에 고집하지 않고 조건을 바꿔 결과를 기록·비교한 뒤 다시 선택합니다." },
+          { t: "쓰는 사람에게 먼저 묻는다", d: "“언제·어디서·무엇으로 쓰는지”를 만들기 전에 반드시 확인합니다." },
         ],
-        skillsTitle: "보유 기술",
-        skillCats: { lang: "언어", ai: "AI · ML", data: "데이터 분석", tool: "도구" },
-        awardsTitle: "수상 및 자격증",
-        awardsList: [
-          "교내 데이터사이언스 모델링 경진대회 우수상(2위) — KoBERT 논문 분야 분류 모델 (2025.11)",
-          "Google Analytics(GA4) 수료 (2025.11)",
-        ],
-        contactEmailLabel: "이메일",
-        contactGithubLabel: "GitHub",
       },
-      projectsHeading: "프로젝트",
-      p1: {
-        title: "학술논문 연구분야 자동분류 모델",
-        period: "2025.10 – 2025.11",
-        desc: "논문 제목과 초록만으로 5개 연구분야(농학·사회복지학·사회학·전자정보통신공학·공학일반)를 자동 분류하는 KoBERT 기반 텍스트 분류 모델. 2인 팀 리더로서 방법을 비교하고 다시 선택하는 진행 방식을 주도했습니다.",
-        stats: [
-          { value: "96.9%", label: "Val Accuracy" },
-          { value: "0.956", label: "Macro F1" },
-          { value: "2위", label: "교내 학술제" },
-        ],
-        achievements: [
-          "title + [SEP] + abstract 입력 기반 다중 클래스 분류",
-          "클래스 불균형 보정(가중 손실) + Macro-F1 기준 Early Stopping",
-          "시퀀스 길이 384/512 이중 학습 후 soft-vote 앙상블",
-        ],
-        linkGithub: "코드 보기",
+      counters: ["Val Accuracy", "Macro F1", "교내 학술제", "학습 모드"],
+      skills: { meta: "My Specialty", heading: "보유 기술", analysis: "데이터 분석" },
+      work: {
+        meta: "My Work",
+        heading: "프로젝트",
+        p1: {
+          title: "학술논문 연구분야 자동분류 모델",
+          period: "2025.10 – 2025.11",
+          tag: "KoBERT · PyTorch · Accuracy 96.9%",
+          link: "GitHub",
+        },
+        p2: {
+          title: "KMOVE 단어장 앱",
+          period: "2026",
+          tag: "Streamlit · GitHub API · 망각곡선",
+          link: "GitHub",
+          demo: "Live Demo",
+        },
+        d1: {
+          title: "학술논문 연구분야 자동분류 모델",
+          meta: "2025.10 – 2025.11 · 2인 팀(팀장)",
+          desc: "논문 제목과 초록만으로 5개 연구분야(농학·사회복지학·사회학·전자정보통신공학·공학일반)를 자동 분류하는 KoBERT 기반 텍스트 분류 모델입니다. 처음 시도한 방법으로는 문맥을 잡지 못해 정확도가 오르지 않아, 조건을 바꿔가며 결과를 기록해 비교하고 다시 선택하는 방식으로 전환할 것을 제안했습니다.",
+          list: [
+            "title + [SEP] + abstract 를 입력으로 하는 다중 클래스 분류",
+            "클래스 불균형 보정(가중 손실)과 Macro-F1 기준 Early Stopping",
+            "시퀀스 길이 384 / 512 이중 학습을 soft-vote 로 앙상블",
+            "Validation Accuracy 0.9691 / Macro-F1 0.9562 달성",
+            "교내 데이터사이언스 학술제 2위(우수상)",
+          ],
+        },
+        d2: {
+          title: "KMOVE 단어장 앱 — 망각곡선 기반 암기 웹앱",
+          meta: "2026 · 개인 프로젝트(현재도 공개·개선 중)",
+          desc: "K-Move 연수 동기들이 한자 암기에 어려움을 겪는 모습을 보고 만든 Streamlit 앱입니다. 개인 학습 도구에 DB 서버를 따로 띄우는 것은 과하다고 판단해, GitHub 저장소를 그대로 데이터 계층으로 사용해 단어장 추가부터 진행 상황 저장까지 서버 없이 처리합니다.",
+          list: [
+            "자기평가 4단계에 따라 재출제 위치가 달라지는 '망각곡선 큐'",
+            "위치를 고정값이 아닌 구간에서 무작위로 뽑아 순서 암기를 방지",
+            "GitHub Contents API 를 데이터 계층으로 쓴 서버리스 구조",
+            "학습·연습·시험·단어장 추가·지문 암기 5개 모드",
+            "키보드 단축키, 90초 세션 keep-alive, 폰트 크기 조절",
+          ],
+          note: "사용한 연수생들에게 '글자가 작다', '버튼 위치가 매번 바뀐다'는 피드백을 받고 폰트 조절 기능과 고정 액션바를 추가했습니다. 저는 노트북으로 개발하고 확인했지만, 대부분의 연수생은 통학 중 스마트폰으로 쓰고 있었습니다. 만들기 전에 쓰는 사람의 환경을 먼저 확인하는 것의 중요성을 배운 프로젝트입니다.",
+        },
       },
-      p2: {
-        title: "KMOVE 단어장 앱 — 망각곡선 기반 암기 웹앱",
-        period: "2026",
-        desc: "K-Move 연수 동기들이 한자 암기에 어려움을 겪는 모습을 보고 만든 Streamlit 앱. GitHub 저장소를 그대로 데이터베이스로 사용해, 별도 서버 없이 단어장 추가부터 진행 상황 저장까지 처리합니다.",
-        stats: [
-          { value: "5", label: "학습 모드" },
-          { value: "4단계", label: "자기평가" },
-          { value: "0원", label: "서버 비용" },
+      history: {
+        meta: "Education & Experience",
+        heading: "이력",
+        items: [
+          { t: "강남대학교 입학", d: "2020.03", p: "인공지능융합공학부 데이터사이언스전공" },
+          { t: "공군 복무", d: "2022.05 – 2024.02", p: "24시간을 다섯으로 나눈 교대근무. 후반에는 분대장으로서 대원들을 이끌며 '먼저 보고, 그다음 조치'의 순서를 지켰습니다." },
+          { t: "교내 데이터사이언스 학술제 2위", d: "2025.11", p: "KoBERT 논문 분야 분류 모델로 우수상. 같은 달 Google Analytics(GA4) 수료." },
+          { t: "K-Move 일본 Java 전문가 육성과정", d: "2026", p: "수강 중. 동기들의 어려움을 계기로 단어장 앱을 개발했고 지금도 개선하고 있습니다." },
+          { t: "졸업 예정", d: "2027.02", p: "데이터의 시점을 강점으로 가진 시스템엔지니어를 목표로 하고 있습니다." },
         ],
-        achievements: [
-          "자기평가 4단계에 따라 재출제 위치가 달라지는 '망각곡선 큐'",
-          "GitHub Contents API를 데이터 계층으로 사용(서버리스 구조)",
-          "키보드 단축키, 90초 세션 keep-alive, 폰트 조절 등 UX 개선",
-        ],
-        note: "실제로 사용한 연수생들에게 '글자가 작다', '버튼 위치가 매번 바뀐다'는 피드백을 받고 폰트 조절 기능과 하단 고정 액션바를 추가했습니다. 만들기 전에 사용자의 환경을 먼저 확인하는 것의 중요성을 배운 프로젝트입니다.",
-        linkGithub: "코드 보기",
-        linkDemo: "데모 보기",
       },
-      skillsSection: { title: "주요 기술 스택" },
       contact: {
-        title: "Contact",
-        lead: "연락은 아래로 부탁드립니다.",
+        meta: "Get in Touch",
+        heading: "연락처",
+        f1: "Email", f2: "GitHub", f3: "Location",
+        f3v: "대한민국 서울 (일본 취업 희망)",
+        btn: "메일 보내기",
       },
-      footer: { name: "한윤수", rights: "All rights reserved." },
+      footerName: "한윤수",
     },
 
     en: {
-      meta: { title: "Han Yoonsu | Portfolio" },
-      nav: { about: "About", projects: "Projects", contact: "Contact" },
+      title: "Han Yoonsu | Portfolio",
+      side: { name: "Han Yoonsu", position: "Data Science × System Engineer" },
+      nav: { home: "Home", about: "About", skills: "Skills", work: "Work", history: "History", contact: "Contact" },
       hero: {
-        eyebrow: "Data Science × System Engineer",
+        eyebrow: "Hello, I'm",
         name: "Han Yoonsu",
-        role: "Aspiring System Engineer · Class of 2027",
-        quote: "“To make someone's difficulty a little lighter, through my own ideas and skills.”",
-        ctaProjects: "View Projects",
+        role: "Making someone's difficulty a little lighter, through my own ideas and skills.",
+        desc: "Aspiring System Engineer · Class of 2027",
+        ctaWork: "View Projects",
         ctaContact: "Get in Touch",
       },
       about: {
-        heading: "About",
-        tagline: "Making someone's difficulty a little lighter, one build at a time.",
-        chips: ["Data Analysis", "AI & ML", "Web Apps"],
+        meta: "About Me",
+        heading: "About Me",
         bio: [
-          "I find purpose in creating an environment where people around me can move more easily. During the K-Move Japan Java Expert Training Program, I heard trainees struggle to memorize kanji and built a vocabulary app from scratch to help.",
-          "My challenge is that eagerness to help comes first, and I sometimes start building before checking how it will actually be used. Now I always confirm “when, where, and on what device” before writing the first line of code.",
+          "Rather than leading from the front, I've always found more meaning in setting things up so the people around me can move more easily. A quiet “this really helped” means more to me than a visible win.",
+          "During the K-Move Japan Java Expert Training Program, I heard classmates struggling to memorize kanji and built a vocabulary app from scratch — learning each unfamiliar piece as the need for it came up.",
+          "I couldn't design the finished thing up front. Build something real first, then fix it by listening to the people using it. That's the approach I care about.",
         ],
-        eduTitle: "Education & Current",
-        eduList: [
-          "Kangnam University — B.S. in Data Science, AI Convergence Engineering (Mar 2020 – Feb 2027, expected)",
-          "K-Move Japan Java Expert Training Program (2026)",
+        traits: [
+          { t: "Start from a real problem", d: "I begin with a difficulty close at hand and learn whatever technology it takes to solve it." },
+          { t: "Report first, then act", d: "The more unexpected the situation, the faster I share it rather than carrying it alone." },
+          { t: "Decide with data", d: "Instead of clinging to one method, I vary the conditions, record the results, compare, and re-choose." },
+          { t: "Ask the user first", d: "I always confirm “when, where, and on what device” before writing the first line of code." },
         ],
-        skillsTitle: "Skills",
-        skillCats: { lang: "Languages", ai: "AI & ML", data: "Data Analysis", tool: "Tools" },
-        awardsTitle: "Awards & Certifications",
-        awardsList: [
-          "Runner-up, In-house Data Science Modeling Contest — KoBERT paper-topic classifier (Nov 2025)",
-          "Google Analytics (GA4) Certified (Nov 2025)",
-        ],
-        contactEmailLabel: "Email",
-        contactGithubLabel: "GitHub",
       },
-      projectsHeading: "Projects",
-      p1: {
-        title: "Academic Paper Topic Classifier",
-        period: "Oct 2025 – Nov 2025",
-        desc: "A KoBERT-based text classifier that predicts one of 5 academic fields (agriculture, social welfare, sociology, electronics/telecom engineering, general engineering) from a paper's title and abstract alone. As the 2-person team lead, I drove an iterative process of comparing methods and re-deciding based on results.",
-        stats: [
-          { value: "96.9%", label: "Val Accuracy" },
-          { value: "0.956", label: "Macro F1" },
-          { value: "2nd", label: "Data Sci. Festival" },
-        ],
-        achievements: [
-          "Multi-class classification from title + [SEP] + abstract input",
-          "Class-imbalance correction (weighted loss) + Macro-F1-based early stopping",
-          "Soft-vote ensemble of models trained at sequence lengths 384 and 512",
-        ],
-        linkGithub: "View Code",
+      counters: ["Val Accuracy", "Macro F1", "Data Sci. Festival", "Study Modes"],
+      skills: { meta: "My Specialty", heading: "Skills", analysis: "Data Analysis" },
+      work: {
+        meta: "My Work",
+        heading: "Projects",
+        p1: {
+          title: "Academic Paper Topic Classifier",
+          period: "Oct 2025 – Nov 2025",
+          tag: "KoBERT · PyTorch · 96.9% Accuracy",
+          link: "GitHub",
+        },
+        p2: {
+          title: "KMOVE Vocabulary App",
+          period: "2026",
+          tag: "Streamlit · GitHub API · Forgetting Curve",
+          link: "GitHub",
+          demo: "Live Demo",
+        },
+        d1: {
+          title: "Academic Paper Topic Classifier",
+          meta: "Oct – Nov 2025 · 2-person team (lead)",
+          desc: "A KoBERT-based text classifier that predicts one of five academic fields (agriculture, social welfare, sociology, electronics/telecom engineering, general engineering) from a paper's title and abstract alone. When our first approach failed to capture context and accuracy stalled, I proposed switching to a process of varying conditions, recording results, comparing them, and re-deciding.",
+          list: [
+            "Multi-class classification from title + [SEP] + abstract",
+            "Class-imbalance correction (weighted loss) and Macro-F1-based early stopping",
+            "Soft-vote ensemble of models trained at sequence lengths 384 and 512",
+            "Reached validation accuracy 0.9691 / Macro-F1 0.9562",
+            "Runner-up at the in-house Data Science Festival",
+          ],
+        },
+        d2: {
+          title: "KMOVE Vocabulary App — Forgetting-Curve Study Tool",
+          meta: "2026 · Personal project (still live and being improved)",
+          desc: "A Streamlit app I built after watching K-Move classmates struggle with kanji. Standing up a database server for a personal study tool felt like overkill, so I used a GitHub repository itself as the data layer — everything from adding word lists to saving progress runs without a server.",
+          list: [
+            "A “forgetting-curve queue” that changes where a word reappears based on a 4-level self-assessment",
+            "Reinsertion point picked randomly from a range, not fixed — so users memorize words, not the order",
+            "Serverless architecture using the GitHub Contents API as the data layer",
+            "Five modes: learn, practice, exam, add word list, and passage memorization",
+            "Keyboard shortcuts, a 90-second session keep-alive, adjustable font size",
+          ],
+          note: "Classmates told me the text was too small and the buttons kept moving, so I added font-size controls and a sticky action bar. I had developed and tested on a laptop — but most of them were using it on a phone during their commute. This project taught me to check how people will actually use something before I start building.",
+        },
       },
-      p2: {
-        title: "KMOVE Vocabulary App — Forgetting-Curve Study Tool",
-        period: "2026",
-        desc: "A Streamlit app I built after watching K-Move classmates struggle to memorize kanji. It uses a GitHub repository as its database, handling everything from adding word lists to saving progress without a dedicated server.",
-        stats: [
-          { value: "5", label: "Study Modes" },
-          { value: "4-level", label: "Self-Assessment" },
-          { value: "$0", label: "Server Cost" },
+      history: {
+        meta: "Education & Experience",
+        heading: "Timeline",
+        items: [
+          { t: "Entered Kangnam University", d: "Mar 2020", p: "B.S. in Data Science, AI Convergence Engineering" },
+          { t: "Republic of Korea Air Force", d: "May 2022 – Feb 2024", p: "Five-shift rotation covering 24 hours. In the latter half I led a small squad, holding to the order of reporting first and acting second." },
+          { t: "Runner-up, Data Science Festival", d: "Nov 2025", p: "For the KoBERT paper-topic classifier. Google Analytics (GA4) certified the same month." },
+          { t: "K-Move Japan Java Expert Program", d: "2026", p: "Currently enrolled. Built the vocabulary app in response to classmates' difficulties and continue to improve it." },
+          { t: "Expected graduation", d: "Feb 2027", p: "Aiming to become a system engineer whose strength is a data-driven perspective." },
         ],
-        achievements: [
-          "A “forgetting-curve queue” that reorders upcoming words based on a 4-level self-assessment",
-          "GitHub Contents API as the data layer — fully serverless",
-          "UX polish: keyboard shortcuts, a 90s session keep-alive ping, adjustable font size",
-        ],
-        note: "After trainees told me the text was too small and the button position kept shifting on their phones, I added font-size controls and a sticky action bar. This project taught me to check how people will actually use something before I start building.",
-        linkGithub: "View Code",
-        linkDemo: "Live Demo",
       },
-      skillsSection: { title: "Core Tech Stack" },
       contact: {
-        title: "Contact",
-        lead: "Feel free to reach out.",
+        meta: "Get in Touch",
+        heading: "Contact",
+        f1: "Email", f2: "GitHub", f3: "Location",
+        f3v: "Seoul, Korea (seeking work in Japan)",
+        btn: "Send an Email",
       },
-      footer: { name: "Han Yoonsu", rights: "All rights reserved." },
+      footerName: "Han Yoonsu",
     },
   };
 
   var STORAGE_KEY = "portfolio-lang";
   var DEFAULT_LANG = "ja";
 
-  // ==================================================================
-  // 2. 렌더링 헬퍼 (외부 의존성 없음)
-  // ==================================================================
-  function byId(id) {
-    return document.getElementById(id);
-  }
+  /* ================================================================
+     2. 렌더링 헬퍼
+     ================================================================ */
+  function byId(id) { return document.getElementById(id); }
 
   function setText(id, value) {
     var el = byId(id);
-    if (el) el.textContent = value;
+    if (el && value != null) el.textContent = value;
   }
 
-  function fillList(id, items, tag, className) {
+  function fillList(id, items, tag) {
     var el = byId(id);
-    if (!el) return;
+    if (!el || !items) return;
     el.innerHTML = "";
     for (var i = 0; i < items.length; i++) {
       var node = document.createElement(tag);
-      if (className) node.className = className;
       node.textContent = items[i];
       el.appendChild(node);
     }
   }
 
-  function fillStats(id, stats) {
-    var el = byId(id);
-    if (!el) return;
-    el.innerHTML = "";
-    for (var i = 0; i < stats.length; i++) {
-      var wrap = document.createElement("div");
-      wrap.className = "stat";
-
-      var value = document.createElement("span");
-      value.className = "stat-value";
-      value.textContent = stats[i].value;
-
-      var label = document.createElement("span");
-      label.className = "stat-label";
-      label.textContent = stats[i].label;
-
-      wrap.appendChild(value);
-      wrap.appendChild(label);
-      el.appendChild(wrap);
-    }
-  }
-
   function render(lang) {
     var t = translations[lang] || translations[DEFAULT_LANG];
+    var i;
 
     document.documentElement.lang = lang;
-    document.title = t.meta.title;
+    document.title = t.title;
 
+    setText("side-name", t.side.name);
+    setText("side-position", t.side.position);
+    setText("footer-name", t.footerName);
+
+    setText("nav-home", t.nav.home);
     setText("nav-about", t.nav.about);
-    setText("nav-projects", t.nav.projects);
+    setText("nav-skills", t.nav.skills);
+    setText("nav-work", t.nav.work);
+    setText("nav-history", t.nav.history);
     setText("nav-contact", t.nav.contact);
 
     setText("hero-eyebrow", t.hero.eyebrow);
     setText("hero-name", t.hero.name);
     setText("hero-role", t.hero.role);
-    setText("hero-quote", t.hero.quote);
-    setText("hero-cta-projects", t.hero.ctaProjects);
+    setText("hero-desc", t.hero.desc);
+    setText("hero-cta-work", t.hero.ctaWork);
     setText("hero-cta-contact", t.hero.ctaContact);
 
+    setText("about-meta", t.about.meta);
     setText("about-heading", t.about.heading);
-    setText("profile-name", t.hero.name);
-    setText("profile-tagline", t.about.tagline);
-    fillList("profile-chips", t.about.chips, "li");
     fillList("about-bio", t.about.bio, "p");
-    setText("about-edu-title", t.about.eduTitle);
-    fillList("about-edu-list", t.about.eduList, "li");
-    setText("about-skills-title", t.about.skillsTitle);
-    setText("skill-cat-lang", t.about.skillCats.lang);
-    setText("skill-cat-ai", t.about.skillCats.ai);
-    setText("skill-cat-data", t.about.skillCats.data);
-    setText("skill-cat-tool", t.about.skillCats.tool);
-    setText("about-awards-title", t.about.awardsTitle);
-    fillList("about-awards-list", t.about.awardsList, "li");
-    setText("about-contact-email-label", t.about.contactEmailLabel);
-    setText("about-contact-github-label", t.about.contactGithubLabel);
+    for (i = 0; i < t.about.traits.length; i++) {
+      setText("trait-" + (i + 1), t.about.traits[i].t);
+      setText("trait-" + (i + 1) + "-desc", t.about.traits[i].d);
+    }
 
-    setText("projects-heading", t.projectsHeading);
+    for (i = 0; i < t.counters.length; i++) setText("counter-" + (i + 1), t.counters[i]);
 
-    setText("p1-title", t.p1.title);
-    setText("p1-period", t.p1.period);
-    setText("p1-desc", t.p1.desc);
-    fillStats("p1-stats", t.p1.stats);
-    fillList("p1-achievements", t.p1.achievements, "li");
-    setText("p1-link-github", t.p1.linkGithub);
+    setText("skills-meta", t.skills.meta);
+    setText("skills-heading", t.skills.heading);
+    setText("skill-analysis", t.skills.analysis);
 
-    setText("p2-title", t.p2.title);
-    setText("p2-period", t.p2.period);
-    setText("p2-desc", t.p2.desc);
-    fillStats("p2-stats", t.p2.stats);
-    fillList("p2-achievements", t.p2.achievements, "li");
-    setText("p2-note", t.p2.note);
-    setText("p2-link-github", t.p2.linkGithub);
-    setText("p2-link-demo", t.p2.linkDemo);
+    setText("work-meta", t.work.meta);
+    setText("work-heading", t.work.heading);
 
-    setText("skills-title", t.skillsSection.title);
-    setText("contact-title", t.contact.title);
-    setText("contact-lead", t.contact.lead);
-    setText("footer-name", t.footer.name);
-    setText("footer-rights", t.footer.rights);
+    setText("p1-title", t.work.p1.title);
+    setText("p1-period", t.work.p1.period);
+    setText("p1-tag", t.work.p1.tag);
+    setText("p1-link", t.work.p1.link);
+
+    setText("p2-title", t.work.p2.title);
+    setText("p2-period", t.work.p2.period);
+    setText("p2-tag", t.work.p2.tag);
+    setText("p2-link", t.work.p2.link);
+    setText("p2-link-demo", t.work.p2.demo);
+
+    setText("d1-title", t.work.d1.title);
+    setText("d1-meta", t.work.d1.meta);
+    setText("d1-desc", t.work.d1.desc);
+    fillList("d1-list", t.work.d1.list, "li");
+
+    setText("d2-title", t.work.d2.title);
+    setText("d2-meta", t.work.d2.meta);
+    setText("d2-desc", t.work.d2.desc);
+    fillList("d2-list", t.work.d2.list, "li");
+    setText("d2-note", t.work.d2.note);
+
+    setText("history-meta", t.history.meta);
+    setText("history-heading", t.history.heading);
+    for (i = 0; i < t.history.items.length; i++) {
+      setText("t" + (i + 1) + "-title", t.history.items[i].t);
+      setText("t" + (i + 1) + "-date", t.history.items[i].d);
+      setText("t" + (i + 1) + "-desc", t.history.items[i].p);
+    }
+
+    setText("contact-meta", t.contact.meta);
+    setText("contact-heading", t.contact.heading);
+    setText("feature-1-label", t.contact.f1);
+    setText("feature-2-label", t.contact.f2);
+    setText("feature-3-label", t.contact.f3);
+    setText("feature-3-value", t.contact.f3v);
+    setText("contact-btn", t.contact.btn);
 
     var buttons = document.querySelectorAll(".lang-switch button");
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].setAttribute(
-        "aria-pressed",
-        String(buttons[i].getAttribute("data-lang") === lang)
-      );
+    for (i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-lang") === lang));
     }
 
-    try {
-      localStorage.setItem(STORAGE_KEY, lang);
-    } catch (e) {
-      /* 시크릿 모드 등에서 localStorage가 막혀 있어도 렌더링은 계속됩니다. */
-    }
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* 무시 */ }
   }
 
   function getInitialLang() {
     try {
       var saved = localStorage.getItem(STORAGE_KEY);
       if (saved && translations[saved]) return saved;
-    } catch (e) {
-      /* localStorage 접근 불가 시 기본값 사용 */
-    }
+    } catch (e) { /* 무시 */ }
     return DEFAULT_LANG;
-  }
-
-  // ==================================================================
-  // 3. anime.js 헬퍼
-  //    - anime.min.js 가 로드되면 window.anime 에 v4 API가 들어옵니다.
-  //    - 로드 실패 시 A() 가 null 을 돌려주고, 모든 애니메이션은 건너뜁니다.
-  // ==================================================================
-  function A() {
-    if (window.anime && typeof window.anime.animate === "function") return window.anime;
-    return null;
   }
 
   var reduceMotion =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function canAnimate() {
-    return !reduceMotion && A() !== null;
+  /* ================================================================
+     3. 스크롤 등장 + 프로그레스 바 + 카운터
+     ================================================================ */
+  function formatCounter(value, decimals, prefix, suffix) {
+    return prefix + value.toFixed(decimals) + suffix;
   }
 
-  // ------------------------------------------------------------------
-  // 3-1. 히어로 타이틀: 글자 단위 등장
-  //      animejs.com 의 Animation 예제(splitText + stagger + 키프레임)를
-  //      포트폴리오 톤에 맞게 1회 재생 / 짧은 지속시간으로 조정했습니다.
-  // ------------------------------------------------------------------
-  function animateHeroName() {
-    var anime = A();
-    if (!anime || reduceMotion) return;
-    var el = byId("hero-name");
-    if (!el) return;
+  function runCounter(el) {
+    var to = parseFloat(el.getAttribute("data-to"));
+    var decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
+    var prefix = el.getAttribute("data-prefix") || "";
+    var suffix = el.getAttribute("data-suffix") || "";
+    if (isNaN(to)) return;
 
-    try {
-      var result = anime.splitText(el, { words: false, chars: true });
-      var chars = result && result.chars ? result.chars : null;
-      if (!chars || !chars.length) return;
-
-      anime.animate(chars, {
-        y: [
-          { to: ["-0.55em", "0em"], ease: "outExpo", duration: 620 },
-        ],
-        opacity: [0, 1],
-        delay: anime.stagger(38),
-        ease: "outQuad",
-      });
-    } catch (e) {
-      /* 실패해도 h1 은 이미 정상 텍스트 상태이므로 무해합니다. */
+    if (reduceMotion) {
+      el.textContent = formatCounter(to, decimals, prefix, suffix);
+      return;
     }
-  }
 
-  // ------------------------------------------------------------------
-  // 3-2. 히어로 나머지 요소 + 배경 노드
-  // ------------------------------------------------------------------
-  function animateHeroIntro() {
-    var anime = A();
-    if (!anime || reduceMotion) return;
-    try {
-      anime.animate(".hero-copy .eyebrow, .hero-copy .role, .hero-copy .quote, .hero-cta", {
-        y: [14, 0],
-        opacity: [0, 1],
-        delay: anime.stagger(90, { start: 180 }),
-        duration: 700,
-        ease: "outQuad",
-      });
+    var duration = 1400;
+    var start = null;
 
-      // 노드는 opacity 만 애니메이션합니다.
-      // 떠다니는 움직임은 CSS 의 bob 키프레임(transform)이 담당하므로,
-      // 여기서 scale/translate 를 건드리면 서로 덮어써서 깨집니다.
-      anime.animate(".orbit-field .node", {
-        opacity: [0, 1],
-        delay: anime.stagger(55),
-        duration: 620,
-        ease: "outQuad",
-      });
-
-      anime.animate(".orbit-field .ring", {
-        scale: [0.82, 1],
-        opacity: [0, 1],
-        duration: 900,
-        delay: anime.stagger(120),
-        ease: "outExpo",
-      });
-    } catch (e) {
-      /* 무시 */
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / duration);
+      var eased = 1 - Math.pow(1 - p, 3);            // easeOutCubic
+      el.textContent = formatCounter(to * eased, decimals, prefix, suffix);
+      if (p < 1) window.requestAnimationFrame(step);
+      else el.textContent = formatCounter(to, decimals, prefix, suffix);
     }
+    window.requestAnimationFrame(step);
   }
 
-  // ------------------------------------------------------------------
-  // 3-3. 섹션 스크롤 등장
-  //      ※ 여기서 중요한 점: 요소의 "기본 상태는 보임" 입니다.
-  //        JS가 살아 있을 때만 body.reveal-ready 를 붙여 숨김→등장을 켭니다.
-  //        그래서 스크립트가 죽어도 콘텐츠가 사라지는 일은 없습니다.
-  // ------------------------------------------------------------------
-  function initScrollReveal() {
-    var items = document.querySelectorAll("[data-reveal]");
-    if (!items.length || !("IntersectionObserver" in window) || reduceMotion) return;
+  function initReveal() {
+    var items = document.querySelectorAll(".reveal");
+    if (!items.length || !("IntersectionObserver" in window) || reduceMotion) {
+      // 연출 없이 그대로 표시. 카운터만 최종값으로 채워둡니다.
+      var counters = document.querySelectorAll(".js-counter");
+      for (var c = 0; c < counters.length; c++) runCounter(counters[c]);
+      return;
+    }
 
     document.body.classList.add("reveal-ready");
 
-    var anime = A();
+    function activate(el) {
+      el.classList.add("is-visible");
+      var counters = el.querySelectorAll ? el.querySelectorAll(".js-counter") : [];
+      for (var i = 0; i < counters.length; i++) runCounter(counters[i]);
+    }
 
-    var io = new IntersectionObserver(
-      function (entries) {
-        for (var i = 0; i < entries.length; i++) {
-          var entry = entries[i];
-
-          // 화면에 들어왔을 때뿐 아니라, "이미 위로 지나가 버린" 경우도 함께
-          // 처리합니다. 앵커 링크(#projects)로 바로 점프하거나 Ctrl+End 로
-          // 한 번에 내려가면, 중간 요소는 교차 상태를 건너뛰어 영영 숨은
-          // 채로 남을 수 있기 때문입니다.
-          var scrolledPast = entry.boundingClientRect.top < 0;
-          if (!entry.isIntersecting && !scrolledPast) continue;
-
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);
-
-          // 프로젝트 행이 보이면 그 안의 지표 숫자를 순차적으로 강조
-          if (anime && entry.isIntersecting && entry.target.classList.contains("project-row")) {
-            var stats = entry.target.querySelectorAll(".stat");
-            if (stats.length) {
-              try {
-                anime.animate(stats, {
-                  y: [10, 0],
-                  opacity: [0, 1],
-                  scale: [0.94, 1],
-                  delay: anime.stagger(80, { start: 160 }),
-                  duration: 620,
-                  ease: "outBack",
-                });
-              } catch (e) {
-                /* 무시 */
-              }
-            }
-          }
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i];
+        // 화면에 들어온 경우뿐 아니라 "이미 위로 지나가 버린" 경우도 처리합니다.
+        var scrolledPast = entry.boundingClientRect.top < 0;
+        if (!entry.isIntersecting && !scrolledPast) continue;
+        if (entry.target.classList.contains("is-visible")) { io.unobserve(entry.target); continue; }
+        activate(entry.target);
+        io.unobserve(entry.target);
+      }
+    }, { threshold: 0.08, rootMargin: "0px 0px -50px 0px" });
 
     for (var j = 0; j < items.length; j++) io.observe(items[j]);
 
-    // --- 안전망 -------------------------------------------------------
-    // IntersectionObserver 는 "교차 상태가 바뀔 때"만 콜백을 줍니다.
-    // 그래서 앵커 점프처럼 한 프레임 만에 화면 아래 → 화면 위로 지나가면
-    // 상태 변화가 감지되지 않아(계속 non-intersecting) 콜백이 아예 오지
-    // 않고, 그 요소는 영영 opacity:0 으로 남습니다.
-    // 스크롤할 때마다 "이미 지나간 요소"를 직접 확인해 드러냅니다.
+    /* --- 안전망 ------------------------------------------------------
+       IntersectionObserver 는 "교차 상태가 바뀔 때"만 콜백을 줍니다.
+       앵커 링크로 한 번에 점프하면 중간 요소가 화면 아래→위로 한 프레임에
+       지나가 콜백이 오지 않고, 그 요소는 영영 opacity:0 으로 남습니다.
+       스크롤할 때마다 "이미 지나간 요소"를 직접 확인해 드러냅니다. */
     var pending = Array.prototype.slice.call(items);
     var ticking = false;
 
     function sweep() {
       ticking = false;
-      var limit = window.innerHeight * 0.92;
+      var limit = window.innerHeight * 0.94;
       for (var k = pending.length - 1; k >= 0; k--) {
         var el = pending[k];
-        if (el.classList.contains("is-visible")) {
-          pending.splice(k, 1);
-          continue;
-        }
+        if (el.classList.contains("is-visible")) { pending.splice(k, 1); continue; }
         if (el.getBoundingClientRect().top < limit) {
-          el.classList.add("is-visible");
+          activate(el);
           io.unobserve(el);
           pending.splice(k, 1);
         }
       }
       if (!pending.length) {
-        window.removeEventListener("scroll", onScrollSweep);
-        window.removeEventListener("resize", onScrollSweep);
+        window.removeEventListener("scroll", onSweep);
+        window.removeEventListener("resize", onSweep);
       }
     }
-
-    function onScrollSweep() {
+    function onSweep() {
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(sweep);
     }
 
-    window.addEventListener("scroll", onScrollSweep, { passive: true });
-    window.addEventListener("resize", onScrollSweep);
-    onScrollSweep();
+    window.addEventListener("scroll", onSweep, { passive: true });
+    window.addEventListener("resize", onSweep);
+    onSweep();
   }
 
-  // ------------------------------------------------------------------
-  // 3-4. 상단 스크롤 진행 바
-  // ------------------------------------------------------------------
-  function initScrollProgress() {
-    var bar = byId("scroll-progress");
-    if (!bar) return;
-
-    function update() {
-      var doc = document.documentElement;
-      var max = doc.scrollHeight - doc.clientHeight;
-      var ratio = max > 0 ? doc.scrollTop / max : 0;
-      bar.style.transform = "scaleX(" + Math.min(1, Math.max(0, ratio)) + ")";
-    }
-
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    update();
-  }
-
-  // ------------------------------------------------------------------
-  // 3-5. 스크롤 위치에 따라 현재 섹션을 상단 메뉴에 표시
-  // ------------------------------------------------------------------
-  function initNavHighlight() {
-    var links = document.querySelectorAll(".site-nav a");
-    if (!links.length || !("IntersectionObserver" in window)) return;
-
-    var map = {};
-    for (var i = 0; i < links.length; i++) {
-      var href = links[i].getAttribute("href");
-      if (href && href.charAt(0) === "#") map[href.slice(1)] = links[i];
-    }
-
-    var io = new IntersectionObserver(
-      function (entries) {
-        for (var i = 0; i < entries.length; i++) {
-          if (!entries[i].isIntersecting) continue;
-          var id = entries[i].target.id;
-          for (var key in map) {
-            if (Object.prototype.hasOwnProperty.call(map, key)) {
-              map[key].classList.toggle("is-active", key === id);
-            }
-          }
-        }
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-
-    for (var key in map) {
-      if (Object.prototype.hasOwnProperty.call(map, key)) {
-        var section = document.getElementById(key);
-        if (section) io.observe(section);
-      }
+  /* ================================================================
+     4. 내비게이션
+     ================================================================ */
+  function closeMenu() {
+    document.body.classList.remove("offcanvas");
+    var toggle = document.querySelector(".js-nav-toggle");
+    if (toggle) {
+      toggle.classList.remove("active");
+      toggle.setAttribute("aria-expanded", "false");
     }
   }
 
-  // ==================================================================
-  // 4. 기본 인터랙션 (anime.js 유무와 무관하게 항상 동작)
-  // ==================================================================
-  function initLangSwitch() {
-    var buttons = document.querySelectorAll(".lang-switch button");
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener("click", function (e) {
-        var lang = e.currentTarget.getAttribute("data-lang");
-        render(lang);
-        animateHeroName(); // 이름이 새 언어로 다시 그려지는 연출
-      });
-    }
+  function initMenuToggle() {
+    var toggle = document.querySelector(".js-nav-toggle");
+    if (!toggle) return;
+
+    toggle.addEventListener("click", function () {
+      var open = document.body.classList.toggle("offcanvas");
+      toggle.classList.toggle("active", open);
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+
+    // 사이드바 바깥을 누르면 닫기
+    document.addEventListener("click", function (e) {
+      if (!document.body.classList.contains("offcanvas")) return;
+      var aside = byId("site-aside");
+      if (aside && !aside.contains(e.target) && !toggle.contains(e.target)) closeMenu();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu();
+    });
   }
 
   function initSmoothScroll() {
@@ -640,10 +563,42 @@
         var target = document.querySelector(href);
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({
-          behavior: reduceMotion ? "auto" : "smooth",
-          block: "start",
-        });
+        closeMenu();
+        target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      });
+    }
+  }
+
+  function initNavHighlight() {
+    var links = document.querySelectorAll("#site-nav a[data-nav]");
+    if (!links.length || !("IntersectionObserver" in window)) return;
+
+    var map = {};
+    for (var i = 0; i < links.length; i++) {
+      map[links[i].getAttribute("data-nav")] = links[i].parentNode;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (!entries[i].isIntersecting) continue;
+        var name = entries[i].target.getAttribute("data-section");
+        for (var key in map) {
+          if (Object.prototype.hasOwnProperty.call(map, key)) {
+            map[key].classList.toggle("active", key === name);
+          }
+        }
+      }
+    }, { rootMargin: "-45% 0px -50% 0px" });
+
+    var sections = document.querySelectorAll("[data-section]");
+    for (var j = 0; j < sections.length; j++) io.observe(sections[j]);
+  }
+
+  function initLangSwitch() {
+    var buttons = document.querySelectorAll(".lang-switch button");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function (e) {
+        render(e.currentTarget.getAttribute("data-lang"));
       });
     }
   }
@@ -653,19 +608,14 @@
     if (el) el.textContent = String(new Date().getFullYear());
   }
 
-  // ==================================================================
-  // 5. 실행 (이 스크립트는 </body> 직전에 있어 DOM은 이미 준비 완료)
-  // ==================================================================
+  /* ================================================================
+     5. 실행 (이 스크립트는 </body> 직전 — DOM 은 이미 준비 완료)
+     ================================================================ */
   render(getInitialLang());
   initLangSwitch();
+  initMenuToggle();
   initSmoothScroll();
-  initYear();
-  initScrollProgress();
   initNavHighlight();
-  initScrollReveal();
-
-  if (canAnimate()) {
-    animateHeroName();
-    animateHeroIntro();
-  }
+  initYear();
+  initReveal();
 })();
