@@ -37,7 +37,14 @@
 html, body, h1, h2, h3, p, ul, li, figure { margin: 0; padding: 0; }
 ul { list-style: none; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+  /* 방어선: 어떤 장식 요소가 삐져나와도 가로 스크롤바가 생기지 않게 합니다.
+     overflow-x:hidden 과 달리 clip 은 스크롤 컨테이너를 만들지 않아
+     사이드바의 position:sticky 를 망가뜨리지 않습니다. */
+  overflow-x: clip;
+}
 
 body {
   font-family: var(--font-primary);
@@ -105,7 +112,7 @@ a:hover { color: var(--black); }
   border-radius: 50%;
   background-image: url(images/profile.jpg);
   background-size: cover;
-  background-position: center 22%;   /* 얼굴이 원 중앙에 오도록 */
+  background-position: center 34%;   /* 값을 키울수록 인물이 원 안에서 위로 올라갑니다 */
   background-repeat: no-repeat;
   background-color: var(--gray);
   box-shadow: 0 0 0 6px #fff, 0 0 0 8px rgba(44,152,240,.35);
@@ -115,6 +122,11 @@ a:hover { color: var(--black); }
   font-family: var(--font-heading);
   font-size: 22px; font-weight: 700; color: var(--black);
   margin-bottom: 2px; line-height: 1.3;
+}
+.site-logo .name-kanji { font-size: 15px; color: var(--dim); font-weight: 400; }
+.hero h1 .name-kanji {
+  font-size: .42em; color: var(--meta); font-weight: 400;
+  margin-left: .25em; white-space: nowrap;
 }
 .site-sub {
   display: block;
@@ -275,6 +287,8 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 .btn-lg { padding: 16px 34px; }
 .btn-primary { background: var(--primary); border-color: var(--primary); color: #fff; }
 .btn-primary:hover { background: #44a4f2; border-color: #44a4f2; color: #fff; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.12); }
+.btn:active { transform: translateY(0); }
 .btn-outline { background: transparent; border-color: rgba(0,0,0,.3); color: var(--black); }
 .btn-outline:hover { background: var(--black); border-color: var(--black); color: #fff; }
 
@@ -354,9 +368,11 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 }
 .counter-label {
   display: block;
-  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,.7);
+  font-size: 11px; letter-spacing: 2px;
+  color: rgba(255,255,255,.72);
+  line-height: 1.6;
 }
+.counter-item { display: flex; flex-direction: column; justify-content: flex-start; }
 
 /* ==================================================================
    Skills — 프로그레스 바
@@ -456,11 +472,16 @@ body.anime-on .progress-bar { transition: none; }
 }
 .project-links { margin-top: auto; display: flex; gap: 8px; }
 .project-links a {
-  font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-  color: #333; background: rgba(255,255,255,.85);
-  padding: 6px 12px; border-radius: 3px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: #16202e; background: #fff;
+  padding: 8px 15px; border-radius: 3px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.22);
+  transition: transform .25s var(--ease), box-shadow .25s ease;
 }
-.project-links a:hover { background: #fff; color: #000; }
+.project-links a:hover {
+  color: #000; transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.3);
+}
 .project:hover .project-desc { opacity: 1; }
 .project:hover .project-desc h3,
 .project:hover .project-desc p { transform: translate3d(0,0,0); }
@@ -484,6 +505,35 @@ body.anime-on .progress-bar { transition: none; }
 }
 .detail-body > p { max-width: 64ch; }
 
+/* 프로젝트 스크린샷 */
+.shot { margin: 0 0 1.8em; max-width: 640px; }
+.shot img {
+  display: block; width: 100%;
+  /* 원본 아래쪽에 다음 슬라이드의 제목이 살짝 걸려 있어 비율로 잘라냅니다.
+     이미지를 교체하면 이 값을 원본 비율에 맞게 조정하세요. */
+  aspect-ratio: 1.7;
+  height: auto;
+  object-fit: cover; object-position: top center;
+  border: 1px solid var(--gray-line); border-radius: 3px;
+  background: var(--gray);
+}
+.shot figcaption {
+  font-size: 12px; color: var(--meta); margin-top: 8px; letter-spacing: .3px;
+}
+
+.gallery {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  margin: 0 0 1.8em; max-width: 640px;
+}
+.gallery .shot { margin: 0; max-width: none; }
+.gallery .shot img {
+  aspect-ratio: auto;              /* 갤러리는 고정 높이를 씁니다 */
+  height: 120px; object-fit: cover; object-position: top center;
+  transition: transform .35s var(--ease), border-color .35s ease;
+}
+.gallery .shot:hover img { transform: scale(1.03); border-color: var(--primary); }
+.gallery figcaption { font-size: 11px; line-height: 1.5; }
+
 /* 担当 / 使用技術 */
 .spec { margin: 0 0 1.8em; }
 .spec > div {
@@ -502,7 +552,34 @@ body.anime-on .progress-bar { transition: none; }
   font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
   color: var(--primary); margin: 0 0 12px;
 }
-.detail-links { display: flex; gap: 20px; flex-wrap: wrap; margin: 1.6em 0 0; }
+.detail-links { display: flex; gap: 12px; flex-wrap: wrap; margin: 1.8em 0 0; }
+
+/* 아이콘이 들어간 링크 버튼 (GitHub / Live Demo) */
+.btn-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 22px;
+}
+.btn-link svg { flex-shrink: 0; }
+
+/* Live Demo 는 가장 눈에 띄어야 하므로 별도 색 + 링 애니메이션 */
+.btn-demo {
+  background: var(--c5); border-color: var(--c5); color: #fff;
+  position: relative;
+}
+.btn-demo:hover { background: #278d84; border-color: #278d84; color: #fff; }
+
+/* 은은한 링 펄스 — 클릭을 유도하되 시끄럽지 않게.
+   ※ transform: scale 로 만들면 확대된 링이 문서 폭을 넓혀서
+   모바일에 가로 스크롤이 생깁니다. box-shadow 는 레이아웃에
+   영향을 주지 않으므로 이 방식으로 구현했습니다. */
+.js-pulse { animation: ringPulse 2.6s ease-out infinite; }
+.btn-demo    { --pulse: rgba(47,164,153,.55); }
+.btn-primary { --pulse: rgba(44,152,240,.50); }
+@keyframes ringPulse {
+  0%   { box-shadow: 0 0 0 0    var(--pulse, rgba(44,152,240,.5)); }
+  70%  { box-shadow: 0 0 0 14px rgba(0,0,0,0); }
+  100% { box-shadow: 0 0 0 0    rgba(0,0,0,0); }
+}
 .detail-body ul { margin: 0 0 1.5em; }
 .detail-body li {
   position: relative; padding-left: 18px; margin-bottom: 8px;
@@ -580,6 +657,7 @@ body.anime-on .progress-bar { transition: none; }
   margin-bottom: 4px;
 }
 .feature-text p { font-size: 15px; word-break: break-word; }
+.mail-lines { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
 .contact-cta { margin: 0; }
 
 /* ==================================================================
@@ -639,6 +717,9 @@ body.anime-on .progress-bar { transition: none; }
 
   .detail { grid-template-columns: 1fr; gap: 6px; }
   .detail-no { font-size: 20px; }
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gallery .shot img { height: 96px; }
+  .detail-links .btn-link { width: 100%; justify-content: center; }
   .profile-list { padding: 1.2em 1.3em; }
   .profile-list > div { grid-template-columns: 76px 1fr; gap: 10px; }
   .spec > div { grid-template-columns: 76px 1fr; gap: 10px; }
@@ -650,5 +731,6 @@ body.anime-on .progress-bar { transition: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .js-pulse { animation: none; }
   * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }

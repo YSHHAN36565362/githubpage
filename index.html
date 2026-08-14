@@ -14,7 +14,7 @@
 
 <!-- ?v= 는 캐시 무효화용입니다. style.css / script.js 를 고칠 때마다 숫자를 올리세요.
      (GitHub Pages 가 예전 CSS 를 계속 내려주는 문제를 막습니다.) -->
-<link rel="stylesheet" href="style.css?v=5" />
+<link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 
@@ -34,8 +34,8 @@
 
       <div class="author">
         <div class="author-img" role="img" aria-label="Profile photo"></div>
-        <h1 class="site-logo" id="side-name">ハンヨンス</h1>
-        <span class="site-sub" id="side-sub">韓倫洙 / Younsu Han</span>
+        <h1 class="site-logo"><span id="side-name">ハンヨンス</span><span class="name-kanji" id="side-kanji">（韓倫洙）</span></h1>
+        <span class="site-sub" id="side-sub">Younsu Han</span>
         <span class="position" id="side-position">System Engineer 志望</span>
       </div>
 
@@ -61,7 +61,7 @@
           <li><a href="https://github.com/YSHHAN36565362" target="_blank" rel="noopener" aria-label="GitHub">
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.73.5.99 5.24.99 11.5c0 4.85 3.15 8.96 7.51 10.41.55.1.75-.24.75-.53v-1.86c-3.06.67-3.7-1.48-3.7-1.48-.5-1.28-1.23-1.62-1.23-1.62-1-.69.08-.67.08-.67 1.1.08 1.68 1.14 1.68 1.14.98 1.69 2.58 1.2 3.21.92.1-.72.39-1.2.7-1.48-2.44-.28-5.01-1.22-5.01-5.45 0-1.2.43-2.19 1.13-2.96-.11-.28-.49-1.4.11-2.92 0 0 .93-.3 3.03 1.13a10.5 10.5 0 0 1 5.52 0c2.1-1.43 3.02-1.13 3.02-1.13.6 1.52.22 2.64.11 2.92.71.77 1.13 1.76 1.13 2.96 0 4.24-2.58 5.17-5.03 5.44.4.34.75 1.01.75 2.04v3.03c0 .29.2.64.76.53a10.53 10.53 0 0 0 7.5-10.41C23.01 5.24 18.27.5 12 .5z"/></svg>
           </a></li>
-          <li><a href="mailto:hys2231@naver.com" aria-label="Email">
+          <li><a href="mailto:colejason932@gmail.com" aria-label="Email">
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 4.99-8-4.99V6l8 4.99L20 6z"/></svg>
           </a></li>
           <li><a href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener" aria-label="Live Demo">
@@ -84,7 +84,7 @@
       <div class="hero-deco" aria-hidden="true"><span class="deco-circle"></span><span class="deco-dot"></span></div>
       <div class="hero-inner reveal">
         <span class="heading-meta" id="hero-eyebrow">Portfolio</span>
-        <h1 id="hero-name">ハンヨンス</h1>
+        <h1><span id="hero-name">ハンヨンス</span><span class="name-kanji" id="hero-kanji">（韓倫洙）</span></h1>
         <h2 id="hero-role">誰かの困りごとを、自分の工夫や技術で少しだけ軽くする。</h2>
         <p class="hero-desc" id="hero-desc">データサイエンス専攻 ・ システムエンジニア志望 ・ 2027年2月卒業見込み</p>
         <p class="hero-cta">
@@ -154,20 +154,20 @@
       <div class="counters-overlay" aria-hidden="true"></div>
       <div class="counters-inner">
         <div class="counter-item reveal">
-          <span class="counter js-counter" data-to="96.9" data-decimals="1" data-suffix="%">96.9%</span>
-          <span class="counter-label" id="counter-1">検証 Accuracy</span>
-        </div>
-        <div class="counter-item reveal">
-          <span class="counter js-counter" data-to="0.956" data-decimals="3">0.956</span>
-          <span class="counter-label" id="counter-2">Macro F1</span>
-        </div>
-        <div class="counter-item reveal">
           <span class="counter js-counter" data-to="2" data-decimals="0" data-prefix="No.">No.2</span>
-          <span class="counter-label" id="counter-3">学内学術祭</span>
+          <span class="counter-label" id="counter-1">学内学術祭 受賞</span>
         </div>
         <div class="counter-item reveal">
           <span class="counter js-counter" data-to="12" data-decimals="0" data-suffix="年">12年</span>
-          <span class="counter-label" id="counter-4">無遅刻・無欠席</span>
+          <span class="counter-label" id="counter-2">無遅刻・無欠席</span>
+        </div>
+        <div class="counter-item reveal">
+          <span class="counter js-counter" data-to="19" data-decimals="0" data-suffix="ヶ月">19ヶ月</span>
+          <span class="counter-label" id="counter-3">空軍 交代勤務・班長</span>
+        </div>
+        <div class="counter-item reveal">
+          <span class="counter js-counter" data-to="3" data-decimals="0" data-prefix="N">N3</span>
+          <span class="counter-label" id="counter-4">JLPT 日本語</span>
         </div>
       </div>
     </div>
@@ -285,8 +285,16 @@
           <h4 class="detail-sub" id="d1-h-result">成果</h4>
           <ul id="d1-result"><li>—</li></ul>
 
+          <figure class="shot">
+            <img src="images/k-eval.jpg" alt="Confusion matrix and evaluation metrics" loading="lazy" width="760" height="483" />
+            <figcaption id="d1-cap">検証データの混同行列と評価指標</figcaption>
+          </figure>
+
           <p class="detail-links">
-            <a class="link-arrow" href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier" target="_blank" rel="noopener" id="d1-link">GitHub</a>
+            <a class="btn btn-link btn-primary" href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.73.5.99 5.24.99 11.5c0 4.85 3.15 8.96 7.51 10.41.55.1.75-.24.75-.53v-1.86c-3.06.67-3.7-1.48-3.7-1.48-.5-1.28-1.23-1.62-1.23-1.62-1-.69.08-.67.08-.67 1.1.08 1.68 1.14 1.68 1.14.98 1.69 2.58 1.2 3.21.92.1-.72.39-1.2.7-1.48-2.44-.28-5.01-1.22-5.01-5.45 0-1.2.43-2.19 1.13-2.96-.11-.28-.49-1.4.11-2.92 0 0 .93-.3 3.03 1.13a10.5 10.5 0 0 1 5.52 0c2.1-1.43 3.02-1.13 3.02-1.13.6 1.52.22 2.64.11 2.92.71.77 1.13 1.76 1.13 2.96 0 4.24-2.58 5.17-5.03 5.44.4.34.75 1.01.75 2.04v3.03c0 .29.2.64.76.53a10.53 10.53 0 0 0 7.5-10.41C23.01 5.24 18.27.5 12 .5z"/></svg>
+              <span id="d1-link">GitHub</span>
+            </a>
           </p>
         </div>
       </article>
@@ -309,9 +317,30 @@
 
           <p class="detail-note" id="d2-note">—</p>
 
+          <div class="gallery">
+            <figure class="shot">
+              <img src="images/w-practice.jpg" alt="Practice mode" loading="lazy" width="760" height="431" />
+              <figcaption id="g1-cap">5つの学習モード</figcaption>
+            </figure>
+            <figure class="shot">
+              <img src="images/w-exam.jpg" alt="Exam mode" loading="lazy" width="760" height="431" />
+              <figcaption id="g2-cap">試験モード</figcaption>
+            </figure>
+            <figure class="shot">
+              <img src="images/w-wordbook.jpg" alt="Word list management via GitHub" loading="lazy" width="760" height="431" />
+              <figcaption id="g3-cap">GitHub連携の単語帳管理</figcaption>
+            </figure>
+          </div>
+
           <p class="detail-links">
-            <a class="link-arrow" href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener" id="d2-link">GitHub</a>
-            <a class="link-arrow" href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener" id="d2-link-demo">Live Demo</a>
+            <a class="btn btn-link btn-demo js-pulse" href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              <span id="d2-link-demo">Live Demo</span>
+            </a>
+            <a class="btn btn-link btn-outline" href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.73.5.99 5.24.99 11.5c0 4.85 3.15 8.96 7.51 10.41.55.1.75-.24.75-.53v-1.86c-3.06.67-3.7-1.48-3.7-1.48-.5-1.28-1.23-1.62-1.23-1.62-1-.69.08-.67.08-.67 1.1.08 1.68 1.14 1.68 1.14.98 1.69 2.58 1.2 3.21.92.1-.72.39-1.2.7-1.48-2.44-.28-5.01-1.22-5.01-5.45 0-1.2.43-2.19 1.13-2.96-.11-.28-.49-1.4.11-2.92 0 0 .93-.3 3.03 1.13a10.5 10.5 0 0 1 5.52 0c2.1-1.43 3.02-1.13 3.02-1.13.6 1.52.22 2.64.11 2.92.71.77 1.13 1.76 1.13 2.96 0 4.24-2.58 5.17-5.03 5.44.4.34.75 1.01.75 2.04v3.03c0 .29.2.64.76.53a10.53 10.53 0 0 0 7.5-10.41C23.01 5.24 18.27.5 12 .5z"/></svg>
+              <span id="d2-link">GitHub</span>
+            </a>
           </p>
         </div>
       </article>
@@ -424,7 +453,10 @@
           </div>
           <div class="feature-text">
             <h3 id="feature-1-label">Email</h3>
-            <p><a href="mailto:hys2231@naver.com">hys2231@naver.com</a></p>
+            <p class="mail-lines">
+              <a href="mailto:colejason932@gmail.com">colejason932@gmail.com</a>
+              <a href="mailto:hys2231@naver.com">hys2231@naver.com</a>
+            </p>
           </div>
         </div>
 
@@ -450,7 +482,7 @@
       </div>
 
       <p class="contact-cta reveal">
-        <a class="btn btn-primary btn-lg" href="mailto:hys2231@naver.com" id="contact-btn">メールを送る</a>
+        <a class="btn btn-primary btn-lg js-pulse" href="mailto:colejason932@gmail.com" id="contact-btn">メールを送る</a>
       </p>
     </section>
 
@@ -460,7 +492,7 @@
 <!-- anime.js v4.5.0 — CDN 이 아니라 저장소에 직접 포함(vendored)했습니다.
      외부 CDN 을 쓰다가 페이지 전체가 죽은 적이 있어서입니다. (DESIGN.md 7절)
      이 파일이 없어도 사이트는 100% 동작합니다. 애니메이션 연출만 빠집니다. -->
-<script src="anime.min.js?v=5"></script>
-<script src="script.js?v=5"></script>
+<script src="anime.min.js?v=6"></script>
+<script src="script.js?v=6"></script>
 </body>
 </html>

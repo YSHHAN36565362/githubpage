@@ -29,11 +29,12 @@
     /* ---------------------------------------------------------- 日本語 */
     ja: {
       title: "ハンヨンス | Portfolio",
-      side: { name: "ハンヨンス", sub: "韓倫洙 / Younsu Han", position: "System Engineer 志望" },
+      side: { name: "ハンヨンス", kanji: "（韓倫洙）", sub: "Younsu Han", position: "System Engineer 志望" },
       nav: { home: "Home", about: "About", skills: "Skills", works: "Works", career: "Career", contact: "Contact" },
       hero: {
         eyebrow: "Portfolio",
         name: "ハンヨンス",
+        kanji: "（韓倫洙）",
         role: "誰かの困りごとを、自分の工夫や技術で少しだけ軽くする。",
         desc: "データサイエンス専攻 ・ システムエンジニア志望 ・ 2027年2月卒業見込み",
         ctaWorks: "制作物を見る",
@@ -63,7 +64,7 @@
           { t: "作る前に使う人へ聞く", d: "「いつ・どこで・何で使うのか」を先に確認します。完成してから見せるのではなく、途中で一度使ってもらいます。" },
         ],
       },
-      counters: ["検証 Accuracy", "Macro F1", "学内学術祭", "無遅刻・無欠席"],
+      counters: ["学内学術祭 受賞", "無遅刻・無欠席", "空軍 交代勤務・班長", "JLPT 日本語"],
       skills: {
         meta: "Skills",
         heading: "技術スタック",
@@ -76,6 +77,7 @@
         p1: { title: "学術論文 研究分野 自動分類モデル", period: "2025.10 – 2025.11", tag: "KoBERT ・ PyTorch ・ Accuracy 96.9%", link: "GitHub" },
         p2: { title: "単語暗記Webアプリ", period: "2026.07 – 現在", tag: "Streamlit ・ 生成AI API ・ GitHub Contents API", link: "GitHub", demo: "Live Demo" },
         labels: { role: "担当", tech: "使用技術", work: "課題と工夫", result: "成果" },
+        caps: { d1: "検証データの混同行列と評価指標", g1: "5つの学習モード", g2: "試験モード", g3: "GitHub連携の単語帳管理" },
         d1: {
           title: "学術論文 研究分野 自動分類モデル",
           meta: "2025.10 – 2025.11",
@@ -134,11 +136,12 @@
     /* ---------------------------------------------------------- 한국어 */
     ko: {
       title: "한윤수 | Portfolio",
-      side: { name: "한윤수", sub: "韓倫洙 / Younsu Han", position: "시스템엔지니어 지망" },
+      side: { name: "한윤수", kanji: "（韓倫洙）", sub: "Younsu Han", position: "시스템엔지니어 지망" },
       nav: { home: "홈", about: "소개", skills: "기술", works: "제작물", career: "경력", contact: "연락처" },
       hero: {
         eyebrow: "Portfolio",
         name: "한윤수",
+        kanji: "（韓倫洙）",
         role: "누군가의 어려움을, 나의 궁리와 기술로 조금이나마 가볍게.",
         desc: "데이터사이언스 전공 · 시스템엔지니어 지망 · 2027년 2월 졸업예정",
         ctaWorks: "제작물 보기",
@@ -168,7 +171,7 @@
           { t: "만들기 전에 쓰는 사람에게 묻는다", d: "“언제·어디서·무엇으로 쓰는지”를 먼저 확인합니다. 완성 후 보여주는 대신 도중에 한 번 써보게 합니다." },
         ],
       },
-      counters: ["검증 Accuracy", "Macro F1", "교내 학술제", "무지각·무결석"],
+      counters: ["교내 학술제 수상", "무지각·무결석", "공군 교대근무·분대장", "JLPT 일본어"],
       skills: {
         meta: "Skills",
         heading: "기술 스택",
@@ -181,6 +184,7 @@
         p1: { title: "학술논문 연구분야 자동분류 모델", period: "2025.10 – 2025.11", tag: "KoBERT · PyTorch · Accuracy 96.9%", link: "GitHub" },
         p2: { title: "단어 암기 웹앱", period: "2026.07 – 현재", tag: "Streamlit · 생성AI API · GitHub Contents API", link: "GitHub", demo: "Live Demo" },
         labels: { role: "담당", tech: "사용 기술", work: "과제와 개선", result: "성과" },
+        caps: { d1: "검증 데이터의 혼동행렬과 평가지표", g1: "5개 학습 모드", g2: "시험 모드", g3: "GitHub 연동 단어장 관리" },
         d1: {
           title: "학술논문 연구분야 자동분류 모델",
           meta: "2025.10 – 2025.11",
@@ -239,11 +243,12 @@
     /* ---------------------------------------------------------- English */
     en: {
       title: "Younsu Han | Portfolio",
-      side: { name: "Younsu Han", sub: "韓倫洙 / 한윤수", position: "Aspiring System Engineer" },
+      side: { name: "Younsu Han", kanji: "(韓倫洙)", sub: "한윤수 / ハンヨンス", position: "Aspiring System Engineer" },
       nav: { home: "Home", about: "About", skills: "Skills", works: "Works", career: "Career", contact: "Contact" },
       hero: {
         eyebrow: "Portfolio",
         name: "Younsu Han",
+        kanji: "(韓倫洙)",
         role: "Making someone's difficulty a little lighter, through my own ideas and skills.",
         desc: "Data Science major · Aspiring System Engineer · Graduating Feb 2027",
         ctaWorks: "View Works",
@@ -273,7 +278,7 @@
           { t: "Ask the user before building", d: "I confirm when, where, and on what device it will be used — and let people try it midway rather than only showing the finished thing." },
         ],
       },
-      counters: ["Val Accuracy", "Macro F1", "Data Sci. Festival", "Yrs Perfect Attendance"],
+      counters: ["Data Sci. Festival", "Yrs Perfect Attendance", "Months, Air Force Squad Lead", "JLPT Japanese"],
       skills: {
         meta: "Skills",
         heading: "Tech Stack",
@@ -286,6 +291,7 @@
         p1: { title: "Academic Paper Topic Classifier", period: "Oct – Nov 2025", tag: "KoBERT · PyTorch · 96.9% Accuracy", link: "GitHub" },
         p2: { title: "Vocabulary Study Web App", period: "Jul 2026 – present", tag: "Streamlit · Generative AI API · GitHub Contents API", link: "GitHub", demo: "Live Demo" },
         labels: { role: "Role", tech: "Tech Stack", work: "Challenges & Solutions", result: "Results" },
+        caps: { d1: "Confusion matrix and evaluation metrics on the validation set", g1: "Five study modes", g2: "Exam mode", g3: "Word list management via GitHub" },
         d1: {
           title: "Academic Paper Topic Classifier",
           meta: "Oct – Nov 2025",
@@ -375,6 +381,7 @@
 
     /* --- 사이드바 --- */
     setText("side-name", t.side.name);
+    setText("side-kanji", t.side.kanji);
     setText("side-sub", t.side.sub);
     setText("side-position", t.side.position);
     setText("footer-name", t.footerName);
@@ -389,6 +396,7 @@
     /* --- 히어로 --- */
     setText("hero-eyebrow", t.hero.eyebrow);
     setText("hero-name", t.hero.name);
+    setText("hero-kanji", t.hero.kanji);
     setText("hero-role", t.hero.role);
     setText("hero-desc", t.hero.desc);
     setText("hero-cta-works", t.hero.ctaWorks);
@@ -455,6 +463,11 @@
     setText("d2-note", t.works.d2.note);
     setText("d2-link", t.works.d2.link);
     setText("d2-link-demo", t.works.d2.demo);
+
+    setText("d1-cap", t.works.caps.d1);
+    setText("g1-cap", t.works.caps.g1);
+    setText("g2-cap", t.works.caps.g2);
+    setText("g3-cap", t.works.caps.g3);
 
     /* --- Career --- */
     setText("career-meta", t.career.meta);
@@ -567,6 +580,15 @@
     var el = byId("hero-name");
     if (!el) return;
     try {
+      // 이미 분할된 상태에서 다시 splitText 를 부르면 span 이 중첩되므로,
+      // 항상 원문 텍스트로 되돌린 뒤 다시 분할합니다.
+      // (splitText 는 스크린리더용 사본을 넣기 때문에 textContent 를 그대로
+      //  믿을 수 없어서 data-plain 에 원문을 보관합니다.)
+      if (el.querySelector("span[data-char]")) {
+        el.textContent = el.getAttribute("data-plain") || "";
+      }
+      el.setAttribute("data-plain", el.textContent);
+
       var res = a.splitText(el, { words: false, chars: true });
       var chars = res && res.chars;
       if (!chars || !chars.length) return;
@@ -661,6 +683,7 @@
   function initReveal() {
     var items = document.querySelectorAll(".reveal");
     if (!items.length || !("IntersectionObserver" in window) || reduceMotion) {
+      // 연출 없이 그대로 표시. 카운터만 최종값으로 채워둡니다.
       var all = document.querySelectorAll(".js-counter");
       for (var c = 0; c < all.length; c++) runCounter(all[c]);
       return;
@@ -668,65 +691,44 @@
 
     document.body.classList.add("reveal-ready");
 
+    // 화면에 들어올 때: 등장 + 해당 요소의 연출 재생
     function activate(el) {
+      if (el.classList.contains("is-visible")) return;
       el.classList.add("is-visible");
 
-      var counters = el.querySelectorAll ? el.querySelectorAll(".js-counter") : [];
+      var counters = el.querySelectorAll(".js-counter");
       for (var i = 0; i < counters.length; i++) runCounter(counters[i]);
 
       if (el.classList.contains("progress-wrap")) animateProgress(el);
       if (el.classList.contains("timeline-entry")) animateTimelineIcon(el);
       if (el.classList.contains("trait")) animateTraitIcon(el);
+      if (el.classList.contains("hero-inner")) { animateHeroTitle(); animateHeroIntro(); }
     }
 
+    // 화면 밖으로 나갈 때: 초기 상태로 되돌려 "다시 내려오면 다시 재생" 되게 함
+    function deactivate(el) {
+      if (!el.classList.contains("is-visible")) return;
+      el.classList.remove("is-visible");
+
+      // 프로그레스 바는 인라인 width 를 지워 CSS 의 0% 규칙으로 되돌립니다.
+      if (el.classList.contains("progress-wrap")) {
+        var bar = el.querySelector(".progress-bar");
+        if (bar) bar.style.width = "";
+      }
+    }
+
+    /* ★ unobserve 하지 않습니다.
+       계속 관찰해야 위로 올렸다가 다시 내렸을 때 애니메이션이 다시 재생됩니다.
+       threshold 0 + 아래쪽 rootMargin 으로, 요소가 화면 아래에서 살짝
+       올라온 시점에 등장하도록 했습니다. */
     var io = new IntersectionObserver(function (entries) {
       for (var i = 0; i < entries.length; i++) {
-        var entry = entries[i];
-        // 화면에 들어온 경우뿐 아니라 "이미 위로 지나가 버린" 경우도 처리합니다.
-        var scrolledPast = entry.boundingClientRect.top < 0;
-        if (!entry.isIntersecting && !scrolledPast) continue;
-        if (entry.target.classList.contains("is-visible")) { io.unobserve(entry.target); continue; }
-        activate(entry.target);
-        io.unobserve(entry.target);
+        if (entries[i].isIntersecting) activate(entries[i].target);
+        else deactivate(entries[i].target);
       }
-    }, { threshold: 0.08, rootMargin: "0px 0px -50px 0px" });
+    }, { threshold: 0, rootMargin: "0px 0px -60px 0px" });
 
     for (var j = 0; j < items.length; j++) io.observe(items[j]);
-
-    /* --- 안전망 ------------------------------------------------------
-       IntersectionObserver 는 "교차 상태가 바뀔 때"만 콜백을 줍니다.
-       앵커 링크로 한 번에 점프하면 중간 요소가 화면 아래→위로 한 프레임에
-       지나가 콜백이 오지 않고, 그 요소는 영영 opacity:0 으로 남습니다.
-       스크롤할 때마다 "이미 지나간 요소"를 직접 확인해 드러냅니다. */
-    var pending = Array.prototype.slice.call(items);
-    var ticking = false;
-
-    function sweep() {
-      ticking = false;
-      var limit = window.innerHeight * 0.94;
-      for (var k = pending.length - 1; k >= 0; k--) {
-        var el = pending[k];
-        if (el.classList.contains("is-visible")) { pending.splice(k, 1); continue; }
-        if (el.getBoundingClientRect().top < limit) {
-          activate(el);
-          io.unobserve(el);
-          pending.splice(k, 1);
-        }
-      }
-      if (!pending.length) {
-        window.removeEventListener("scroll", onSweep);
-        window.removeEventListener("resize", onSweep);
-      }
-    }
-    function onSweep() {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(sweep);
-    }
-
-    window.addEventListener("scroll", onSweep, { passive: true });
-    window.addEventListener("resize", onSweep);
-    onSweep();
   }
 
   /* ================================================================
@@ -833,6 +835,6 @@
   initYear();
   initReveal();
 
-  animateHeroTitle();
-  animateHeroIntro();
+  // reveal(IntersectionObserver)이 꺼져 있는 환경에서는 히어로 연출도 건너뜁니다.
+  // 켜져 있으면 .hero-inner 가 화면에 들어오는 순간 activate() 안에서 재생됩니다.
 })();
