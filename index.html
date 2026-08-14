@@ -3,171 +3,261 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title id="doc-title">Han Yoonsu | Portfolio</title>
-<meta name="description" content="Han Yoonsu — Data Science / System Engineer portfolio. KoBERT paper classifier &amp; K-Move vocabulary app." />
+<title>Han Yoonsu | Portfolio</title>
+<meta name="description" content="Han Yoonsu — Data Science × System Engineer. KoBERT paper classifier &amp; K-Move vocabulary app." />
 <link rel="stylesheet" href="style.css" />
-
-<!-- 애니메이션을 위한 animejs 불러오기 설정 -->
-<script type="importmap">
-  {
-    "imports": {
-      "animejs": "https://esm.sh/animejs"
-    }
-  }
-</script>
+<!-- 외부 파일 없이 인라인 SVG 로 파비콘을 지정합니다 (404 방지) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080b14'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='bold' fill='%2322d3ee' text-anchor='middle'%3EHY%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
 
-<!-- 좌상단 고정 언어 전환 버튼: 日本語 / 한국어 / English -->
-<div class="lang-switch" role="group" aria-label="Language / 言語 / 언어">
-  <button type="button" data-lang="ja" aria-pressed="true" lang="ja">日本語</button>
-  <button type="button" data-lang="ko" aria-pressed="false" lang="ko">한국어</button>
-  <button type="button" data-lang="en" aria-pressed="false" lang="en">English</button>
-</div>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<div class="full-container scroll-container scroll-y">
-  <div class="scroll-content">
+<!-- 스크롤 진행 바 -->
+<div class="progress-track" aria-hidden="true"><span id="scroll-progress"></span></div>
 
-    <!-- Hero -->
-    <div class="scroll-section padded">
-      <header class="hero">
-        <div class="hero-inner">
-          <h1 id="hero-name">ハン・ユンス</h1>
-          <p class="role" id="hero-role">システムエンジニア志望 ・ 2027年卒業予定</p>
-          <p class="quote" id="hero-quote">「誰かの困りごとを、自分の工夫や技術で少しだけ軽くすること。」</p>
-          <nav>
-            <a href="#about" id="nav-about">About</a>
-            <a href="#projects" id="nav-projects">Projects</a>
-            <a href="#contact" id="nav-contact">Contact</a>
-          </nav>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brand">HY<span class="brand-dot">.</span></a>
+
+    <nav class="site-nav" aria-label="Section">
+      <a href="#about" id="nav-about">About</a>
+      <a href="#projects" id="nav-projects">Projects</a>
+      <a href="#contact" id="nav-contact">Contact</a>
+    </nav>
+
+    <div class="lang-switch" role="group" aria-label="Language / 言語 / 언어">
+      <button type="button" data-lang="ja" aria-pressed="true" lang="ja">日本語</button>
+      <button type="button" data-lang="ko" aria-pressed="false" lang="ko">한국어</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================ -->
+  <!-- Hero                                                          -->
+  <!-- ============================================================ -->
+  <section id="top" class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" id="hero-eyebrow">Data Science × System Engineer</p>
+        <h1 id="hero-name">ハン・ユンス</h1>
+        <p class="role" id="hero-role">システムエンジニア志望 ・ 2027年卒業予定</p>
+        <p class="quote" id="hero-quote">「誰かの困りごとを、自分の工夫や技術で少しだけ軽くすること。」</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary" id="hero-cta-projects">プロジェクトを見る</a>
+          <a href="#contact" class="btn btn-ghost" id="hero-cta-contact">連絡する</a>
         </div>
-      </header>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit-field">
+          <span class="glow glow-a"></span>
+          <span class="glow glow-b"></span>
+          <span class="ring r1"></span>
+          <span class="ring r2"></span>
+          <span class="node n1"></span>
+          <span class="node n2"></span>
+          <span class="node n3"></span>
+          <span class="node n4"></span>
+          <span class="node n5"></span>
+          <span class="node n6"></span>
+          <span class="node n7"></span>
+          <span class="node n8"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- About                                                         -->
+  <!-- ============================================================ -->
+  <section id="about" class="section">
+    <div class="section-head" data-reveal>
+      <span class="section-index">01</span>
+      <h2 id="about-heading">自己紹介</h2>
     </div>
 
-    <!-- About -->
-    <div class="scroll-section padded" id="about">
-      <main>
-        <section>
-          <h2 id="about-heading">About</h2>
-          <div class="about-bio" id="about-bio">
-            <p>...</p>
+    <div class="about-layout">
+      <aside class="profile-card" data-reveal>
+        <p class="profile-name" id="profile-name">ハン・ユンス</p>
+        <p class="profile-tagline" id="profile-tagline">誰かの困りごとを、自分の工夫や技術で少しだけ軽くする人。</p>
+        <ul class="chip-list" id="profile-chips">
+          <li>データ分析</li>
+        </ul>
+        <div class="profile-contact">
+          <p><span id="about-contact-email-label">メール</span><a href="mailto:hys2231@naver.com">hys2231@naver.com</a></p>
+          <p><span id="about-contact-github-label">GitHub</span><a href="https://github.com/YSHHAN36565362" target="_blank" rel="noopener">YSHHAN36565362</a></p>
+        </div>
+      </aside>
+
+      <div class="about-body">
+        <div class="about-bio" id="about-bio" data-reveal>
+          <p>人が動きやすいように場を整える役割にやりがいを感じています。</p>
+        </div>
+
+        <div class="fact-grid">
+          <div class="info-card" data-reveal>
+            <h3 id="about-edu-title">学歴・現在</h3>
+            <ul id="about-edu-list">
+              <li>江南大学校 データサイエンス専攻</li>
+            </ul>
           </div>
 
-          <div class="about-grid">
-            <div class="info-card">
-              <h3 id="about-edu-title">学歴・現在</h3>
-              <ul id="about-edu-list">
-                <li>...</li>
-              </ul>
+          <div class="info-card" data-reveal>
+            <h3 id="about-skills-title">スキル</h3>
+            <div class="skill-cat">
+              <span class="cat-label" id="skill-cat-lang">言語</span>
+              <span class="cat-values">Python, JavaScript, HTML/CSS</span>
             </div>
-
-            <div class="info-card">
-              <h3 id="about-skills-title">スキル</h3>
-              <div class="skill-cat">
-                <span class="cat-label" id="skill-cat-lang">言語</span>
-                <span class="cat-values">Python, JavaScript, HTML/CSS</span>
-              </div>
-              <div class="skill-cat">
-                <span class="cat-label" id="skill-cat-ai">AI・ML</span>
-                <span class="cat-values">PyTorch, Transformers (KoBERT), Scikit-learn, YOLO, VGG16</span>
-              </div>
-              <div class="skill-cat">
-                <span class="cat-label" id="skill-cat-data">データ分析</span>
-                <span class="cat-values">Pandas, Matplotlib, Seaborn</span>
-              </div>
-              <div class="skill-cat">
-                <span class="cat-label" id="skill-cat-tool">ツール</span>
-                <span class="cat-values">Git, Streamlit, GitHub REST API, Google Analytics (GA4)</span>
-              </div>
+            <div class="skill-cat">
+              <span class="cat-label" id="skill-cat-ai">AI・ML</span>
+              <span class="cat-values">PyTorch, Transformers (KoBERT), Scikit-learn, YOLO, VGG16</span>
             </div>
-
-            <div class="info-card">
-              <h3 id="about-awards-title">受賞・資格</h3>
-              <ul id="about-awards-list">
-                <li>...</li>
-              </ul>
+            <div class="skill-cat">
+              <span class="cat-label" id="skill-cat-data">データ分析</span>
+              <span class="cat-values">Pandas, Matplotlib, Seaborn</span>
             </div>
-
-            <div class="info-card">
-              <h3 id="about-contact-title">Contact</h3>
-              <ul>
-                <li><span id="about-contact-email-label">Email</span>: <a href="mailto:hys2231@naver.com">hys2231@naver.com</a></li>
-                <li><span id="about-contact-github-label">GitHub</span>: <a href="https://github.com/YSHHAN36565362" target="_blank" rel="noopener">github.com/YSHHAN36565362</a></li>
-              </ul>
+            <div class="skill-cat">
+              <span class="cat-label" id="skill-cat-tool">ツール</span>
+              <span class="cat-values">Git, Streamlit, GitHub REST API, Google Analytics (GA4)</span>
             </div>
           </div>
-        </section>
-      </main>
+
+          <div class="info-card" data-reveal>
+            <h3 id="about-awards-title">受賞・資格</h3>
+            <ul id="about-awards-list">
+              <li>学内データサイエンスモデリングコンテスト 優秀賞</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Projects                                                      -->
+  <!-- ============================================================ -->
+  <section id="projects" class="section">
+    <div class="section-head" data-reveal>
+      <span class="section-index">02</span>
+      <h2 id="projects-heading">プロジェクト</h2>
     </div>
 
-    <!-- Project 01: 논문 분류 -->
-    <div class="scroll-section padded" id="projects">
-      <div class="project-label" id="p1-label">no.1 project</div>
-      <article class="card" data-tags="Python,PyTorch,Transformers">
+    <article class="project-row" data-reveal>
+      <div class="project-marker">
+        <span class="project-num">01</span>
+        <span class="project-line"></span>
+      </div>
+
+      <div class="project-content">
         <h3 id="p1-title">学術論文 研究分野自動分類モデル</h3>
         <p class="period" id="p1-period">2025.10 – 2025.11</p>
-        <p class="desc" id="p1-desc">...</p>
+        <p class="desc" id="p1-desc">論文タイトルと要旨だけで研究分野を自動分類するKoBERTベースのモデル。</p>
+
         <ul class="stack">
           <li>Python</li><li>PyTorch</li><li>Transformers (KoBERT)</li>
         </ul>
-        <ul class="achievements" id="p1-achievements">
-          <li>...</li>
-        </ul>
-        <div class="links">
-          <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier" target="_blank" rel="noopener" id="p1-link-github">GitHub →</a>
-        </div>
-      </article>
-    </div>
 
-    <!-- Project 02: 단어장 앱 -->
-    <div class="scroll-section padded">
-      <div class="project-label" id="p2-label">no.2 project</div>
-      <article class="card" data-tags="Python,Streamlit,GitHub API">
+        <div class="stat-row" id="p1-stats">
+          <div class="stat"><span class="stat-value">96.9%</span><span class="stat-label">Val Accuracy</span></div>
+        </div>
+
+        <ul class="achievements" id="p1-achievements">
+          <li>title + [SEP] + abstract 入力によるマルチクラス分類</li>
+        </ul>
+
+        <div class="links">
+          <a class="link-arrow" href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier" target="_blank" rel="noopener"><span id="p1-link-github">コードを見る</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-row" data-reveal>
+      <div class="project-marker">
+        <span class="project-num">02</span>
+        <span class="project-line"></span>
+      </div>
+
+      <div class="project-content">
         <h3 id="p2-title">KMOVE単語アプリ — 忘却曲線ベースの暗記Webアプリ</h3>
         <p class="period" id="p2-period">2026</p>
-        <p class="desc" id="p2-desc">...</p>
+        <p class="desc" id="p2-desc">K-Move研修の同期が漢字暗記に苦労している姿を見て作ったStreamlitアプリ。</p>
+
         <ul class="stack">
           <li>Python</li><li>Streamlit</li><li>GitHub Contents API</li><li>requests</li><li>HMAC</li>
         </ul>
-        <ul class="achievements" id="p2-achievements">
-          <li>...</li>
-        </ul>
-        <p class="note" id="p2-note">...</p>
-        <div class="links">
-          <a href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener" id="p2-link-github">GitHub →</a>
-          <a href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener" id="p2-link-demo">Live Demo →</a>
+
+        <div class="stat-row" id="p2-stats">
+          <div class="stat"><span class="stat-value">5</span><span class="stat-label">学習モード</span></div>
         </div>
-      </article>
+
+        <ul class="achievements" id="p2-achievements">
+          <li>忘却曲線キュー</li>
+        </ul>
+
+        <p class="note" id="p2-note">使う人の環境を確認する大切さを学んだプロジェクトです。</p>
+
+        <div class="links">
+          <a class="link-arrow" href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener"><span id="p2-link-github">コードを見る</span></a>
+          <a class="link-arrow" href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener"><span id="p2-link-demo">デモを見る</span></a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Tech stack                                                    -->
+  <!-- ============================================================ -->
+  <section class="section">
+    <div class="section-head" data-reveal>
+      <span class="section-index">03</span>
+      <h2 id="skills-title">主要技術スタック</h2>
+    </div>
+    <div class="skill-tags" data-reveal>
+      <span>Python</span><span>PyTorch</span><span>Transformers / KoBERT</span>
+      <span>Streamlit</span><span>Pandas</span><span>NumPy</span>
+      <span>GitHub REST API</span><span>Git</span>
+      <span>JavaScript</span><span>HTML/CSS</span>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- Contact                                                       -->
+  <!-- ============================================================ -->
+  <section id="contact" class="section">
+    <div class="section-head" data-reveal>
+      <span class="section-index">04</span>
+      <h2 id="contact-title">Contact</h2>
     </div>
 
-    <!-- 기술 스택 요약 + Contact + Footer -->
-    <div class="scroll-section padded">
-      <main style="padding: 0;">
-        <section class="skills">
-          <h2 id="skills-title">主要技術スタック</h2>
-          <div class="skill-tags">
-            <span>Python</span><span>PyTorch</span><span>Transformers / KoBERT</span>
-            <span>Streamlit</span><span>Pandas</span><span>NumPy</span>
-            <span>GitHub REST API</span><span>Git</span>
-            <span>JavaScript</span><span>HTML/CSS</span>
-          </div>
-        </section>
-
-        <section id="contact" class="contact">
-          <h2 id="contact-title">Contact</h2>
-          <p>GitHub: <a href="https://github.com/YSHHAN36565362" target="_blank" rel="noopener">github.com/YSHHAN36565362</a></p>
-          <p>Email: <a href="mailto:hys2231@naver.com">hys2231@naver.com</a></p>
-        </section>
-      </main>
-
-      <footer>
-        <p><span id="footer-name">Han Yoonsu</span> &middot; <span id="year"></span> &middot; <span id="footer-rights">All rights reserved.</span></p>
-      </footer>
+    <div class="contact-card" data-reveal>
+      <p class="contact-lead" id="contact-lead">ご連絡はこちらからお願いいたします。</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:hys2231@naver.com">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">hys2231@naver.com</span>
+        </a>
+        <a class="contact-link" href="https://github.com/YSHHAN36565362" target="_blank" rel="noopener">
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-value">github.com/YSHHAN36565362</span>
+        </a>
+      </div>
     </div>
+  </section>
 
-  </div>
-</div>
+</main>
 
-<script type="module" src="script.js"></script>
+<footer>
+  <p><span id="footer-name">Han Yoonsu</span> &middot; <span id="year"></span> &middot; <span id="footer-rights">All rights reserved.</span></p>
+</footer>
+
+<!-- anime.js 는 CDN 대신 저장소에 직접 포함(vendored)했습니다.
+     외부 CDN이 막히거나 느려도 항상 로드되고, 설령 이 파일이 없어도
+     script.js 의 핵심 기능(언어 전환·본문 표시)은 그대로 동작합니다. -->
+<script src="anime.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
