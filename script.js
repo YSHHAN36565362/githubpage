@@ -30,7 +30,7 @@
     ja: {
       title: "ハンヨンス | Portfolio",
       side: { name: "ハンヨンス", kanji: "（韓倫洙）", sub: "Younsu Han", position: "System Engineer 志望" },
-      nav: { home: "Home", about: "About", skills: "Skills", works: "Works", career: "Career", contact: "Contact" },
+      nav: { home: "Home", about: "About", skills: "Skills", works: "Works", hobby: "Hobby", career: "Career", contact: "Contact" },
       hero: {
         eyebrow: "Portfolio",
         name: "ハンヨンス",
@@ -110,6 +110,17 @@
           link: "GitHub", demo: "Live Demo",
         },
       },
+      hobby: {
+        meta: "Hobby",
+        heading: "趣味",
+        title: "写真と旅 — Shutterlog",
+        desc: "趣味は写真です。旅から帰るたびに数千枚の中から見せられる十数枚を選ぶ作業を、専攻のデータ分析と結びつけて自動化しました。",
+        p1: "回して近づける 3D 地球儀の旅アーカイブ",
+        p2: "ブレたカットの選別・EXIF 分析・額装の 3 ツール",
+        p3: "すべてブラウザ内で動作（写真は送信されません）",
+        cta: "見に行く",
+        repo: "GitHub",
+      },
       career: {
         meta: "Career",
         heading: "経歴",
@@ -137,7 +148,7 @@
     ko: {
       title: "한윤수 | Portfolio",
       side: { name: "한윤수", kanji: "（韓倫洙）", sub: "Younsu Han", position: "시스템엔지니어 지망" },
-      nav: { home: "홈", about: "소개", skills: "기술", works: "제작물", career: "경력", contact: "연락처" },
+      nav: { home: "홈", about: "소개", skills: "기술", works: "제작물", hobby: "취미", career: "경력", contact: "연락처" },
       hero: {
         eyebrow: "Portfolio",
         name: "한윤수",
@@ -217,6 +228,17 @@
           link: "GitHub", demo: "Live Demo",
         },
       },
+      hobby: {
+        meta: "Hobby",
+        heading: "취미",
+        title: "사진과 여행 — Shutterlog",
+        desc: "취미는 사진입니다. 여행에서 돌아올 때마다 수천 장 중에서 보여줄 십몇 장을 고르는 작업을, 전공인 데이터 분석과 엮어 자동화했습니다.",
+        p1: "돌리고 확대하는 3D 지구본 여행 아카이브",
+        p2: "흔들린 컷 선별 · EXIF 분석 · 액자 3종 도구",
+        p3: "전부 브라우저 안에서 동작 (사진은 전송되지 않습니다)",
+        cta: "보러 가기",
+        repo: "GitHub",
+      },
       career: {
         meta: "Career",
         heading: "경력",
@@ -244,7 +266,7 @@
     en: {
       title: "Younsu Han | Portfolio",
       side: { name: "Younsu Han", kanji: "(韓倫洙)", sub: "한윤수 / ハンヨンス", position: "Aspiring System Engineer" },
-      nav: { home: "Home", about: "About", skills: "Skills", works: "Works", career: "Career", contact: "Contact" },
+      nav: { home: "Home", about: "About", skills: "Skills", works: "Works", hobby: "Hobby", career: "Career", contact: "Contact" },
       hero: {
         eyebrow: "Portfolio",
         name: "Younsu Han",
@@ -324,6 +346,17 @@
           link: "GitHub", demo: "Live Demo",
         },
       },
+      hobby: {
+        meta: "Hobby",
+        heading: "Hobby",
+        title: "Photography & Travel — Shutterlog",
+        desc: "Photography is my hobby. Picking the dozen worth showing out of a few thousand frames was always the slowest part of every trip, so I automated it and tied it back to the data analysis I study.",
+        p1: "A 3D globe archive you can spin and zoom into",
+        p2: "Three tools: culling shaken frames, EXIF analysis, framing",
+        p3: "Everything runs in the browser — no photo is ever uploaded",
+        cta: "Take a look",
+        repo: "GitHub",
+      },
       career: {
         meta: "Career",
         heading: "Career",
@@ -390,6 +423,7 @@
     setText("nav-about", t.nav.about);
     setText("nav-skills", t.nav.skills);
     setText("nav-works", t.nav.works);
+    setText("nav-hobby", t.nav.hobby);
     setText("nav-career", t.nav.career);
     setText("nav-contact", t.nav.contact);
 
@@ -470,6 +504,17 @@
     setText("g3-cap", t.works.caps.g3);
 
     /* --- Career --- */
+    /* --- 趣味 --- */
+    setText("hobby-meta", t.hobby.meta);
+    setText("hobby-heading", t.hobby.heading);
+    setText("hobby-title", t.hobby.title);
+    setText("hobby-desc", t.hobby.desc);
+    setText("hobby-p1", t.hobby.p1);
+    setText("hobby-p2", t.hobby.p2);
+    setText("hobby-p3", t.hobby.p3);
+    setText("hobby-cta", t.hobby.cta);
+    setText("hobby-repo", t.hobby.repo);
+
     setText("career-meta", t.career.meta);
     setText("career-heading", t.career.heading);
     for (i = 0; i < t.career.items.length; i++) {

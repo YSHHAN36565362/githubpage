@@ -726,3 +726,65 @@ body.anime-on .progress-bar { transition: none; }
   .js-pulse { animation: none; }
   * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+
+/* ==================================================================
+   Hobby — 취미(사진·여행) 포트폴리오 입구
+   본문은 별도 저장소(shutterlog)에 있고 여기서는 카드 하나만 둡니다.
+   ================================================================== */
+.hobby-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 34px;
+  align-items: center;
+  padding: 34px 36px;
+  background: var(--gray);
+  border-radius: 3px;
+}
+
+/* 왼쪽 장식 — 이미지 파일 없이 CSS 로만 만든 지구본입니다.
+   (이미지를 추가하면 로딩 실패 시 빈 칸이 남습니다) */
+.hobby-visual { position: relative; width: 160px; height: 160px; margin: 0 auto; }
+.hobby-globe {
+  position: absolute; inset: 0; border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, #6ab8f6 0%, var(--primary) 45%, #1b6fb5 100%);
+  box-shadow: inset -14px -14px 30px rgba(0,0,0,.22), 0 12px 30px rgba(44,152,240,.28);
+  overflow: hidden;
+}
+.hobby-globe::before,
+.hobby-globe::after {
+  content: ''; position: absolute; left: -10%; right: -10%;
+  border-top: 1px solid rgba(255,255,255,.35); border-radius: 50%;
+}
+.hobby-globe::before { top: 34%; height: 32%; }
+.hobby-globe::after  { top: 58%; height: 24%; }
+
+.hobby-pin {
+  position: absolute; width: 9px; height: 9px; border-radius: 50%;
+  background: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,.35);
+}
+.hobby-pin-1 { top: 34%; left: 66%; }
+.hobby-pin-2 { top: 45%; left: 28%; }
+.hobby-pin-3 { top: 60%; left: 52%; background: var(--c5); box-shadow: 0 0 0 3px rgba(47,164,153,.35); }
+
+.hobby-body h3 { font-size: 22px; margin-bottom: .5em; }
+.hobby-body p  { color: var(--body); margin-bottom: 1.1em; }
+
+.hobby-points { margin: 0 0 1.6em; }
+.hobby-points li {
+  position: relative; padding-left: 20px; margin-bottom: .35em;
+  color: var(--dim); font-size: 14px;
+}
+.hobby-points li::before {
+  content: ''; position: absolute; left: 0; top: .85em;
+  width: 8px; height: 1px; background: var(--primary);
+}
+
+.hobby-cta { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
+
+@media (max-width: 768px) {
+  .hobby-card { grid-template-columns: 1fr; gap: 22px; padding: 26px 22px; text-align: center; }
+  .hobby-points { text-align: left; display: inline-block; }
+  .hobby-cta { justify-content: center; }
+}

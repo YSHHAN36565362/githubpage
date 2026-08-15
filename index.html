@@ -14,7 +14,7 @@
 
 <!-- ?v= 는 캐시 무효화용입니다. style.css / script.js 를 고칠 때마다 숫자를 올리세요.
      (GitHub Pages 가 예전 CSS 를 계속 내려주는 문제를 막습니다.) -->
-<link rel="stylesheet" href="style.css?v=7" />
+<link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
 
@@ -51,6 +51,7 @@
           <li><a href="#about"   data-nav="about"   id="nav-about">About</a></li>
           <li><a href="#skills"  data-nav="skills"  id="nav-skills">Skills</a></li>
           <li><a href="#works"   data-nav="works"   id="nav-works">Works</a></li>
+          <li><a href="#hobby"   data-nav="hobby"   id="nav-hobby">Hobby</a></li>
           <li><a href="#career"  data-nav="career"  id="nav-career">Career</a></li>
           <li><a href="#contact" data-nav="contact" id="nav-contact">Contact</a></li>
         </ul>
@@ -358,6 +359,39 @@
       </article>
     </section>
 
+
+    <!-- ------------------------------------------------ Hobby -->
+    <!-- 취미(사진·여행) 포트폴리오는 별도 저장소(shutterlog)에 있습니다.
+         여기서는 입구만 두고, 본문은 그쪽에서 보여 줍니다. -->
+    <section id="hobby" class="section" data-section="hobby">
+      <div class="heading-block reveal">
+        <span class="heading-meta" id="hobby-meta">Hobby</span>
+        <h2 class="section-heading" id="hobby-heading">趣味</h2>
+      </div>
+
+      <div class="hobby-card reveal">
+        <div class="hobby-visual" aria-hidden="true">
+          <span class="hobby-globe"></span>
+          <span class="hobby-pin hobby-pin-1"></span>
+          <span class="hobby-pin hobby-pin-2"></span>
+          <span class="hobby-pin hobby-pin-3"></span>
+        </div>
+        <div class="hobby-body">
+          <h3 id="hobby-title">写真と旅 — Shutterlog</h3>
+          <p id="hobby-desc">趣味は写真です。旅から帰るたびに数千枚の中から見せられる十数枚を選ぶ作業を、専攻のデータ分析と結びつけて自動化しました。</p>
+          <ul class="hobby-points">
+            <li id="hobby-p1">回して近づける 3D 地球儀の旅アーカイブ</li>
+            <li id="hobby-p2">ブレたカットの選別・EXIF 分析・額装の 3 ツール</li>
+            <li id="hobby-p3">すべてブラウザ内で動作（写真は送信されません）</li>
+          </ul>
+          <p class="hobby-cta">
+            <a class="btn btn-primary" href="https://yshhan36565362.github.io/shutterlog/" target="_blank" rel="noopener" id="hobby-cta">見に行く</a>
+            <a class="btn btn-outline" href="https://github.com/YSHHAN36565362/shutterlog" target="_blank" rel="noopener" id="hobby-repo">GitHub</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- ------------------------------------------------ Career -->
     <section id="career" class="section" data-section="career">
       <div class="heading-block reveal">
@@ -505,6 +539,6 @@
      외부 CDN 을 쓰다가 페이지 전체가 죽은 적이 있어서입니다. (DESIGN.md 7절)
      이 파일이 없어도 사이트는 100% 동작합니다. 애니메이션 연출만 빠집니다. -->
 <script src="anime.min.js?v=7"></script>
-<script src="script.js?v=7"></script>
+<script src="script.js?v=8"></script>
 </body>
 </html>
