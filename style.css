@@ -435,56 +435,57 @@ body.anime-on .progress-bar { transition: none; }
 }
 
 /* ==================================================================
-   Work — 프로젝트 타일 + 상세
+   Work — 썸네일 카드 + 상세
+   썸네일 자체가 제목·수치를 담고 있으므로, 예전처럼 hover 오버레이로
+   덮지 않고 항상 그대로 보여줍니다. 링크 버튼은 썸네일 아래에 상시 노출해
+   "버튼이 안 보인다" 문제를 없앴습니다.
    ================================================================== */
 .work-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
   margin-bottom: 5em;
 }
-.project {
-  position: relative; display: block;
-  height: 300px; width: 100%;
-  background-size: cover; background-position: center top; background-repeat: no-repeat;
+
+.project { display: flex; flex-direction: column; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+.project-thumb {
+  display: block; width: 100%;
+  aspect-ratio: 16 / 10;                 /* 썸네일 원본 비율(1000×625)과 동일 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: var(--gray);
+  border-radius: 4px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.10);
+  transition: transform .35s var(--ease), box-shadow .35s ease;
 }
-.project-desc {
-  position: absolute; inset: 0;
-  background: var(--primary);
-  opacity: 0; transition: opacity .35s ease;
+.project-thumb:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(0,0,0,.20);
 }
-.project:nth-child(2) .project-desc { background: var(--c5); }
-.project-con { padding: 26px; height: 100%; display: flex; flex-direction: column; }
-.project-no {
-  font-family: var(--font-heading);
-  font-size: 13px; font-weight: 700; letter-spacing: 3px;
-  color: rgba(255,255,255,.75); margin-bottom: 12px;
+
+.project-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap; margin-top: 14px;
 }
-.project-desc h3 {
-  font-family: var(--font-primary);
-  font-size: 16px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
-  color: #fff; line-height: 1.6; margin-bottom: 8px;
-  transform: translate3d(0,-15px,0); transition: transform .35s ease;
+.project-period {
+  font-size: 12px; letter-spacing: 1px; color: var(--meta);
 }
-.project-period { font-size: 12px; color: rgba(255,255,255,.75); letter-spacing: 1px; }
-.project-desc p {
-  font-size: 13px; color: rgba(255,255,255,.85); margin: 10px 0 0;
-  transform: translate3d(0,15px,0); transition: transform .35s ease;
-}
-.project-links { margin-top: auto; display: flex; gap: 8px; }
+.project-links { display: flex; gap: 8px; flex-wrap: wrap; }
 .project-links a {
+  display: inline-flex; align-items: center; gap: 6px;
   font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  color: #16202e; background: #fff;
-  padding: 8px 15px; border-radius: 3px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.22);
-  transition: transform .25s var(--ease), box-shadow .25s ease;
+  color: #fff; background: var(--primary);
+  padding: 8px 14px; border-radius: 3px;
+  transition: transform .25s var(--ease), background .25s ease;
 }
-.project-links a:hover {
-  color: #000; transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,.3);
-}
-.project:hover .project-desc { opacity: 1; }
-.project:hover .project-desc h3,
-.project:hover .project-desc p { transform: translate3d(0,0,0); }
+.project-links a:hover { color: #fff; background: #44a4f2; transform: translateY(-2px); }
+.project-links a.is-demo { background: var(--c5); }
+.project-links a.is-demo:hover { background: #278d84; }
 
 /* 프로젝트 상세 */
 .detail {
@@ -509,11 +510,7 @@ body.anime-on .progress-bar { transition: none; }
 .shot { margin: 0 0 1.8em; max-width: 640px; }
 .shot img {
   display: block; width: 100%;
-  /* 원본 아래쪽에 다음 슬라이드의 제목이 살짝 걸려 있어 비율로 잘라냅니다.
-     이미지를 교체하면 이 값을 원본 비율에 맞게 조정하세요. */
-  aspect-ratio: 1.7;
-  height: auto;
-  object-fit: cover; object-position: top center;
+  height: auto;                      /* 원본 비율 그대로 (잘라내지 않음) */
   border: 1px solid var(--gray-line); border-radius: 3px;
   background: var(--gray);
 }
@@ -708,12 +705,7 @@ body.anime-on .progress-bar { transition: none; }
   .counters { margin: 0 -1.25em 4em; padding: 3em 1.25em; }
   .counter { font-size: 30px; }
 
-  .project { height: 240px; }
-  /* 터치 기기에는 hover 가 없으므로 설명 패널을 항상 보여줍니다.
-     배경 사진이 밝은 경우에도 흰 글씨가 읽히도록 충분히 어둡게 덮습니다. */
-  .project-desc { opacity: 1; background: rgba(0,0,0,.74); }
-  .project:nth-child(2) .project-desc { background: rgba(0,0,0,.74); }
-  .project-desc h3, .project-desc p { transform: none; }
+  .project-foot { justify-content: flex-start; }
 
   .detail { grid-template-columns: 1fr; gap: 6px; }
   .detail-no { font-size: 20px; }

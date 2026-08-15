@@ -14,7 +14,7 @@
 
 <!-- ?v= 는 캐시 무효화용입니다. style.css / script.js 를 고칠 때마다 숫자를 올리세요.
      (GitHub Pages 가 예전 CSS 를 계속 내려주는 문제를 막습니다.) -->
-<link rel="stylesheet" href="style.css?v=6" />
+<link rel="stylesheet" href="style.css?v=7" />
 </head>
 <body>
 
@@ -236,32 +236,44 @@
       </div>
 
       <div class="work-grid">
-        <article class="project reveal" style="background-image:url(images/project-kobert.jpg)">
-          <div class="project-desc">
-            <div class="project-con">
-              <span class="project-no">01</span>
-              <h3 id="p1-title">学術論文 研究分野 自動分類モデル</h3>
-              <span class="project-period" id="p1-period">2025.10 – 2025.11</span>
-              <p id="p1-tag">KoBERT ・ PyTorch ・ Accuracy 96.9%</p>
-              <span class="project-links">
-                <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier" target="_blank" rel="noopener" id="p1-link">GitHub</a>
-              </span>
-            </div>
+        <article class="project reveal">
+          <a class="project-thumb"
+             href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier"
+             target="_blank" rel="noopener"
+             style="background-image:url(images/project-kobert.jpg)">
+            <span class="sr-only" id="p1-title">学術論文 研究分野 自動分類モデル</span>
+          </a>
+          <div class="project-foot">
+            <span class="project-period" id="p1-period">2025.10 – 2025.11</span>
+            <span class="project-links">
+              <a href="https://github.com/YSHHAN36565362/univ-data-science-portfolio/tree/main/2025-2/kobert-paper-classifier"
+                 target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.73.5.99 5.24.99 11.5c0 4.85 3.15 8.96 7.51 10.41.55.1.75-.24.75-.53v-1.86c-3.06.67-3.7-1.48-3.7-1.48-.5-1.28-1.23-1.62-1.23-1.62-1-.69.08-.67.08-.67 1.1.08 1.68 1.14 1.68 1.14.98 1.69 2.58 1.2 3.21.92.1-.72.39-1.2.7-1.48-2.44-.28-5.01-1.22-5.01-5.45 0-1.2.43-2.19 1.13-2.96-.11-.28-.49-1.4.11-2.92 0 0 .93-.3 3.03 1.13a10.5 10.5 0 0 1 5.52 0c2.1-1.43 3.02-1.13 3.02-1.13.6 1.52.22 2.64.11 2.92.71.77 1.13 1.76 1.13 2.96 0 4.24-2.58 5.17-5.03 5.44.4.34.75 1.01.75 2.04v3.03c0 .29.2.64.76.53a10.53 10.53 0 0 0 7.5-10.41C23.01 5.24 18.27.5 12 .5z"/></svg>
+                <span id="p1-link">GitHub</span>
+              </a>
+            </span>
           </div>
         </article>
 
-        <article class="project reveal" style="background-image:url(images/project-wordapp.jpg)">
-          <div class="project-desc">
-            <div class="project-con">
-              <span class="project-no">02</span>
-              <h3 id="p2-title">単語暗記Webアプリ</h3>
-              <span class="project-period" id="p2-period">2026.07 – 現在</span>
-              <p id="p2-tag">Streamlit ・ 生成AI API ・ GitHub Contents API</p>
-              <span class="project-links">
-                <a href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener" id="p2-link">GitHub</a>
-                <a href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener" id="p2-link-demo">Live Demo</a>
-              </span>
-            </div>
+        <article class="project reveal">
+          <a class="project-thumb"
+             href="https://kmove13wordtest.streamlit.app/"
+             target="_blank" rel="noopener"
+             style="background-image:url(images/project-wordapp.jpg)">
+            <span class="sr-only" id="p2-title">単語暗記Webアプリ</span>
+          </a>
+          <div class="project-foot">
+            <span class="project-period" id="p2-period">2026.07 – 現在</span>
+            <span class="project-links">
+              <a class="is-demo" href="https://kmove13wordtest.streamlit.app/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                <span id="p2-link-demo">Live Demo</span>
+              </a>
+              <a href="https://github.com/YSHHAN36565362/word_test" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.73.5.99 5.24.99 11.5c0 4.85 3.15 8.96 7.51 10.41.55.1.75-.24.75-.53v-1.86c-3.06.67-3.7-1.48-3.7-1.48-.5-1.28-1.23-1.62-1.23-1.62-1-.69.08-.67.08-.67 1.1.08 1.68 1.14 1.68 1.14.98 1.69 2.58 1.2 3.21.92.1-.72.39-1.2.7-1.48-2.44-.28-5.01-1.22-5.01-5.45 0-1.2.43-2.19 1.13-2.96-.11-.28-.49-1.4.11-2.92 0 0 .93-.3 3.03 1.13a10.5 10.5 0 0 1 5.52 0c2.1-1.43 3.02-1.13 3.02-1.13.6 1.52.22 2.64.11 2.92.71.77 1.13 1.76 1.13 2.96 0 4.24-2.58 5.17-5.03 5.44.4.34.75 1.01.75 2.04v3.03c0 .29.2.64.76.53a10.53 10.53 0 0 0 7.5-10.41C23.01 5.24 18.27.5 12 .5z"/></svg>
+                <span id="p2-link">GitHub</span>
+              </a>
+            </span>
           </div>
         </article>
       </div>
@@ -492,7 +504,7 @@
 <!-- anime.js v4.5.0 — CDN 이 아니라 저장소에 직접 포함(vendored)했습니다.
      외부 CDN 을 쓰다가 페이지 전체가 죽은 적이 있어서입니다. (DESIGN.md 7절)
      이 파일이 없어도 사이트는 100% 동작합니다. 애니메이션 연출만 빠집니다. -->
-<script src="anime.min.js?v=6"></script>
-<script src="script.js?v=6"></script>
+<script src="anime.min.js?v=7"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>
