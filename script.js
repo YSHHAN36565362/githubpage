@@ -119,7 +119,9 @@
         p2: "ブレたカットの選別・EXIF 分析・額装の 3 ツール",
         p3: "すべてブラウザ内で動作（写真は送信されません）",
         cta: "見に行く",
-        repo: "GitHub",
+        tools: "ツールを試す",
+        more: "旅 {n} 件すべてを地球儀で見る →",
+        stats: { trips: "旅", countries: "か国", cities: "都市", photos: "枚" },
       },
       career: {
         meta: "Career",
@@ -237,7 +239,9 @@
         p2: "흔들린 컷 선별 · EXIF 분석 · 액자 3종 도구",
         p3: "전부 브라우저 안에서 동작 (사진은 전송되지 않습니다)",
         cta: "보러 가기",
-        repo: "GitHub",
+        tools: "도구 써보기",
+        more: "여행 {n}건 전부를 지구본으로 보기 →",
+        stats: { trips: "여행", countries: "나라", cities: "도시", photos: "장" },
       },
       career: {
         meta: "Career",
@@ -355,7 +359,9 @@
         p2: "Three tools: culling shaken frames, EXIF analysis, framing",
         p3: "Everything runs in the browser — no photo is ever uploaded",
         cta: "Take a look",
-        repo: "GitHub",
+        tools: "Try the tools",
+        more: "See all {n} trips on the globe →",
+        stats: { trips: "Trips", countries: "Countries", cities: "Cities", photos: "Photos" },
       },
       career: {
         meta: "Career",
@@ -403,6 +409,70 @@
       node.textContent = items[i];
       el.appendChild(node);
     }
+  }
+
+  /* ================================================================
+     Hobby 미리보기
+     photo/build.py 가 만든 photo/data/preview.js 를 읽어
+     통계 숫자와 대표 사진 타일을 채웁니다.
+
+     preview.js 가 없어도(= 아직 build.py 를 안 돌렸거나 로드 실패)
+     index.html 에 적힌 정적 문구가 그대로 남습니다. 절대 규칙 5번.
+     ================================================================ */
+  function fmtTripRange(a, b) {
+    if (!a) return "";
+    var s = a.replace(/-/g, ".");
+    if (!b || b === a) return s.slice(0, 7);      /* 종료일이 없으면 연-월까지만 */
+    var pa = a.split("-"), pb = b.split("-");
+    if (pa[0] === pb[0] && pa[1] === pb[1]) return s + "–" + pb[2];
+    if (pa[0] === pb[0]) return s + "–" + pb[1] + "." + pb[2];
+    return s + " – " + b.replace(/-/g, ".");
+  }
+
+  function renderHobbyPreview(lang, t) {
+    var P = window.SHUTTERLOG_PREVIEW;
+    if (!P) return;
+    var i, el;
+
+    /* --- 통계 4칸 --- */
+    var bs = document.querySelectorAll("#hobby-stats [data-hs]");
+    for (i = 0; i < bs.length; i++) {
+      var key = bs[i].getAttribute("data-hs");
+      var val = P.totals ? P.totals[key] : null;
+      if (typeof val === "number") bs[i].textContent = String(val);
+      setText("hs-l-" + key, t.hobby.stats[key]);
+    }
+    /* 사진이 0장이면 "0枚" 대신 칸 자체를 숨깁니다 */
+    el = document.getElementById("hs-photos-item");
+    if (el) {
+      var n = P.totals && P.totals.photos;
+      if (n > 0) el.removeAttribute("hidden");
+      else el.setAttribute("hidden", "");
+    }
+
+    /* --- 대표 사진 타일 --- */
+    var byFolder = {};
+    for (i = 0; i < P.trips.length; i++) byFolder[P.trips[i].folder] = P.trips[i];
+
+    var tiles = document.querySelectorAll("#hobby-strip .hobby-shot");
+    for (i = 0; i < tiles.length; i++) {
+      var trip = byFolder[tiles[i].getAttribute("data-trip")];
+      if (!trip) continue;
+      var img = tiles[i].querySelector(".hobby-shot-img");
+      if (img && trip.cover) img.style.backgroundImage = 'url("' + trip.cover + '")';
+      var ttl = tiles[i].querySelector("[data-shot-title]");
+      if (ttl) ttl.textContent = trip.title[lang] || trip.title.en || trip.folder;
+      var whn = tiles[i].querySelector("[data-shot-when]");
+      if (whn) {
+        var line = fmtTripRange(trip.date, trip.endDate);
+        if (trip.count > 0) line += "  ·  " + trip.count + " " + t.hobby.stats.photos;
+        whn.textContent = line;
+      }
+    }
+
+    /* --- 전체 보기 링크 --- */
+    el = document.getElementById("hobby-more");
+    if (el && P.totals) el.textContent = t.hobby.more.replace("{n}", P.totals.trips);
   }
 
   function render(lang) {
@@ -513,7 +583,8 @@
     setText("hobby-p2", t.hobby.p2);
     setText("hobby-p3", t.hobby.p3);
     setText("hobby-cta", t.hobby.cta);
-    setText("hobby-repo", t.hobby.repo);
+    setText("hobby-tools", t.hobby.tools);
+    renderHobbyPreview(lang, t);
 
     setText("career-meta", t.career.meta);
     setText("career-heading", t.career.heading);

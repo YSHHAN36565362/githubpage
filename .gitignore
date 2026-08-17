@@ -1,5 +1,49 @@
-# 참고용으로 받아둔 디자인 템플릿 (약 4MB, 사이트 동작에는 사용되지 않음)
+# ─────────────────────────────────────────────────────────────
+# 참고용 디자인 템플릿 (약 4MB, 사이트 동작에는 쓰이지 않음)
 jackson-master/
 
 # macOS
 .DS_Store
+Thumbs.db
+
+# 개발 도구
+node_modules/
+package.json
+package-lock.json
+__pycache__/
+*.pyc
+.venv/
+
+# ─────────────────────────────────────────────────────────────
+# 원본 사진은 저장소에 올리지 않습니다.
+#
+# 이유: 정리된 하루치 폴더가 25장에 300MB 수준이라, 원본을 그대로 올리면
+#       GitHub Pages 권장 용량(1GB)을 몇 번의 여행만에 넘깁니다.
+#
+# 대신 build.py 가 photos/ 를 읽어 thumbs/ 에 웹용 사본 두 장을 만듭니다.
+#   - *_600.jpg   갤러리 타일 · 지구본 마커   (장당 약 40–80KB)
+#   - *_1600.jpg  라이트박스 확대            (장당 약 200–400KB)
+# 사이트는 thumbs/ 만 있으면 완전히 동작합니다.
+# 여행 9건 × 15장 ≈ 135장 ≈ 40MB 정도로, 여유가 충분합니다.
+#
+# 원본은 맥북의 photo/ 폴더에 그대로 두시고, 사진을 추가한 뒤
+#   cd photo && python3 build.py
+# 를 돌린 다음 thumbs/ 와 data/ 만 커밋하시면 됩니다.
+# ─────────────────────────────────────────────────────────────
+photo/photos/**
+!photo/photos/README.md
+!photo/photos/*/
+!photo/photos/**/.gitkeep
+
+# 분석 결과물 (재생성 가능)
+photo/analysis/output/
+
+# 도구가 내보낸 파일이 저장소에 섞이지 않게
+shutterlog-cull-*.txt
+shutterlog-cull-*.sh
+shutterlog-exif-*.csv
+shutterlog-*.png
+shutterlog-*.jpg
+
+# 삭제 대기 (Cowork 는 파일을 지울 수 없어 여기로 옮깁니다 — 확인 후 통째로 버리세요)
+_to_delete/

@@ -14,7 +14,7 @@
 
 <!-- ?v= 는 캐시 무효화용입니다. style.css / script.js 를 고칠 때마다 숫자를 올리세요.
      (GitHub Pages 가 예전 CSS 를 계속 내려주는 문제를 막습니다.) -->
-<link rel="stylesheet" href="style.css?v=8" />
+<link rel="stylesheet" href="style.css?v=9" />
 </head>
 <body>
 
@@ -361,8 +361,11 @@
 
 
     <!-- ------------------------------------------------ Hobby -->
-    <!-- 취미(사진·여행) 포트폴리오는 별도 저장소(shutterlog)에 있습니다.
-         여기서는 입구만 두고, 본문은 그쪽에서 보여 줍니다. -->
+    <!-- 사진·여행 포트폴리오는 같은 저장소의 photo/ 안에 있습니다.
+         여기서는 소개 + 통계 + 대표 사진 미리보기까지 보여 주고,
+         본문(지구본·앨범·도구)은 photo/ 로 넘깁니다.
+         타일의 표지 사진과 제목은 script.js 가 photo/data/preview.js 에서 채웁니다.
+         preview.js 가 없거나 JS 가 죽어도 아래 정적 문구가 그대로 남습니다. -->
     <section id="hobby" class="section" data-section="hobby">
       <div class="heading-block reveal">
         <span class="heading-meta" id="hobby-meta">Hobby</span>
@@ -385,11 +388,60 @@
             <li id="hobby-p3">すべてブラウザ内で動作（写真は送信されません）</li>
           </ul>
           <p class="hobby-cta">
-            <a class="btn btn-primary" href="https://yshhan36565362.github.io/shutterlog/" target="_blank" rel="noopener" id="hobby-cta">見に行く</a>
-            <a class="btn btn-outline" href="https://github.com/YSHHAN36565362/shutterlog" target="_blank" rel="noopener" id="hobby-repo">GitHub</a>
+            <a class="btn btn-primary" href="photo/" id="hobby-cta">見に行く</a>
+            <a class="btn btn-outline" href="photo/tools/stats.html" id="hobby-tools">ツールを試す</a>
           </p>
         </div>
       </div>
+
+      <ul class="hobby-stats reveal" id="hobby-stats">
+        <li><b data-hs="trips">9</b><span id="hs-l-trips">旅</span></li>
+        <li><b data-hs="countries">11</b><span id="hs-l-countries">か国</span></li>
+        <li><b data-hs="cities">24</b><span id="hs-l-cities">都市</span></li>
+        <li id="hs-photos-item" hidden><b data-hs="photos">0</b><span id="hs-l-photos">枚</span></li>
+      </ul>
+
+      <div class="hobby-strip reveal" id="hobby-strip">
+        <a class="hobby-shot hobby-shot--wide" href="photo/trip.html?id=2025-08_europe" data-trip="2025-08_europe">
+          <span class="hobby-shot-img" aria-hidden="true"></span>
+          <span class="hobby-shot-cap">
+            <b data-shot-title>ヨーロッパ 8 か国 19 日</b>
+            <em data-shot-when>2025.08.19–09.06</em>
+          </span>
+        </a>
+        <a class="hobby-shot" href="photo/trip.html?id=2026-01_kanto" data-trip="2026-01_kanto">
+          <span class="hobby-shot-img" aria-hidden="true"></span>
+          <span class="hobby-shot-cap">
+            <b data-shot-title>関東</b>
+            <em data-shot-when>2026.01</em>
+          </span>
+        </a>
+        <a class="hobby-shot" href="photo/trip.html?id=2025-12_hongkong" data-trip="2025-12_hongkong">
+          <span class="hobby-shot-img" aria-hidden="true"></span>
+          <span class="hobby-shot-cap">
+            <b data-shot-title>香港（2 回目）</b>
+            <em data-shot-when>2025.12</em>
+          </span>
+        </a>
+        <a class="hobby-shot" href="photo/trip.html?id=2025-06_kansai" data-trip="2025-06_kansai">
+          <span class="hobby-shot-img" aria-hidden="true"></span>
+          <span class="hobby-shot-cap">
+            <b data-shot-title>関西</b>
+            <em data-shot-when>2025.06</em>
+          </span>
+        </a>
+        <a class="hobby-shot" href="photo/trip.html?id=2025-01_tokyo" data-trip="2025-01_tokyo">
+          <span class="hobby-shot-img" aria-hidden="true"></span>
+          <span class="hobby-shot-cap">
+            <b data-shot-title>東京（2 回目）</b>
+            <em data-shot-when>2025.01.17–24</em>
+          </span>
+        </a>
+      </div>
+
+      <p class="hobby-more reveal">
+        <a href="photo/" id="hobby-more">旅 9 件すべてを地球儀で見る →</a>
+      </p>
     </section>
 
     <!-- ------------------------------------------------ Career -->
@@ -539,6 +591,9 @@
      외부 CDN 을 쓰다가 페이지 전체가 죽은 적이 있어서입니다. (DESIGN.md 7절)
      이 파일이 없어도 사이트는 100% 동작합니다. 애니메이션 연출만 빠집니다. -->
 <script src="anime.min.js?v=7"></script>
-<script src="script.js?v=8"></script>
+<!-- 사진 미리보기 데이터. photo/build.py 가 만듭니다.
+     없어도 Hobby 섹션은 정적 문구 그대로 표시됩니다. -->
+<script src="photo/data/preview.js?v=1"></script>
+<script src="script.js?v=9"></script>
 </body>
 </html>
