@@ -849,6 +849,67 @@ body.anime-on .progress-bar { transition: none; }
 .hobby-shot--wide .hobby-shot-cap b { font-size: 17px; }
 .hobby-shot--wide .hobby-shot-cap em { font-size: 11px; }
 
+/* ── Hobby 하위 블록 (여행 연표 · 도구 3종) ─────────────────────── */
+.hobby-block { margin-top: 3.4em; }
+.hobby-sub {
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--meta); font-weight: 700; margin-bottom: 1.4em;
+}
+
+/* 연표 — 사진이 아직 없어도 "9번 다녀왔다" 는 사실이 바로 읽히도록 */
+.hobby-timeline {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0 34px; margin: 0; padding: 0; list-style: none;
+  counter-reset: none;
+}
+.hobby-timeline li {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 11px 0; border-bottom: 1px solid var(--gray-line);
+}
+.hobby-timeline b {
+  flex-shrink: 0; width: 62px;
+  font-size: 11px; letter-spacing: .5px; color: var(--primary); font-weight: 700;
+}
+.hobby-timeline span { font-size: 13.5px; color: var(--body); line-height: 1.4; }
+
+/* 도구 3종 */
+.hobby-toolrow {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  margin: 0; padding: 0; list-style: none;
+}
+.hobby-toolrow a {
+  display: block; height: 100%; padding: 20px 20px 22px;
+  background: var(--gray); border-radius: 3px; text-decoration: none;
+  border-top: 2px solid transparent;
+  transition: transform .3s var(--ease), box-shadow .3s ease, border-color .3s ease;
+}
+.hobby-toolrow li:nth-child(1) a { border-top-color: var(--c2); }
+.hobby-toolrow li:nth-child(2) a { border-top-color: var(--c1); }
+.hobby-toolrow li:nth-child(3) a { border-top-color: var(--c5); }
+.hobby-toolrow a:hover {
+  transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+.hobby-toolrow b {
+  display: block; font-family: var(--font-heading);
+  font-size: 13px; color: var(--meta); margin-bottom: 6px;
+}
+.hobby-toolrow strong {
+  display: block; font-size: 15px; color: #000; margin-bottom: .5em; font-weight: 700;
+}
+.hobby-toolrow span { display: block; font-size: 13px; color: var(--dim); line-height: 1.65; }
+
+.hobby-privacy {
+  margin: 1.2em 0 0; padding-left: 14px;
+  border-left: 2px solid var(--c5);
+  font-size: 12.5px; color: var(--dim);
+}
+
+@media (max-width: 768px) {
+  .hobby-block { margin-top: 2.4em; }
+  .hobby-timeline { grid-template-columns: 1fr; gap: 0; }
+  .hobby-toolrow { grid-template-columns: 1fr; }
+}
+
 .hobby-more { margin: 1.6em 0 0; }
 .hobby-more a {
   font-size: 12px; letter-spacing: 2px; text-transform: uppercase;

@@ -64,7 +64,8 @@
           { t: "作る前に使う人へ聞く", d: "「いつ・どこで・何で使うのか」を先に確認します。完成してから見せるのではなく、途中で一度使ってもらいます。" },
         ],
       },
-      counters: ["学内学術祭 受賞", "無遅刻・無欠席", "空軍 交代勤務・班長", "JLPT 日本語"],
+      counters: ["学内学術祭 受賞", "無遅刻・無欠席", "空軍 兵長 服務完了", "JLPT 日本語"],
+      counterUnits: { years: "年", months: "ヶ月" },
       skills: {
         meta: "Skills",
         heading: "技術スタック",
@@ -119,6 +120,12 @@
         p2: "ブレたカットの選別・EXIF 分析・額装の 3 ツール",
         p3: "すべてブラウザ内で動作（写真は送信されません）",
         cta: "見に行く",
+        timeline: "旅の記録",
+        toolsTitle: "作ったツール",
+        privacy: "3 つとも写真をサーバーに送りません。すべてブラウザの中だけで処理されます。",
+        t1: { t: "選別", d: "似たカットをまとめ、グループ内の相対比較でいちばんシャープな一枚を提案します。消すのは人間です。" },
+        t2: { t: "分析", d: "焦点距離・絞り・ISO・時間帯の分布に加えて、どの設定で失敗しやすいかを出します。" },
+        t3: { t: "額装", d: "機材と設定を余白に刻む額縁 3 種。ウォーターマークの位置は明るさを測って自動で決めます。" },
         tools: "ツールを試す",
         more: "旅 {n} 件すべてを地球儀で見る →",
         stats: { trips: "旅", countries: "か国", cities: "都市", photos: "枚" },
@@ -184,7 +191,8 @@
           { t: "만들기 전에 쓰는 사람에게 묻는다", d: "“언제·어디서·무엇으로 쓰는지”를 먼저 확인합니다. 완성 후 보여주는 대신 도중에 한 번 써보게 합니다." },
         ],
       },
-      counters: ["교내 학술제 수상", "무지각·무결석", "공군 교대근무·분대장", "JLPT 일본어"],
+      counters: ["교내 학술제 수상", "무지각·무결석", "공군 병장 복무 완료", "JLPT 일본어"],
+      counterUnits: { years: "년", months: "개월" },
       skills: {
         meta: "Skills",
         heading: "기술 스택",
@@ -239,6 +247,12 @@
         p2: "흔들린 컷 선별 · EXIF 분석 · 액자 3종 도구",
         p3: "전부 브라우저 안에서 동작 (사진은 전송되지 않습니다)",
         cta: "보러 가기",
+        timeline: "여행 기록",
+        toolsTitle: "만든 도구",
+        privacy: "셋 다 사진을 서버로 보내지 않습니다. 전부 브라우저 안에서만 처리됩니다.",
+        t1: { t: "선별", d: "비슷한 컷을 묶고, 그룹 안의 상대 비교로 가장 선명한 한 장을 제안합니다. 지우는 건 사람입니다." },
+        t2: { t: "분석", d: "초점거리·조리개·ISO·시간대 분포에 더해, 어떤 설정에서 실패하기 쉬운지를 냅니다." },
+        t3: { t: "액자", d: "장비와 설정을 여백에 새기는 액자 3종. 워터마크 위치는 밝기를 재서 자동으로 정합니다." },
         tools: "도구 써보기",
         more: "여행 {n}건 전부를 지구본으로 보기 →",
         stats: { trips: "여행", countries: "나라", cities: "도시", photos: "장" },
@@ -304,7 +318,8 @@
           { t: "Ask the user before building", d: "I confirm when, where, and on what device it will be used — and let people try it midway rather than only showing the finished thing." },
         ],
       },
-      counters: ["Data Sci. Festival", "Yrs Perfect Attendance", "Months, Air Force Squad Lead", "JLPT Japanese"],
+      counters: ["Data Sci. Festival", "Yrs Perfect Attendance", "Months, Air Force (Sergeant)", "JLPT Japanese"],
+      counterUnits: { years: "", months: "" },
       skills: {
         meta: "Skills",
         heading: "Tech Stack",
@@ -359,6 +374,12 @@
         p2: "Three tools: culling shaken frames, EXIF analysis, framing",
         p3: "Everything runs in the browser — no photo is ever uploaded",
         cta: "Take a look",
+        timeline: "Trip Log",
+        toolsTitle: "Tools I Built",
+        privacy: "None of the three send a photo anywhere. Everything runs inside the browser.",
+        t1: { t: "Cull", d: "Groups near-duplicate frames and proposes the sharpest one by relative comparison within the group. Deleting stays with the human." },
+        t2: { t: "Analyse", d: "Distributions of focal length, aperture, ISO and time of day — plus which settings I fail at most." },
+        t3: { t: "Frame", d: "Three frame styles that print the gear and settings in the margin. Watermark placement is chosen by measuring brightness." },
         tools: "Try the tools",
         more: "See all {n} trips on the globe →",
         stats: { trips: "Trips", countries: "Countries", cities: "Cities", photos: "Photos" },
@@ -470,6 +491,17 @@
       }
     }
 
+    /* --- 여행 연표 --- */
+    var rows = document.querySelectorAll("#hobby-timeline li");
+    for (i = 0; i < rows.length; i++) {
+      var tr2 = byFolder[rows[i].getAttribute("data-trip")];
+      if (!tr2) continue;
+      var when = rows[i].querySelector("b");
+      var what = rows[i].querySelector("span");
+      if (when) when.textContent = (tr2.date || "").slice(0, 7).replace("-", ".");
+      if (what) what.textContent = tr2.title[lang] || tr2.title.en || tr2.folder;
+    }
+
     /* --- 전체 보기 링크 --- */
     el = document.getElementById("hobby-more");
     if (el && P.totals) el.textContent = t.hobby.more.replace("{n}", P.totals.trips);
@@ -521,6 +553,19 @@
 
     /* --- 카운터 --- */
     for (i = 0; i < t.counters.length; i++) setText("counter-" + (i + 1), t.counters[i]);
+
+    /* 카운터의 단위(年 / ヶ月)도 언어에 맞춥니다.
+       영어는 라벨 쪽에 "Yrs" / "Months" 가 들어 있어 단위를 비웁니다.
+       화면의 숫자도 바로 최종값으로 다시 그립니다 — 스크롤로 다시 들어오면
+       runCounter() 가 새 data-suffix 로 애니메이션합니다. */
+    var units = document.querySelectorAll(".js-counter[data-unit]");
+    for (i = 0; i < units.length; i++) {
+      var u = t.counterUnits[units[i].getAttribute("data-unit")];
+      units[i].setAttribute("data-suffix", u);
+      units[i].textContent =
+        (units[i].getAttribute("data-prefix") || "") +
+        units[i].getAttribute("data-to") + u;
+    }
 
     /* --- Skills --- */
     setText("skills-meta", t.skills.meta);
@@ -584,6 +629,13 @@
     setText("hobby-p3", t.hobby.p3);
     setText("hobby-cta", t.hobby.cta);
     setText("hobby-tools", t.hobby.tools);
+    setText("hobby-timeline-title", t.hobby.timeline);
+    setText("hobby-tools-title", t.hobby.toolsTitle);
+    setText("hobby-privacy", t.hobby.privacy);
+    for (i = 1; i <= 3; i++) {
+      setText("ht" + i + "-t", t.hobby["t" + i].t);
+      setText("ht" + i + "-d", t.hobby["t" + i].d);
+    }
     renderHobbyPreview(lang, t);
 
     setText("career-meta", t.career.meta);

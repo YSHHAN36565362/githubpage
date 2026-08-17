@@ -14,7 +14,7 @@
 
 <!-- ?v= 는 캐시 무효화용입니다. style.css / script.js 를 고칠 때마다 숫자를 올리세요.
      (GitHub Pages 가 예전 CSS 를 계속 내려주는 문제를 막습니다.) -->
-<link rel="stylesheet" href="style.css?v=9" />
+<link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body>
 
@@ -159,12 +159,12 @@
           <span class="counter-label" id="counter-1">学内学術祭 受賞</span>
         </div>
         <div class="counter-item reveal">
-          <span class="counter js-counter" data-to="12" data-decimals="0" data-suffix="年">12年</span>
+          <span class="counter js-counter" data-to="12" data-decimals="0" data-suffix="年" data-unit="years">12年</span>
           <span class="counter-label" id="counter-2">無遅刻・無欠席</span>
         </div>
         <div class="counter-item reveal">
-          <span class="counter js-counter" data-to="19" data-decimals="0" data-suffix="ヶ月">19ヶ月</span>
-          <span class="counter-label" id="counter-3">空軍 交代勤務・班長</span>
+          <span class="counter js-counter" data-to="21" data-decimals="0" data-suffix="ヶ月" data-unit="months">21ヶ月</span>
+          <span class="counter-label" id="counter-3">空軍 兵長 服務完了</span>
         </div>
         <div class="counter-item reveal">
           <span class="counter js-counter" data-to="3" data-decimals="0" data-prefix="N">N3</span>
@@ -439,6 +439,52 @@
         </a>
       </div>
 
+      <!-- 여행 연표 — 9건 전부. script.js 가 preview.js 로 다시 채웁니다.
+           JS 가 죽어도 아래 9줄이 그대로 남습니다. -->
+      <div class="hobby-block reveal">
+        <h4 class="hobby-sub" id="hobby-timeline-title">旅の記録</h4>
+        <ol class="hobby-timeline" id="hobby-timeline">
+          <li data-trip="2024-01_tokyo"><b>2024.01</b><span>東京</span></li>
+          <li data-trip="2024-01_taipei"><b>2024.01</b><span>台北</span></li>
+          <li data-trip="2024-06_hongkong"><b>2024.06</b><span>香港</span></li>
+          <li data-trip="2024-06_sapporo"><b>2024.06</b><span>札幌</span></li>
+          <li data-trip="2025-01_tokyo"><b>2025.01</b><span>東京（2 回目）</span></li>
+          <li data-trip="2025-06_kansai"><b>2025.06</b><span>関西</span></li>
+          <li data-trip="2025-08_europe"><b>2025.08</b><span>ヨーロッパ 8 か国 19 日</span></li>
+          <li data-trip="2025-12_hongkong"><b>2025.12</b><span>香港（2 回目）</span></li>
+          <li data-trip="2026-01_kanto"><b>2026.01</b><span>関東</span></li>
+        </ol>
+      </div>
+
+      <!-- 도구 3종 — 취미가 아니라 "만든 것" 이라는 점이 보이도록 -->
+      <div class="hobby-block reveal">
+        <h4 class="hobby-sub" id="hobby-tools-title">作ったツール</h4>
+        <ul class="hobby-toolrow">
+          <li>
+            <a href="photo/tools/cull.html">
+              <b>01</b>
+              <strong id="ht1-t">選別</strong>
+              <span id="ht1-d">似たカットをまとめ、グループ内の相対比較でいちばんシャープな一枚を提案します。消すのは人間です。</span>
+            </a>
+          </li>
+          <li>
+            <a href="photo/tools/stats.html">
+              <b>02</b>
+              <strong id="ht2-t">分析</strong>
+              <span id="ht2-d">焦点距離・絞り・ISO・時間帯の分布に加えて、どの設定で失敗しやすいかを出します。</span>
+            </a>
+          </li>
+          <li>
+            <a href="photo/tools/frame.html">
+              <b>03</b>
+              <strong id="ht3-t">額装</strong>
+              <span id="ht3-d">機材と設定を余白に刻む額縁 3 種。ウォーターマークの位置は明るさを測って自動で決めます。</span>
+            </a>
+          </li>
+        </ul>
+        <p class="hobby-privacy" id="hobby-privacy">3 つとも写真をサーバーに送りません。すべてブラウザの中だけで処理されます。</p>
+      </div>
+
       <p class="hobby-more reveal">
         <a href="photo/" id="hobby-more">旅 9 件すべてを地球儀で見る →</a>
       </p>
@@ -594,6 +640,6 @@
 <!-- 사진 미리보기 데이터. photo/build.py 가 만듭니다.
      없어도 Hobby 섹션은 정적 문구 그대로 표시됩니다. -->
 <script src="photo/data/preview.js?v=1"></script>
-<script src="script.js?v=9"></script>
+<script src="script.js?v=10"></script>
 </body>
 </html>
