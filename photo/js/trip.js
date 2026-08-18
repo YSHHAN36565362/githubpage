@@ -232,6 +232,19 @@
       });
     } else { wrap.hidden = true; }
 
+    /* 원본 앨범 링크 — driveUrl 이 있을 때만 */
+    var origin = $('#t-origin');
+    if (origin) {
+      if (trip.driveUrl) {
+        $('#t-origin-link').href = trip.driveUrl;
+        $('#t-origin-link').textContent = t('trip.origin');
+        $('#t-origin-note').textContent = t('trip.originNote');
+        origin.hidden = false;
+      } else {
+        origin.hidden = true;
+      }
+    }
+
     $('#empty-folder').textContent = 'photos/' + trip.folder + '/';
   }
 
@@ -269,6 +282,21 @@
       p._ratio = (e.w && e.h) ? (e.w / e.h) : 1.5;
       /* build.py 는 회전을 반영해 리사이즈하지만 EXIF 의 w/h 는 원본 값입니다.
          세로 사진이 가로로 잡히면 실제 썸네일을 읽어 보정합니다. */
+    });
+
+    /* 언어 전환 리스너는 사진 유무와 상관없이 먼저 등록합니다.
+       예전에는 아래 "사진 0장" 조기 return 뒤에 있어서, 사진을 아직 넣지 않은
+       여행 페이지에서는 日/한/EN 을 눌러도 제목·설명이 그대로 남았습니다. */
+    global.I18N.onChange(function () {
+      fillHead();
+      if (!photos.length) return;
+      render();
+      var db = $('#sort-dir');
+      if (db) {
+        db.innerHTML = (sortDir === 'asc' ? '↑ ' : '↓ ') +
+          '<span>' + global.I18N.t(sortDir === 'asc' ? 'trip.asc' : 'trip.desc') + '</span>';
+      }
+      if (!$('#lightbox').hidden) showLb();
     });
 
     if (!photos.length) {
@@ -325,13 +353,6 @@
       else if (e.key === 'ArrowRight') step(1);
     });
 
-    global.I18N.onChange(function () {
-      fillHead();
-      render();
-      dirBtn.innerHTML = (sortDir === 'asc' ? '↑ ' : '↓ ') +
-        '<span>' + global.I18N.t(sortDir === 'asc' ? 'trip.asc' : 'trip.desc') + '</span>';
-      if (!$('#lightbox').hidden) showLb();
-    });
   }
 
   if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', boot);

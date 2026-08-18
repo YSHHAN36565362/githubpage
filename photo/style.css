@@ -637,3 +637,15 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
   .lb-nav { width: 34px; height: 54px; font-size: 22px; }
   .shot-exif { opacity: 1; }         /* 모바일은 hover 가 없습니다 */
 }
+
+
+/* ── 원본 앨범(Drive) 링크 ─────────────────────────────────────────
+   사진 자체는 thumbs/ 에서 나옵니다. 이 링크는 방문자가 눌러서
+   나가는 외부 링크일 뿐이라, 드라이브가 느리거나 막혀도
+   페이지에는 아무 영향이 없습니다. */
+.trip-origin {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+  margin: 18px 0 0;
+}
+.trip-origin-note { font-size: 12px; color: var(--dim); }
+@media (max-width: 600px) { .trip-origin { gap: 8px; } }

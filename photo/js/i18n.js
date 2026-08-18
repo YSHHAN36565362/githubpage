@@ -37,6 +37,8 @@
       'archive.lead': '旅は行った順に並んでいます。各アルバムの中は撮影日時順が基本で、焦点距離・絞り・ISO でも並べ替えられます。',
       'card.photos': '枚', 'card.review': '日付要確認', 'card.empty': '写真準備中',
       'card.cities': '都市',
+      'trip.origin': '原本アルバム（Google Drive）',
+      'trip.originNote': 'このページの写真は軽量化した複製です。フル解像度の原本はドライブにあります。',
 
       'tools.eyebrow': 'Tools',
       'tools.heading': '写真ワークフローを自動化する',
@@ -183,6 +185,8 @@
       'archive.lead': '여행은 다녀온 순서로 놓았습니다. 앨범 안은 촬영 일시순이 기본이고 초점거리·조리개·ISO로도 정렬할 수 있습니다.',
       'card.photos': '장', 'card.review': '날짜 확인 필요', 'card.empty': '사진 준비 중',
       'card.cities': '도시',
+      'trip.origin': '원본 앨범 (Google Drive)',
+      'trip.originNote': '이 페이지의 사진은 가볍게 만든 사본입니다. 원본 해상도는 드라이브에 있습니다.',
 
       'tools.eyebrow': 'Tools',
       'tools.heading': '사진 워크플로를 자동화하기',
@@ -324,6 +328,8 @@
       'archive.lead': 'Trips are ordered by when I went. Inside each album the default order is capture time, and you can re-sort by focal length, aperture or ISO.',
       'card.photos': 'photos', 'card.review': 'date to confirm', 'card.empty': 'photos coming',
       'card.cities': 'cities',
+      'trip.origin': 'Originals on Google Drive',
+      'trip.originNote': 'The photos on this page are downsized copies. Full-resolution originals live on Drive.',
 
       'tools.eyebrow': 'Tools',
       'tools.heading': 'Automating my own photo workflow',
